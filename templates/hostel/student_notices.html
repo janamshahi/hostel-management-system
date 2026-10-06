@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}
+Hostel Notices | DIDI BAHINI GIRLS HOSTEL
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="mb-4">
+
+        <h2 class="fw-bold">
+            Hostel Notice Board
+        </h2>
+
+        <p class="text-muted">
+            Important announcements from hostel administration
+        </p>
+
+    </div>
+
+
+    {% for notice in notices %}
+
+    <div class="card shadow-sm border-0 mb-3">
+
+        <div class="card-body">
+
+            <h5 class="fw-bold">
+                {{ notice.title }}
+            </h5>
+
+            <p>
+                {{ notice.content }}
+            </p>
+
+            <small class="text-muted">
+
+                {{ notice.created_at|date:"F d, Y - h:i A" }}
+
+            </small>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="alert alert-info">
+
+        There are currently no hostel notices.
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

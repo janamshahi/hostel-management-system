@@ -1,0 +1,582 @@
+{% extends "admin_base.html" %}
+
+
+{% block title %}
+Add Room | DIDI BAHINI GIRLS HOSTEL
+{% endblock %}
+
+
+{% block extra_css %}
+
+<style>
+
+    /* =====================================================
+       PAGE
+    ====================================================== */
+
+    .room-form-page {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+
+    /* =====================================================
+       PAGE HEADER
+    ====================================================== */
+
+    .page-header {
+        margin-bottom: 25px;
+    }
+
+    .page-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #20252b;
+        margin-bottom: 5px;
+    }
+
+    .page-subtitle {
+        color: #777;
+        margin-bottom: 0;
+    }
+
+
+    /* =====================================================
+       FORM CARD
+    ====================================================== */
+
+    .form-card {
+        background: #ffffff;
+        border: 1px solid #e8e8e8;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .form-card-header {
+        background: #20252b;
+        color: #ffffff;
+        padding: 20px 25px;
+    }
+
+    .form-card-header h5 {
+        margin: 0;
+        font-weight: 700;
+    }
+
+    .form-card-header p {
+        margin: 5px 0 0;
+        color: #d6d6d6;
+        font-size: 14px;
+    }
+
+    .form-card-body {
+        padding: 30px;
+    }
+
+
+    /* =====================================================
+       FORM LABELS
+    ====================================================== */
+
+    .form-label {
+        font-weight: 600;
+        color: #20252b;
+        margin-bottom: 7px;
+    }
+
+    .required {
+        color: #dc3545;
+    }
+
+
+    /* =====================================================
+       FORM CONTROLS
+    ====================================================== */
+
+    .form-control,
+    .form-select {
+        min-height: 48px;
+        border-radius: 10px;
+        border: 1px solid #dcdcdc;
+        padding: 10px 14px;
+    }
+
+    textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #8f6b35;
+        box-shadow: 0 0 0 0.2rem rgba(143, 107, 53, 0.15);
+    }
+
+
+    /* =====================================================
+       INPUT GROUP
+    ====================================================== */
+
+    .input-group-text {
+        background: #f7f7f2;
+        border-color: #dcdcdc;
+        color: #8f6b35;
+        font-weight: 700;
+    }
+
+
+    /* =====================================================
+       INFORMATION BOX
+    ====================================================== */
+
+    .info-box {
+        background: #f7f7f2;
+        border-left: 4px solid #8f6b35;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 25px;
+    }
+
+    .info-box-title {
+        font-weight: 700;
+        color: #20252b;
+        margin-bottom: 5px;
+    }
+
+    .info-box-text {
+        color: #666;
+        font-size: 14px;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+
+    /* =====================================================
+       BUTTONS
+    ====================================================== */
+
+    .btn-save {
+        background: #8f6b35;
+        border-color: #8f6b35;
+        color: #ffffff;
+        border-radius: 10px;
+        padding: 11px 22px;
+        font-weight: 600;
+    }
+
+    .btn-save:hover {
+        background: #6e5126;
+        border-color: #6e5126;
+        color: #ffffff;
+    }
+
+    .btn-cancel {
+        border-radius: 10px;
+        padding: 11px 22px;
+        font-weight: 600;
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ====================================================== */
+
+    @media (max-width: 768px) {
+
+        .form-card-body {
+            padding: 22px;
+        }
+
+        .page-title {
+            font-size: 24px;
+        }
+
+    }
+
+
+    @media (max-width: 576px) {
+
+        .form-card-body {
+            padding: 18px;
+        }
+
+        .form-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-actions .btn {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="room-form-page">
+
+
+        <!-- ==================================================
+             PAGE HEADER
+        =================================================== -->
+
+        <div class="page-header">
+
+            <h2 class="page-title">
+
+                <i class="bi bi-plus-circle me-2"></i>
+
+                Add Hostel Room
+
+            </h2>
+
+            <p class="page-subtitle">
+
+                Add a new room to DIDI BAHINI GIRLS HOSTEL.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             FORM CARD
+        =================================================== -->
+
+        <div class="form-card">
+
+
+            <!-- CARD HEADER -->
+
+            <div class="form-card-header">
+
+                <h5>
+
+                    <i class="bi bi-door-open me-2"></i>
+
+                    Room Information
+
+                </h5>
+
+                <p>
+
+                    Enter the room details below.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- CARD BODY -->
+
+            <div class="form-card-body">
+
+
+                <!-- INFORMATION -->
+
+                <div class="info-box">
+
+                    <div class="info-box-title">
+
+                        <i class="bi bi-info-circle me-1"></i>
+
+                        Room Setup
+
+                    </div>
+
+                    <p class="info-box-text">
+
+                        Add the room number, floor, room type,
+                        student capacity and monthly hostel fee.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     FORM
+                =================================================== -->
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+
+                    <div class="row g-4">
+
+
+                        <!-- ROOM NUMBER -->
+
+                        <div class="col-md-6">
+
+                            <label
+                                for="room_number"
+                                class="form-label"
+                            >
+
+                                Room Number
+
+                                <span class="required">*</span>
+
+                            </label>
+
+                            <input
+                                type="text"
+                                id="room_number"
+                                name="room_number"
+                                class="form-control"
+                                placeholder="Example: 101"
+                                autocomplete="off"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- FLOOR -->
+
+                        <div class="col-md-6">
+
+                            <label
+                                for="floor"
+                                class="form-label"
+                            >
+
+                                Floor
+
+                                <span class="required">*</span>
+
+                            </label>
+
+                            <input
+                                type="text"
+                                id="floor"
+                                name="floor"
+                                class="form-control"
+                                placeholder="Example: Ground Floor"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- ROOM TYPE -->
+
+                        <div class="col-md-6">
+
+                            <label
+                                for="room_type"
+                                class="form-label"
+                            >
+
+                                Room Type
+
+                                <span class="required">*</span>
+
+                            </label>
+
+                            <select
+                                id="room_type"
+                                name="room_type"
+                                class="form-select"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Room Type
+                                </option>
+
+                                <option value="Single">
+                                    Single
+                                </option>
+
+                                <option value="Double">
+                                    Double
+                                </option>
+
+                                <option value="Triple">
+                                    Triple
+                                </option>
+
+                                <option value="Four Bed">
+                                    Four Bed
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- CAPACITY -->
+
+                        <div class="col-md-6">
+
+                            <label
+                                for="capacity"
+                                class="form-label"
+                            >
+
+                                Student Capacity
+
+                                <span class="required">*</span>
+
+                            </label>
+
+                            <div class="input-group">
+
+                                <input
+                                    type="number"
+                                    id="capacity"
+                                    name="capacity"
+                                    class="form-control"
+                                    min="1"
+                                    max="20"
+                                    placeholder="Example: 4"
+                                    required
+                                >
+
+                                <span class="input-group-text">
+
+                                    Students
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- MONTHLY FEE -->
+
+                        <div class="col-md-6">
+
+                            <label
+                                for="monthly_fee"
+                                class="form-label"
+                            >
+
+                                Monthly Hostel Fee
+
+                                <span class="required">*</span>
+
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+
+                                    Rs.
+
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="monthly_fee"
+                                    name="monthly_fee"
+                                    class="form-control"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="Example: 5000"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- DESCRIPTION -->
+
+                        <div class="col-12">
+
+                            <label
+                                for="description"
+                                class="form-label"
+                            >
+
+                                Room Description
+
+                                <span class="text-muted fw-normal">
+                                    (Optional)
+                                </span>
+
+                            </label>
+
+                            <textarea
+                                id="description"
+                                name="description"
+                                class="form-control"
+                                rows="4"
+                                placeholder="Example: Spacious room with attached study area..."
+                            ></textarea>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- ==================================================
+                         FORM ACTIONS
+                    =================================================== -->
+
+                    <div
+                        class="form-actions d-flex justify-content-end gap-2 mt-4 pt-4 border-top"
+                    >
+
+                        <a
+                            href="{% url 'room_list' %}"
+                            class="btn btn-secondary btn-cancel"
+                        >
+
+                            <i class="bi bi-arrow-left me-1"></i>
+
+                            Cancel
+
+                        </a>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-save"
+                        >
+
+                            <i class="bi bi-check-circle me-1"></i>
+
+                            Save Room
+
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

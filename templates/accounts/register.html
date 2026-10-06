@@ -1,0 +1,492 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register | DIDI BAHINI GIRLS HOSTEL
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .register-wrapper {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 45px 15px;
+        background:
+            linear-gradient(
+                135deg,
+                #f7f7f2 0%,
+                #ffffff 50%,
+                #f1f2df 100%
+            );
+    }
+
+    .register-card {
+        width: 100%;
+        max-width: 950px;
+        background: #ffffff;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.10);
+        border: 1px solid #eeeeee;
+    }
+
+    .register-header {
+        background: linear-gradient(
+            135deg,
+            #d9d75f,
+            #b8b63b
+        );
+        padding: 32px 35px;
+        text-align: center;
+        color: #222;
+    }
+
+    .register-header .icon {
+        width: 70px;
+        height: 70px;
+        background: rgba(255, 255, 255, 0.75);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+        font-size: 30px;
+        color: #55540f;
+    }
+
+    .register-header h2 {
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+
+    .register-header p {
+        margin: 0;
+        font-size: 14px;
+        opacity: 0.85;
+    }
+
+    .register-body {
+        padding: 35px;
+    }
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 22px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    .section-title i {
+        color: #b8b63b;
+        font-size: 20px;
+    }
+
+    .section-title h5 {
+        margin: 0;
+        font-weight: 700;
+        color: #333;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 7px;
+    }
+
+    .form-control {
+        min-height: 48px;
+        border-radius: 10px;
+        border: 1px solid #dddddd;
+        padding: 10px 14px;
+        transition: 0.2s ease;
+    }
+
+    .form-control:focus {
+        border-color: #b8b63b;
+        box-shadow: 0 0 0 0.2rem rgba(184, 182, 59, 0.15);
+    }
+
+    textarea.form-control {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .input-group-text {
+        background: #f7f7f2;
+        border-color: #dddddd;
+        color: #777;
+    }
+
+    .required {
+        color: #dc3545;
+    }
+
+    .register-btn {
+        width: 100%;
+        min-height: 50px;
+        border: none;
+        border-radius: 11px;
+        background: #b8b63b;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 16px;
+        transition: 0.25s ease;
+    }
+
+    .register-btn:hover {
+        background: #99972d;
+        transform: translateY(-1px);
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .login-link a {
+        color: #8f8d24;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .login-link a:hover {
+        text-decoration: underline;
+    }
+
+    .info-box {
+        background: #f7f7f2;
+        border-left: 4px solid #b8b63b;
+        padding: 13px 15px;
+        border-radius: 7px;
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 25px;
+    }
+
+    @media (max-width: 768px) {
+
+        .register-wrapper {
+            padding: 25px 12px;
+        }
+
+        .register-header {
+            padding: 28px 20px;
+        }
+
+        .register-body {
+            padding: 25px 20px;
+        }
+
+        .register-card {
+            border-radius: 16px;
+        }
+    }
+
+</style>
+
+
+<div class="register-wrapper">
+
+    <div class="register-card">
+
+        <!-- HEADER -->
+        <div class="register-header">
+
+            <div class="icon">
+                <i class="bi bi-person-plus-fill"></i>
+            </div>
+
+            <h2>Create Student Account</h2>
+
+            <p>
+                Register for DIDI BAHINI GIRLS HOSTEL
+            </p>
+
+        </div>
+
+
+        <!-- BODY -->
+        <div class="register-body">
+
+            {% if messages %}
+                {% for message in messages %}
+
+                    <div class="alert
+                        {% if message.tags == 'error' %}
+                            alert-danger
+                        {% elif message.tags == 'success' %}
+                            alert-success
+                        {% else %}
+                            alert-info
+                        {% endif %}
+                        alert-dismissible fade show"
+                        role="alert">
+
+                        {{ message }}
+
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert">
+                        </button>
+
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+
+
+            <div class="info-box">
+
+                <i class="bi bi-info-circle me-1"></i>
+
+                Please enter your personal and guardian information
+                correctly to create your hostel account.
+
+            </div>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- ACCOUNT INFORMATION -->
+
+                <div class="section-title">
+
+                    <i class="bi bi-person-lock"></i>
+
+                    <h5>Account Information</h5>
+
+                </div>
+
+
+                <div class="row g-4 mb-4">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Username
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="username"
+                            class="form-control"
+                            placeholder="Enter username"
+                            required
+                            autocomplete="username">
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Password
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            class="form-control"
+                            placeholder="Create password"
+                            required
+                            autocomplete="new-password">
+
+                    </div>
+
+                </div>
+
+
+                <!-- PERSONAL INFORMATION -->
+
+                <div class="section-title">
+
+                    <i class="bi bi-person-vcard"></i>
+
+                    <h5>Personal Information</h5>
+
+                </div>
+
+
+                <div class="row g-4 mb-4">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Full Name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="full_name"
+                            class="form-control"
+                            placeholder="Enter full name"
+                            required>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Student ID
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="student_id"
+                            class="form-control"
+                            placeholder="Enter student ID"
+                            required>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Email Address
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="example@gmail.com"
+                            required
+                            autocomplete="email">
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Phone Number
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            name="phone"
+                            class="form-control"
+                            placeholder="98XXXXXXXX"
+                            required>
+
+                    </div>
+
+
+                    <div class="col-12">
+
+                        <label class="form-label">
+                            Address
+                            <span class="required">*</span>
+                        </label>
+
+                        <textarea
+                            name="address"
+                            class="form-control"
+                            placeholder="Enter your permanent address"
+                            required></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GUARDIAN INFORMATION -->
+
+                <div class="section-title">
+
+                    <i class="bi bi-people-fill"></i>
+
+                    <h5>Guardian Information</h5>
+
+                </div>
+
+
+                <div class="row g-4 mb-4">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Guardian Name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="guardian_name"
+                            class="form-control"
+                            placeholder="Enter guardian name"
+                            required>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Guardian Phone
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            name="guardian_phone"
+                            class="form-control"
+                            placeholder="98XXXXXXXX"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="register-btn">
+
+                    <i class="bi bi-person-check-fill me-2"></i>
+
+                    Create Account
+
+                </button>
+
+
+                <div class="login-link">
+
+                    Already have an account?
+
+                    <a href="{% url 'login' %}">
+                        Login here
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

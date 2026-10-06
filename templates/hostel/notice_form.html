@@ -1,0 +1,891 @@
+{% extends "admin_base.html" %}
+
+{% block title %}
+{% if notice %}
+Update Notice | DIDI BAHINI GIRLS HOSTEL
+{% else %}
+Create Notice | DIDI BAHINI GIRLS HOSTEL
+{% endif %}
+{% endblock %}
+
+
+{% block extra_css %}
+
+<style>
+
+    .notice-wrapper {
+        max-width: 950px;
+        margin: 0 auto;
+    }
+
+    .notice-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 25px;
+        flex-wrap: wrap;
+    }
+
+    .notice-title h2 {
+        font-weight: 800;
+        color: #20252b;
+        margin-bottom: 5px;
+    }
+
+    .notice-title p {
+        color: #777;
+        margin-bottom: 0;
+    }
+
+    .notice-card {
+        background: #ffffff;
+        border: 0;
+        border-radius: 18px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+
+    .notice-card-header {
+        background: linear-gradient(
+            135deg,
+            #20252b,
+            #343b43
+        );
+        color: #ffffff;
+        padding: 24px 28px;
+    }
+
+    .notice-card-header h4 {
+        margin: 0;
+        font-weight: 700;
+    }
+
+    .notice-card-body {
+        padding: 30px;
+    }
+
+    .form-label {
+        font-weight: 700;
+        color: #343a40;
+        margin-bottom: 8px;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 10px;
+        min-height: 48px;
+        border: 1px solid #dfe3e8;
+    }
+
+    textarea.form-control {
+        min-height: 180px;
+        resize: vertical;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #8f6b35;
+        box-shadow: 0 0 0 0.2rem rgba(143,107,53,0.12);
+    }
+
+    .recipient-box {
+        background: #f8f6f0;
+        border: 1px solid #eadfc9;
+        border-radius: 14px;
+        padding: 20px;
+    }
+
+    .recipient-option {
+        background: #ffffff;
+        border: 1px solid #e2e5e8;
+        border-radius: 12px;
+        padding: 14px 16px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .recipient-option:hover {
+        border-color: #8f6b35;
+        transform: translateY(-1px);
+    }
+
+    .recipient-option input {
+        margin-right: 10px;
+    }
+
+    .recipient-option strong {
+        color: #20252b;
+    }
+
+    .student-selection {
+        display: none;
+        margin-top: 18px;
+    }
+
+    .student-selection.show {
+        display: block;
+    }
+
+    .student-select {
+        min-height: 170px;
+    }
+
+    .student-help {
+        font-size: 13px;
+        color: #777;
+        margin-top: 7px;
+    }
+
+    .active-box {
+        background: #f7f8f9;
+        border-radius: 12px;
+        padding: 15px 18px;
+        border: 1px solid #e5e7e9;
+    }
+
+    .preview-box {
+        background: #fafafa;
+        border: 1px dashed #cfcfcf;
+        border-radius: 14px;
+        padding: 22px;
+        margin-top: 25px;
+    }
+
+    .preview-label {
+        color: #8f6b35;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 800;
+    }
+
+    .preview-title {
+        font-size: 22px;
+        font-weight: 800;
+        color: #20252b;
+        margin-top: 8px;
+    }
+
+    .preview-content {
+        color: #555;
+        white-space: pre-line;
+        margin-top: 10px;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 28px;
+        padding-top: 22px;
+        border-top: 1px solid #eeeeee;
+    }
+
+    .btn-custom {
+        border-radius: 10px;
+        padding: 11px 22px;
+        font-weight: 700;
+    }
+
+    .btn-primary-custom {
+        background: #8f6b35;
+        border-color: #8f6b35;
+        color: #ffffff;
+    }
+
+    .btn-primary-custom:hover {
+        background: #6e5126;
+        border-color: #6e5126;
+        color: #ffffff;
+    }
+
+    .counter {
+        text-align: right;
+        font-size: 12px;
+        color: #888;
+        margin-top: 5px;
+    }
+
+    @media (max-width: 768px) {
+
+        .notice-card-body {
+            padding: 20px;
+        }
+
+        .notice-card-header {
+            padding: 20px;
+        }
+
+        .form-actions {
+            flex-direction: column;
+        }
+
+        .form-actions .btn {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid py-4">
+
+    <div class="notice-wrapper">
+
+        <!-- ================================================= -->
+        <!-- PAGE HEADER -->
+        <!-- ================================================= -->
+
+        <div class="notice-header">
+
+            <div class="notice-title">
+
+                <h2>
+
+                    <i class="bi bi-megaphone-fill me-2"></i>
+
+                    {% if notice %}
+                        Update Hostel Notice
+                    {% else %}
+                        Create Hostel Notice
+                    {% endif %}
+
+                </h2>
+
+                <p>
+                    Create and manage announcements for hostel students.
+                </p>
+
+            </div>
+
+
+            <a
+                href="{% url 'notice_list' %}"
+                class="btn btn-outline-secondary btn-custom"
+            >
+
+                <i class="bi bi-arrow-left me-1"></i>
+
+                Back to Notices
+
+            </a>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- NOTICE CARD -->
+        <!-- ================================================= -->
+
+        <div class="notice-card">
+
+            <div class="notice-card-header">
+
+                <h4>
+
+                    <i class="bi bi-megaphone me-2"></i>
+
+                    {% if notice %}
+                        Edit Notice Information
+                    {% else %}
+                        Notice Information
+                    {% endif %}
+
+                </h4>
+
+            </div>
+
+
+            <div class="notice-card-body">
+
+                <form
+                    method="POST"
+                    id="noticeForm"
+                >
+
+                    {% csrf_token %}
+
+
+                    <!-- ===================================== -->
+                    <!-- TITLE -->
+                    <!-- ===================================== -->
+
+                    <div class="mb-4">
+
+                        <label
+                            for="title"
+                            class="form-label"
+                        >
+
+                            Notice Title
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            name="title"
+                            id="title"
+                            class="form-control"
+                            maxlength="200"
+                            value="{% if notice %}{{ notice.title }}{% endif %}"
+                            placeholder="Enter notice title..."
+                            required
+                        >
+
+                        <div
+                            class="counter"
+                            id="titleCounter"
+                        >
+                            0 / 200
+                        </div>
+
+                    </div>
+
+
+                    <!-- ===================================== -->
+                    <!-- CONTENT -->
+                    <!-- ===================================== -->
+
+                    <div class="mb-4">
+
+                        <label
+                            for="content"
+                            class="form-label"
+                        >
+
+                            Notice Content
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+                        <textarea
+                            name="content"
+                            id="content"
+                            class="form-control"
+                            maxlength="5000"
+                            placeholder="Write your hostel notice here..."
+                            required
+                        >{% if notice %}{{ notice.content }}{% endif %}</textarea>
+
+                        <div
+                            class="counter"
+                            id="contentCounter"
+                        >
+                            0 / 5000
+                        </div>
+
+                    </div>
+
+
+                    <!-- ===================================== -->
+                    <!-- RECIPIENT -->
+                    <!-- ===================================== -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+
+                            Send Notice To
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+
+                        <div class="recipient-box">
+
+                            <!-- ALL STUDENTS -->
+
+                            <label
+                                class="recipient-option d-block"
+                            >
+
+                                <input
+                                    type="radio"
+                                    name="recipient_type"
+                                    value="all"
+                                    id="recipientAll"
+                                    {% if not notice or notice.send_to_all %}
+                                        checked
+                                    {% endif %}
+                                >
+
+                                <strong>
+
+                                    <i class="bi bi-people-fill me-1"></i>
+
+                                    All Students
+
+                                </strong>
+
+                                <div class="small text-muted ms-4">
+
+                                    Send this notice to every registered
+                                    hostel student.
+
+                                </div>
+
+                            </label>
+
+
+                            <!-- SELECTED STUDENTS -->
+
+                            <label
+                                class="recipient-option d-block"
+                            >
+
+                                <input
+                                    type="radio"
+                                    name="recipient_type"
+                                    value="selected"
+                                    id="recipientSelected"
+                                    {% if notice and not notice.send_to_all %}
+                                        checked
+                                    {% endif %}
+                                >
+
+                                <strong>
+
+                                    <i class="bi bi-person-check-fill me-1"></i>
+
+                                    Select Student(s)
+
+                                </strong>
+
+                                <div class="small text-muted ms-4">
+
+                                    Send this notice only to selected students.
+
+                                </div>
+
+                            </label>
+
+
+                            <!-- ================================= -->
+                            <!-- STUDENT DROPDOWN -->
+                            <!-- ================================= -->
+
+                            <div
+                                id="studentSelection"
+                                class="student-selection"
+                            >
+
+                                <label
+                                    for="students"
+                                    class="form-label"
+                                >
+
+                                    Select Student(s)
+
+                                </label>
+
+
+                                <select
+                                    name="students"
+                                    id="students"
+                                    class="form-select student-select"
+                                    multiple
+                                >
+
+                                    {% for student in students %}
+
+                                        <option
+                                            value="{{ student.id }}"
+                                            {% if student.id|stringformat:"s" in selected_students %}
+                                                selected
+                                            {% endif %}
+                                        >
+
+                                            {{ student.full_name }}
+
+                                            — {{ student.student_id }}
+
+                                            {% if student.phone %}
+                                                — {{ student.phone }}
+                                            {% endif %}
+
+                                        </option>
+
+                                    {% empty %}
+
+                                        <option disabled>
+
+                                            No students registered.
+
+                                        </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+
+                                <div class="student-help">
+
+                                    <i class="bi bi-info-circle me-1"></i>
+
+                                    Hold
+                                    <strong>Ctrl</strong>
+                                    on Windows to select multiple students.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ===================================== -->
+                    <!-- ACTIVE STATUS -->
+                    <!-- ===================================== -->
+
+                    <div class="mb-4">
+
+                        <div class="active-box">
+
+                            <div class="form-check form-switch">
+
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    name="is_active"
+                                    value="1"
+                                    id="isActive"
+                                    {% if not notice or notice.is_active %}
+                                        checked
+                                    {% endif %}
+                                >
+
+                                <label
+                                    class="form-check-label fw-bold"
+                                    for="isActive"
+                                >
+
+                                    Publish Notice
+
+                                </label>
+
+                            </div>
+
+                            <div class="small text-muted mt-1">
+
+                                Active notices are visible to students.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ===================================== -->
+                    <!-- PREVIEW -->
+                    <!-- ===================================== -->
+
+                    <div class="preview-box">
+
+                        <div class="preview-label">
+
+                            Live Preview
+
+                        </div>
+
+                        <div
+                            class="preview-title"
+                            id="previewTitle"
+                        >
+                            Notice Title
+                        </div>
+
+                        <div
+                            class="preview-content"
+                            id="previewContent"
+                        >
+                            Notice content will appear here.
+                        </div>
+
+                    </div>
+
+
+                    <!-- ===================================== -->
+                    <!-- ACTIONS -->
+                    <!-- ===================================== -->
+
+                    <div class="form-actions">
+
+                        <a
+                            href="{% url 'notice_list' %}"
+                            class="btn btn-light border btn-custom"
+                        >
+
+                            <i class="bi bi-x-circle me-1"></i>
+
+                            Cancel
+
+                        </a>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary-custom btn-custom"
+                            id="submitButton"
+                        >
+
+                            <i class="bi bi-send-fill me-1"></i>
+
+                            {% if notice %}
+                                Update Notice
+                            {% else %}
+                                Publish Notice
+                            {% endif %}
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const recipientAll =
+            document.getElementById(
+                "recipientAll"
+            );
+
+        const recipientSelected =
+            document.getElementById(
+                "recipientSelected"
+            );
+
+        const studentSelection =
+            document.getElementById(
+                "studentSelection"
+            );
+
+        const students =
+            document.getElementById(
+                "students"
+            );
+
+        const title =
+            document.getElementById(
+                "title"
+            );
+
+        const content =
+            document.getElementById(
+                "content"
+            );
+
+        const titleCounter =
+            document.getElementById(
+                "titleCounter"
+            );
+
+        const contentCounter =
+            document.getElementById(
+                "contentCounter"
+            );
+
+        const previewTitle =
+            document.getElementById(
+                "previewTitle"
+            );
+
+        const previewContent =
+            document.getElementById(
+                "previewContent"
+            );
+
+
+        // ================================================
+        // SHOW / HIDE STUDENT SELECT
+        // ================================================
+
+        function updateRecipientDisplay() {
+
+            if (
+                recipientSelected.checked
+            ) {
+
+                studentSelection.classList.add(
+                    "show"
+                );
+
+                students.required = true;
+
+            } else {
+
+                studentSelection.classList.remove(
+                    "show"
+                );
+
+                students.required = false;
+
+            }
+
+        }
+
+
+        recipientAll.addEventListener(
+            "change",
+            updateRecipientDisplay
+        );
+
+
+        recipientSelected.addEventListener(
+            "change",
+            updateRecipientDisplay
+        );
+
+
+        // Initial state
+        updateRecipientDisplay();
+
+
+        // ================================================
+        // TITLE COUNTER
+        // ================================================
+
+        function updateTitle() {
+
+            const value =
+                title.value;
+
+            titleCounter.textContent =
+                value.length + " / 200";
+
+            if (value.trim()) {
+
+                previewTitle.textContent =
+                    value;
+
+            } else {
+
+                previewTitle.textContent =
+                    "Notice Title";
+
+            }
+
+        }
+
+
+        title.addEventListener(
+            "input",
+            updateTitle
+        );
+
+
+        // ================================================
+        // CONTENT COUNTER
+        // ================================================
+
+        function updateContent() {
+
+            const value =
+                content.value;
+
+            contentCounter.textContent =
+                value.length + " / 5000";
+
+            if (value.trim()) {
+
+                previewContent.textContent =
+                    value;
+
+            } else {
+
+                previewContent.textContent =
+                    "Notice content will appear here.";
+
+            }
+
+        }
+
+
+        content.addEventListener(
+            "input",
+            updateContent
+        );
+
+
+        // Initial preview
+        updateTitle();
+        updateContent();
+
+
+        // ================================================
+        // FORM SUBMIT
+        // ================================================
+
+        document
+            .getElementById("noticeForm")
+            .addEventListener(
+                "submit",
+                function () {
+
+                    const button =
+                        document.getElementById(
+                            "submitButton"
+                        );
+
+                    if (
+                        recipientSelected.checked &&
+                        students.selectedOptions.length === 0
+                    ) {
+
+                        alert(
+                            "Please select at least one student."
+                        );
+
+                        event.preventDefault();
+
+                        return;
+
+                    }
+
+
+                    button.disabled = true;
+
+                    {% if notice %}
+
+                        button.innerHTML =
+                            '<i class="bi bi-arrow-repeat me-1"></i> Updating...';
+
+                    {% else %}
+
+                        button.innerHTML =
+                            '<i class="bi bi-arrow-repeat me-1"></i> Publishing...';
+
+                    {% endif %}
+
+                }
+            );
+
+    }
+);
+
+</script>
+
+{% endblock %}

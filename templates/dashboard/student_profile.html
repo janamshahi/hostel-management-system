@@ -1,0 +1,806 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Profile | DIDI BAHINI GIRLS HOSTEL
+{% endblock %}
+
+
+{% block extra_css %}
+
+<style>
+
+    body {
+        background: #f7f7f2;
+    }
+
+    .profile-page {
+        min-height: calc(100vh - 70px);
+        background: #f7f7f2;
+    }
+
+
+    /* =========================================================
+       SIDEBAR
+    ========================================================= */
+
+    .student-sidebar {
+        min-height: calc(100vh - 70px);
+        background: #ffffff;
+        border-right: 1px solid #e8e8e8;
+        padding: 22px 12px;
+    }
+
+    .sidebar-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: #999;
+        letter-spacing: 1px;
+        padding: 0 14px;
+        margin-bottom: 14px;
+    }
+
+    .student-sidebar a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        margin-bottom: 6px;
+        border-radius: 10px;
+        color: #555;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: .2s ease;
+    }
+
+    .student-sidebar a i {
+        font-size: 18px;
+        width: 22px;
+        text-align: center;
+    }
+
+    .student-sidebar a:hover {
+        background: #f1f1d8;
+        color: #333;
+    }
+
+    .student-sidebar a.active {
+        background: #d9d75f;
+        color: #222;
+        font-weight: 600;
+    }
+
+    .logout-link {
+        margin-top: 25px;
+    }
+
+
+    /* =========================================================
+       CONTENT
+    ========================================================= */
+
+    .profile-content {
+        padding: 30px;
+    }
+
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .profile-header {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 25px;
+        border: 1px solid #eeeeee;
+        margin-bottom: 24px;
+    }
+
+    .profile-avatar {
+        width: 75px;
+        height: 75px;
+        border-radius: 20px;
+        background: #d9d75f;
+        color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    .profile-header h2 {
+        font-size: 25px;
+        font-weight: 700;
+        color: #252525;
+        margin-bottom: 5px;
+    }
+
+    .profile-header p {
+        color: #777;
+        margin-bottom: 0;
+    }
+
+
+    /* =========================================================
+       PROFILE CARD
+    ========================================================= */
+
+    .profile-card {
+        background: #ffffff;
+        border: none;
+        border-radius: 17px;
+        box-shadow: 0 5px 20px rgba(0,0,0,.04);
+    }
+
+    .profile-card-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #252525;
+    }
+
+    .profile-card-title i {
+        color: #777;
+    }
+
+
+    /* =========================================================
+       INFORMATION
+    ========================================================= */
+
+    .profile-info {
+        padding: 16px 0;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    .profile-info:last-child {
+        border-bottom: none;
+    }
+
+    .profile-label {
+        color: #888;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        margin-bottom: 5px;
+    }
+
+    .profile-value {
+        color: #333;
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 0;
+        word-break: break-word;
+    }
+
+
+    /* =========================================================
+       EDIT BUTTON
+    ========================================================= */
+
+    .edit-btn {
+        background: #d9d75f;
+        color: #222;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 18px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .edit-btn:hover {
+        background: #c8c64d;
+        color: #222;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 991px) {
+
+        .student-sidebar {
+            min-height: auto;
+            border-right: none;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 15px;
+        }
+
+        .student-sidebar a {
+            display: inline-flex;
+            margin-right: 5px;
+            padding: 9px 12px;
+        }
+
+        .sidebar-title {
+            padding-left: 5px;
+        }
+
+        .logout-link {
+            margin-top: 0;
+        }
+
+        .profile-content {
+            padding: 20px;
+        }
+
+    }
+
+
+    @media (max-width: 576px) {
+
+        .profile-content {
+            padding: 15px;
+        }
+
+        .profile-header {
+            padding: 20px;
+        }
+
+        .profile-avatar {
+            width: 60px;
+            height: 60px;
+            font-size: 25px;
+        }
+
+        .profile-header h2 {
+            font-size: 21px;
+        }
+
+        .student-sidebar a {
+            width: 100%;
+        }
+
+        .edit-btn {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="profile-page">
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+
+            <!-- =================================================
+                 STUDENT SIDEBAR
+            ================================================== -->
+
+            <div class="col-lg-2 student-sidebar">
+
+                <div class="sidebar-title">
+                    STUDENT PANEL
+                </div>
+
+
+                <!-- Dashboard -->
+
+                <a href="{% url 'student_dashboard' %}">
+
+                    <i class="bi bi-speedometer2"></i>
+
+                    <span>
+                        Dashboard
+                    </span>
+
+                </a>
+
+
+                <!-- My Profile -->
+
+                <a href="{% url 'student_profile' %}"
+                   class="active">
+
+                    <i class="bi bi-person"></i>
+
+                    <span>
+                        My Profile
+                    </span>
+
+                </a>
+
+
+                <!-- My Room -->
+
+                <a href="{% url 'student_dashboard' %}#room-information">
+
+                    <i class="bi bi-door-open"></i>
+
+                    <span>
+                        My Room
+                    </span>
+
+                </a>
+
+
+                <!-- My Payments -->
+
+                <a href="{% url 'student_dashboard' %}#payment-history">
+
+                    <i class="bi bi-cash-stack"></i>
+
+                    <span>
+                        My Payments
+                    </span>
+
+                </a>
+
+
+                <!-- Notices -->
+
+                <a href="{% url 'student_notices' %}">
+
+                    <i class="bi bi-megaphone"></i>
+
+                    <span>
+                        Notices
+                    </span>
+
+                </a>
+
+
+                <!-- Logout -->
+
+                <a href="{% url 'logout' %}"
+                   class="logout-link">
+
+                    <i class="bi bi-box-arrow-left"></i>
+
+                    <span>
+                        Logout
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 MAIN CONTENT
+            ================================================== -->
+
+            <div class="col-lg-10 profile-content">
+
+
+                <!-- =================================================
+                     PROFILE HEADER
+                ================================================== -->
+
+                <div class="profile-header">
+
+                    <div class="d-flex
+                                align-items-center
+                                justify-content-between
+                                gap-3
+                                flex-wrap">
+
+
+                        <!-- Profile Title -->
+
+                        <div class="d-flex
+                                    align-items-center
+                                    gap-3">
+
+                            <div class="profile-avatar">
+
+                                <i class="bi bi-person"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h2>
+                                    My Profile
+                                </h2>
+
+                                <p>
+                                    Manage your personal information
+                                    and hostel account details.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Edit Profile -->
+
+                        <a href="{% url 'edit_profile' %}"
+                           class="btn edit-btn">
+
+                            <i class="bi bi-pencil-square me-2"></i>
+
+                            Edit Profile
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PERSONAL INFORMATION
+                ================================================== -->
+
+                <div class="card profile-card">
+
+                    <div class="card-body p-4">
+
+                        <div class="profile-card-title">
+
+                            <i class="bi bi-person-vcard me-2"></i>
+
+                            Personal Information
+
+                        </div>
+
+
+                        <hr>
+
+
+                        <div class="row">
+
+
+                            <!-- Student ID -->
+
+                            <div class="col-md-6">
+
+                                <div class="profile-info">
+
+                                    <div class="profile-label">
+
+                                        Student ID
+
+                                    </div>
+
+                                    <p class="profile-value">
+
+                                        {{ student.student_id }}
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Full Name -->
+
+                            <div class="col-md-6">
+
+                                <div class="profile-info">
+
+                                    <div class="profile-label">
+
+                                        Full Name
+
+                                    </div>
+
+                                    <p class="profile-value">
+
+                                        {{ student.full_name }}
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Phone -->
+
+                            <div class="col-md-6">
+
+                                <div class="profile-info">
+
+                                    <div class="profile-label">
+
+                                        Phone Number
+
+                                    </div>
+
+                                    <p class="profile-value">
+
+                                        {{ student.phone|default:"Not provided" }}
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Email -->
+
+                            <div class="col-md-6">
+
+                                <div class="profile-info">
+
+                                    <div class="profile-label">
+
+                                        Email Address
+
+                                    </div>
+
+                                    <p class="profile-value">
+
+                                        {{ student.email|default:"Not provided" }}
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Date of Birth -->
+
+                            <div class="col-md-6">
+
+                                <div class="profile-info">
+
+                                    <div class="profile-label">
+
+                                        Date of Birth
+
+                                    </div>
+
+                                    <p class="profile-value">
+
+                                        {% if student.date_of_birth %}
+
+                                            {{ student.date_of_birth|date:"F d, Y" }}
+
+                                        {% else %}
+
+                                            Not provided
+
+                                        {% endif %}
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Gender -->
+
+                            <div class="col-md-6">
+
+                                <div class="profile-info">
+
+                                    <div class="profile-label">
+
+                                        Gender
+
+                                    </div>
+
+                                    <p class="profile-value">
+
+                                        {{ student.gender }}
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Address -->
+
+                            <div class="col-12">
+
+                                <div class="profile-info">
+
+                                    <div class="profile-label">
+
+                                        Address
+
+                                    </div>
+
+                                    <p class="profile-value">
+
+                                        {{ student.address|default:"Not provided" }}
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     GUARDIAN INFORMATION
+                ================================================== -->
+
+                <div class="card profile-card mt-4">
+
+                    <div class="card-body p-4">
+
+                        <div class="profile-card-title">
+
+                            <i class="bi bi-people me-2"></i>
+
+                            Guardian Information
+
+                        </div>
+
+
+                        <hr>
+
+
+                        <div class="row">
+
+
+                            <!-- Guardian Name -->
+
+                            <div class="col-md-6">
+
+                                <div class="profile-info">
+
+                                    <div class="profile-label">
+
+                                        Guardian Name
+
+                                    </div>
+
+                                    <p class="profile-value">
+
+                                        {{ student.guardian_name|default:"Not provided" }}
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Guardian Phone -->
+
+                            <div class="col-md-6">
+
+                                <div class="profile-info">
+
+                                    <div class="profile-label">
+
+                                        Guardian Phone
+
+                                    </div>
+
+                                    <p class="profile-value">
+
+                                        {{ student.guardian_phone|default:"Not provided" }}
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ACCOUNT INFORMATION
+                ================================================== -->
+
+                <div class="card profile-card mt-4">
+
+                    <div class="card-body p-4">
+
+                        <div class="profile-card-title">
+
+                            <i class="bi bi-shield-check me-2"></i>
+
+                            Account Information
+
+                        </div>
+
+
+                        <hr>
+
+
+                        <div class="row">
+
+
+                            <!-- Username -->
+
+                            <div class="col-md-6">
+
+                                <div class="profile-info">
+
+                                    <div class="profile-label">
+
+                                        Username
+
+                                    </div>
+
+                                    <p class="profile-value">
+
+                                        {{ student.user.username }}
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Account Created -->
+
+                            <div class="col-md-6">
+
+                                <div class="profile-info">
+
+                                    <div class="profile-label">
+
+                                        Account Created
+
+                                    </div>
+
+                                    <p class="profile-value">
+
+                                        {{ student.created_at|date:"F d, Y" }}
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     FOOTER
+                ================================================== -->
+
+                <div class="text-center py-4">
+
+                    <small class="text-muted">
+
+                        © {% now "Y" %}
+                        DIDI BAHINI GIRLS HOSTEL.
+                        Student Management System.
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,998 @@
+{% extends "admin_base.html" %}
+
+{% block title %}
+Record Payment | DIDI BAHINI GIRLS HOSTEL
+{% endblock %}
+
+
+{% block extra_css %}
+
+<style>
+
+    .payment-wrapper {
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    .payment-card {
+        border: none;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #ffffff;
+    }
+
+    .payment-header {
+        background: linear-gradient(
+            135deg,
+            #20252b,
+            #343a40
+        );
+        color: #ffffff;
+        padding: 28px 30px;
+    }
+
+    .payment-header-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: #d9c08a;
+        color: #20252b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 14px;
+    }
+
+    .payment-header h3 {
+        margin-bottom: 5px;
+        font-weight: 700;
+    }
+
+    .payment-header p {
+        margin-bottom: 0;
+        color: #dddddd;
+        font-size: 14px;
+    }
+
+    .payment-body {
+        padding: 30px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #343a40;
+        margin-bottom: 7px;
+    }
+
+    .form-control,
+    .form-select {
+        min-height: 46px;
+        border-radius: 10px;
+        border: 1px solid #dfe2e6;
+        padding: 10px 13px;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #8f6b35;
+        box-shadow: 0 0 0 0.2rem rgba(143, 107, 53, 0.12);
+    }
+
+    textarea.form-control {
+        min-height: 110px;
+        resize: vertical;
+    }
+
+    .input-group-text {
+        border-radius: 10px 0 0 10px;
+        background: #f7f7f2;
+        border-color: #dfe2e6;
+        color: #8f6b35;
+        font-weight: 600;
+    }
+
+    .input-group .form-control {
+        border-radius: 0 10px 10px 0;
+    }
+
+    .section-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #8f6b35;
+        border-bottom: 1px solid #eeeeee;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .student-info {
+        display: none;
+        margin-top: 10px;
+        padding: 12px 15px;
+        border-radius: 10px;
+        background: #f7f7f2;
+        border: 1px solid #e8e3d7;
+        font-size: 14px;
+    }
+
+    .student-info strong {
+        color: #20252b;
+    }
+
+    .payment-method-box {
+        padding: 16px;
+        border: 1px solid #e3e5e8;
+        border-radius: 12px;
+        background: #fafafa;
+    }
+
+    .payment-method-box label {
+        font-weight: 600;
+    }
+
+    .required {
+        color: #dc3545;
+    }
+
+    .help-text {
+        font-size: 12px;
+        color: #6c757d;
+        margin-top: 5px;
+    }
+
+    .btn-save {
+        background: #8f6b35;
+        border-color: #8f6b35;
+        color: #ffffff;
+        min-height: 46px;
+        border-radius: 10px;
+        font-weight: 600;
+        padding: 10px 24px;
+    }
+
+    .btn-save:hover {
+        background: #6e5126;
+        border-color: #6e5126;
+        color: #ffffff;
+    }
+
+    .btn-cancel {
+        min-height: 46px;
+        border-radius: 10px;
+        font-weight: 600;
+        padding: 10px 24px;
+    }
+
+    .payment-summary {
+        margin-top: 25px;
+        padding: 18px;
+        border-radius: 12px;
+        background: #f7f7f2;
+        border: 1px solid #e9e4d8;
+    }
+
+    .payment-summary-title {
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #20252b;
+    }
+
+    .summary-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 7px 0;
+        font-size: 14px;
+    }
+
+    .summary-item span:first-child {
+        color: #6c757d;
+    }
+
+    .summary-item strong {
+        color: #20252b;
+    }
+
+    @media (max-width: 576px) {
+
+        .payment-body {
+            padding: 20px;
+        }
+
+        .payment-header {
+            padding: 22px;
+        }
+
+        .payment-header h3 {
+            font-size: 22px;
+        }
+
+        .action-buttons {
+            flex-direction: column;
+        }
+
+        .action-buttons .btn {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container py-4 py-lg-5">
+
+    <div class="payment-wrapper">
+
+        <div class="card payment-card shadow-sm">
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <div class="payment-header">
+
+                <div class="payment-header-icon">
+
+                    <i class="bi bi-cash-coin"></i>
+
+                </div>
+
+                <h3>
+                    Record Fee Payment
+                </h3>
+
+                <p>
+                    Record and manage hostel fee payments
+                    for registered students.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 FORM BODY
+            ================================================== -->
+
+            <div class="payment-body">
+
+                <form
+                    method="POST"
+                    id="paymentForm">
+
+                    {% csrf_token %}
+
+
+                    <!-- =================================================
+                         STUDENT INFORMATION
+                    ================================================== -->
+
+                    <div class="section-title">
+
+                        <i class="bi bi-person-fill me-1"></i>
+
+                        Student Information
+
+                    </div>
+
+
+                    <div class="mb-4">
+
+                        <label
+                            for="student"
+                            class="form-label">
+
+                            Student
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <select
+                            name="student"
+                            id="student"
+                            class="form-select"
+                            required>
+
+                            <option value="">
+                                Select Student
+                            </option>
+
+                            {% for student in students %}
+
+                                <option
+                                    value="{{ student.id }}"
+                                    data-student-id="{{ student.student_id }}"
+                                    data-name="{{ student.full_name }}"
+                                    data-phone="{{ student.phone }}"
+                                >
+
+                                    {{ student.student_id }}
+                                    -
+                                    {{ student.full_name }}
+
+                                </option>
+
+                            {% empty %}
+
+                                <option
+                                    value=""
+                                    disabled>
+
+                                    No students registered.
+
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+
+                        <div
+                            id="studentInfo"
+                            class="student-info">
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+
+                                    <strong>
+                                        Student ID:
+                                    </strong>
+
+                                    <span id="selectedStudentId">
+                                        -
+                                    </span>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <strong>
+                                        Student Name:
+                                    </strong>
+
+                                    <span id="selectedStudentName">
+                                        -
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         PAYMENT DETAILS
+                    ================================================== -->
+
+                    <div class="section-title">
+
+                        <i class="bi bi-wallet2 me-1"></i>
+
+                        Payment Details
+
+                    </div>
+
+
+                    <div class="row">
+
+
+                        <!-- AMOUNT -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <label
+                                for="amount"
+                                class="form-label">
+
+                                Amount
+                                <span class="required">*</span>
+
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+                                    NPR
+                                </span>
+
+                                <input
+                                    type="number"
+                                    step="0.01"
+                                    min="0.01"
+                                    name="amount"
+                                    id="amount"
+                                    class="form-control"
+                                    placeholder="Enter amount"
+                                    required>
+
+                            </div>
+
+                            <div class="help-text">
+                                Enter the hostel fee amount in Nepalese Rupees.
+                            </div>
+
+                        </div>
+
+
+                        <!-- PAYMENT DATE -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <label
+                                for="payment_date"
+                                class="form-label">
+
+                                Payment Date
+                                <span class="required">*</span>
+
+                            </label>
+
+                            <input
+                                type="date"
+                                name="payment_date"
+                                id="payment_date"
+                                class="form-control"
+                                required>
+
+                        </div>
+
+
+                        <!-- MONTH -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <label
+                                for="month"
+                                class="form-label">
+
+                                Fee Month
+                                <span class="required">*</span>
+
+                            </label>
+
+                            <input
+                                type="text"
+                                name="month"
+                                id="month"
+                                class="form-control"
+                                placeholder="October 2026"
+                                required>
+
+                            <div class="help-text">
+                                Example: October 2026
+                            </div>
+
+                        </div>
+
+
+                        <!-- PAYMENT METHOD -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <label
+                                for="payment_method"
+                                class="form-label">
+
+                                Payment Method
+                                <span class="required">*</span>
+
+                            </label>
+
+                            <select
+                                name="payment_method"
+                                id="payment_method"
+                                class="form-select"
+                                required>
+
+                                <option value="Cash">
+                                    Cash
+                                </option>
+
+                                <option value="Bank">
+                                    Bank
+                                </option>
+
+                                <option value="Online">
+                                    Online
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- STATUS -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <label
+                                for="status"
+                                class="form-label">
+
+                                Payment Status
+                                <span class="required">*</span>
+
+                            </label>
+
+                            <select
+                                name="status"
+                                id="status"
+                                class="form-select"
+                                required>
+
+                                <option value="Paid">
+                                    Paid
+                                </option>
+
+                                <option value="Pending">
+                                    Pending
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- TRANSACTION ID -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <label
+                                for="transaction_id"
+                                class="form-label">
+
+                                Transaction ID
+
+                            </label>
+
+                            <input
+                                type="text"
+                                name="transaction_id"
+                                id="transaction_id"
+                                class="form-control"
+                                placeholder="Optional transaction ID">
+
+                            <div class="help-text">
+                                Required only when applicable for bank/online payments.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         REMARKS
+                    ================================================== -->
+
+                    <div class="section-title mt-3">
+
+                        <i class="bi bi-chat-left-text me-1"></i>
+
+                        Additional Information
+
+                    </div>
+
+
+                    <div class="mb-4">
+
+                        <label
+                            for="remarks"
+                            class="form-label">
+
+                            Remarks
+
+                        </label>
+
+                        <textarea
+                            name="remarks"
+                            id="remarks"
+                            class="form-control"
+                            rows="4"
+                            placeholder="Enter any additional payment remarks..."></textarea>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         PAYMENT SUMMARY
+                    ================================================== -->
+
+                    <div
+                        class="payment-summary"
+                        id="paymentSummary">
+
+                        <div class="payment-summary-title">
+
+                            <i class="bi bi-receipt me-1"></i>
+
+                            Payment Summary
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span>
+                                Student
+                            </span>
+
+                            <strong id="summaryStudent">
+                                Not selected
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span>
+                                Amount
+                            </span>
+
+                            <strong id="summaryAmount">
+                                NPR 0.00
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span>
+                                Month
+                            </span>
+
+                            <strong id="summaryMonth">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span>
+                                Payment Method
+                            </span>
+
+                            <strong id="summaryMethod">
+                                Cash
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span>
+                                Status
+                            </span>
+
+                            <strong id="summaryStatus">
+                                Paid
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         ACTION BUTTONS
+                    ================================================== -->
+
+                    <div
+                        class="d-flex justify-content-end gap-2 mt-4 action-buttons">
+
+                        <a
+                            href="{% url 'payment_list' %}"
+                            class="btn btn-outline-secondary btn-cancel">
+
+                            <i class="bi bi-arrow-left me-1"></i>
+
+                            Cancel
+
+                        </a>
+
+
+                        <button
+                            type="submit"
+                            id="savePaymentButton"
+                            class="btn btn-save">
+
+                            <i class="bi bi-check-circle me-1"></i>
+
+                            Save Payment
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const studentSelect =
+            document.getElementById("student");
+
+        const studentInfo =
+            document.getElementById("studentInfo");
+
+        const selectedStudentId =
+            document.getElementById("selectedStudentId");
+
+        const selectedStudentName =
+            document.getElementById("selectedStudentName");
+
+        const amountInput =
+            document.getElementById("amount");
+
+        const monthInput =
+            document.getElementById("month");
+
+        const paymentMethod =
+            document.getElementById("payment_method");
+
+        const statusInput =
+            document.getElementById("status");
+
+        const paymentDate =
+            document.getElementById("payment_date");
+
+        const summaryStudent =
+            document.getElementById("summaryStudent");
+
+        const summaryAmount =
+            document.getElementById("summaryAmount");
+
+        const summaryMonth =
+            document.getElementById("summaryMonth");
+
+        const summaryMethod =
+            document.getElementById("summaryMethod");
+
+        const summaryStatus =
+            document.getElementById("summaryStatus");
+
+        const paymentForm =
+            document.getElementById("paymentForm");
+
+        const saveButton =
+            document.getElementById("savePaymentButton");
+
+
+        /* ======================================================
+           SET TODAY'S DATE
+        ====================================================== */
+
+        if (!paymentDate.value) {
+
+            const today =
+                new Date();
+
+            const year =
+                today.getFullYear();
+
+            const month =
+                String(
+                    today.getMonth() + 1
+                ).padStart(2, "0");
+
+            const day =
+                String(
+                    today.getDate()
+                ).padStart(2, "0");
+
+            paymentDate.value =
+                `${year}-${month}-${day}`;
+        }
+
+
+        /* ======================================================
+           STUDENT SELECTION
+        ====================================================== */
+
+        function updateStudent() {
+
+            const option =
+                studentSelect.options[
+                    studentSelect.selectedIndex
+                ];
+
+            if (
+                studentSelect.value &&
+                option
+            ) {
+
+                const studentId =
+                    option.dataset.studentId || "-";
+
+                const studentName =
+                    option.dataset.name || "-";
+
+                selectedStudentId.textContent =
+                    studentId;
+
+                selectedStudentName.textContent =
+                    studentName;
+
+                summaryStudent.textContent =
+                    studentName;
+
+                studentInfo.style.display =
+                    "block";
+
+            } else {
+
+                selectedStudentId.textContent =
+                    "-";
+
+                selectedStudentName.textContent =
+                    "-";
+
+                summaryStudent.textContent =
+                    "Not selected";
+
+                studentInfo.style.display =
+                    "none";
+            }
+        }
+
+
+        /* ======================================================
+           AMOUNT
+        ====================================================== */
+
+        function updateAmount() {
+
+            const value =
+                parseFloat(
+                    amountInput.value
+                );
+
+            if (!isNaN(value)) {
+
+                summaryAmount.textContent =
+                    "NPR " +
+                    value.toFixed(2);
+
+            } else {
+
+                summaryAmount.textContent =
+                    "NPR 0.00";
+            }
+        }
+
+
+        /* ======================================================
+           MONTH
+        ====================================================== */
+
+        function updateMonth() {
+
+            const value =
+                monthInput.value.trim();
+
+            summaryMonth.textContent =
+                value || "-";
+        }
+
+
+        /* ======================================================
+           PAYMENT METHOD
+        ====================================================== */
+
+        function updateMethod() {
+
+            summaryMethod.textContent =
+                paymentMethod.value;
+        }
+
+
+        /* ======================================================
+           STATUS
+        ====================================================== */
+
+        function updateStatus() {
+
+            summaryStatus.textContent =
+                statusInput.value;
+        }
+
+
+        /* ======================================================
+           EVENT LISTENERS
+        ====================================================== */
+
+        studentSelect.addEventListener(
+            "change",
+            updateStudent
+        );
+
+        amountInput.addEventListener(
+            "input",
+            updateAmount
+        );
+
+        monthInput.addEventListener(
+            "input",
+            updateMonth
+        );
+
+        paymentMethod.addEventListener(
+            "change",
+            updateMethod
+        );
+
+        statusInput.addEventListener(
+            "change",
+            updateStatus
+        );
+
+
+        /* ======================================================
+           FORM SUBMISSION
+        ====================================================== */
+
+        paymentForm.addEventListener(
+            "submit",
+            function () {
+
+                saveButton.disabled =
+                    true;
+
+                saveButton.innerHTML =
+                    '<span class="spinner-border spinner-border-sm me-2"></span>' +
+                    'Saving Payment...';
+
+            }
+        );
+
+
+        /* ======================================================
+           INITIAL UPDATE
+        ====================================================== */
+
+        updateStudent();
+
+        updateAmount();
+
+        updateMonth();
+
+        updateMethod();
+
+        updateStatus();
+
+    }
+
+);
+
+</script>
+
+{% endblock %}

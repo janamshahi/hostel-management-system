@@ -1,0 +1,1145 @@
+{% extends "base.html" %}
+
+{% block title %}
+Student Dashboard | DIDI BAHINI GIRLS HOSTEL
+{% endblock %}
+
+
+{% block extra_css %}
+
+<style>
+
+    /* =========================================================
+       STUDENT DASHBOARD
+    ========================================================= */
+
+    .student-dashboard {
+        min-height: calc(100vh - 70px);
+        background: #f7f7f2;
+    }
+
+
+    /* =========================================================
+       SIDEBAR
+    ========================================================= */
+
+    .student-sidebar {
+        min-height: calc(100vh - 70px);
+        background: #ffffff;
+        border-right: 1px solid #e8e8e8;
+        padding: 22px 12px;
+    }
+
+
+    .sidebar-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: #999;
+        letter-spacing: 1px;
+        padding: 0 14px;
+        margin-bottom: 14px;
+    }
+
+
+    .student-sidebar a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        margin-bottom: 6px;
+        border-radius: 10px;
+        color: #555;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all .2s ease;
+    }
+
+
+    .student-sidebar a i {
+        font-size: 18px;
+        width: 22px;
+        text-align: center;
+    }
+
+
+    .student-sidebar a:hover {
+        background: #f1f1d8;
+        color: #333;
+    }
+
+
+    .student-sidebar a.active {
+        background: #d9d75f;
+        color: #222;
+        font-weight: 600;
+    }
+
+
+    .logout-link {
+        margin-top: 25px;
+    }
+
+
+    /* =========================================================
+       MAIN CONTENT
+    ========================================================= */
+
+    .dashboard-content {
+        padding: 30px;
+    }
+
+
+    /* =========================================================
+       WELCOME
+    ========================================================= */
+
+    .welcome-box {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 24px;
+        border: 1px solid #eeeeee;
+        margin-bottom: 24px;
+    }
+
+
+    .welcome-box h2 {
+        font-size: 27px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: #252525;
+    }
+
+
+    .welcome-box p {
+        margin-bottom: 0;
+        color: #777;
+    }
+
+
+    .welcome-icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 15px;
+        background: #d9d75f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 27px;
+        color: #333;
+    }
+
+
+    /* =========================================================
+       STAT CARDS
+    ========================================================= */
+
+    .dashboard-card {
+        border: none;
+        border-radius: 16px;
+        background: #ffffff;
+        box-shadow: 0 5px 20px rgba(0,0,0,.05);
+        transition:
+            transform .2s ease,
+            box-shadow .2s ease;
+    }
+
+
+    .dashboard-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0,0,0,.08);
+    }
+
+
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 13px;
+        background: #f1f1d8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        color: #555;
+        margin-bottom: 15px;
+    }
+
+
+    .stat-label {
+        color: #888;
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+
+    .stat-value {
+        font-size: 22px;
+        font-weight: 700;
+        color: #252525;
+        margin-bottom: 0;
+    }
+
+
+    /* =========================================================
+       INFORMATION CARDS
+    ========================================================= */
+
+    .dashboard-section {
+        background: #ffffff;
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 5px 20px rgba(0,0,0,.04);
+    }
+
+
+    .section-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #252525;
+    }
+
+
+    .section-line {
+        border-color: #eeeeee;
+        margin: 15px 0 20px;
+    }
+
+
+    .info-label {
+        color: #888;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .4px;
+        margin-bottom: 5px;
+    }
+
+
+    .info-value {
+        color: #333;
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+
+
+    /* =========================================================
+       NOTICE
+    ========================================================= */
+
+    .notice-item {
+        padding: 15px 0;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+
+    .notice-item:last-child {
+        border-bottom: none;
+    }
+
+
+    .notice-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+
+    .notice-content {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 5px;
+        line-height: 1.6;
+    }
+
+
+    .notice-date {
+        color: #999;
+        font-size: 12px;
+    }
+
+
+    /* =========================================================
+       PAYMENT TABLE
+    ========================================================= */
+
+    .payment-table {
+        margin-bottom: 0;
+    }
+
+
+    .payment-table th {
+        font-size: 12px;
+        color: #888;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-bottom: 1px solid #eeeeee;
+        padding: 12px 8px;
+    }
+
+
+    .payment-table td {
+        font-size: 14px;
+        color: #444;
+        vertical-align: middle;
+        padding: 13px 8px;
+    }
+
+
+    /* =========================================================
+       PAYMENT STATUS
+    ========================================================= */
+
+    .status-paid,
+    .status-pending,
+    .status-other {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+
+    .status-paid {
+        background: #e7f6ec;
+        color: #198754;
+    }
+
+
+    .status-pending {
+        background: #fff4d6;
+        color: #a06a00;
+    }
+
+
+    .status-other {
+        background: #eeeeee;
+        color: #666;
+    }
+
+
+    /* =========================================================
+       EMPTY STATE
+    ========================================================= */
+
+    .empty-state {
+        text-align: center;
+        padding: 35px 20px;
+        color: #888;
+    }
+
+
+    .empty-state i {
+        font-size: 38px;
+        color: #c5c5c5;
+        margin-bottom: 10px;
+    }
+
+
+    /* =========================================================
+       PROFILE QUICK LINK
+    ========================================================= */
+
+    .profile-link {
+        position: relative;
+    }
+
+
+    .profile-link .profile-arrow {
+        margin-left: auto;
+        font-size: 13px;
+        opacity: .6;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 991px) {
+
+        .student-sidebar {
+            min-height: auto;
+            border-right: none;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 15px;
+        }
+
+
+        .student-sidebar a {
+            display: inline-flex;
+            margin-right: 5px;
+            padding: 9px 12px;
+        }
+
+
+        .sidebar-title {
+            padding-left: 5px;
+        }
+
+
+        .logout-link {
+            margin-top: 0;
+        }
+
+
+        .dashboard-content {
+            padding: 20px;
+        }
+
+    }
+
+
+    @media (max-width: 576px) {
+
+        .dashboard-content {
+            padding: 15px;
+        }
+
+
+        .welcome-box {
+            padding: 18px;
+        }
+
+
+        .welcome-box h2 {
+            font-size: 22px;
+        }
+
+
+        .welcome-icon {
+            width: 48px;
+            height: 48px;
+            font-size: 22px;
+        }
+
+
+        .student-sidebar a {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="student-dashboard">
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+
+            <!-- =================================================
+                 STUDENT SIDEBAR
+            ================================================== -->
+
+            <div class="col-lg-2 student-sidebar">
+
+                <div class="sidebar-title">
+                    STUDENT PANEL
+                </div>
+
+
+                <!-- Dashboard -->
+
+                <a href="{% url 'student_dashboard' %}"
+                   class="active">
+
+                    <i class="bi bi-speedometer2"></i>
+
+                    <span>
+                        Dashboard
+                    </span>
+
+                </a>
+
+
+                <!-- My Profile - STUDENT ONLY -->
+
+                <a href="{% url 'student_profile' %}"
+                   class="profile-link">
+
+                    <i class="bi bi-person"></i>
+
+                    <span>
+                        My Profile
+                    </span>
+
+                    <i class="bi bi-chevron-right profile-arrow"></i>
+
+                </a>
+
+
+                <!-- My Room -->
+
+                <a href="#room-information">
+
+                    <i class="bi bi-door-open"></i>
+
+                    <span>
+                        My Room
+                    </span>
+
+                </a>
+
+
+                <!-- My Payments -->
+
+                <a href="#payment-history">
+
+                    <i class="bi bi-cash-stack"></i>
+
+                    <span>
+                        My Payments
+                    </span>
+
+                </a>
+
+
+                <!-- Notices -->
+
+                <a href="{% url 'student_notices' %}">
+
+                    <i class="bi bi-megaphone"></i>
+
+                    <span>
+                        Notices
+                    </span>
+
+                </a>
+
+
+                <!-- Logout -->
+
+                <a href="{% url 'logout' %}"
+                   class="logout-link">
+
+                    <i class="bi bi-box-arrow-left"></i>
+
+                    <span>
+                        Logout
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 MAIN CONTENT
+            ================================================== -->
+
+            <div class="col-lg-10 dashboard-content">
+
+
+                <!-- =================================================
+                     WELCOME
+                ================================================== -->
+
+                <div class="welcome-box">
+
+                    <div class="d-flex
+                                justify-content-between
+                                align-items-center
+                                gap-3">
+
+                        <div>
+
+                            <h2>
+
+                                Welcome,
+                                {{ student.full_name }}
+
+                            </h2>
+
+                            <p>
+
+                                Welcome to your
+                                DIDI BAHINI GIRLS HOSTEL
+                                student dashboard.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="welcome-icon">
+
+                            <i class="bi bi-building"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     STATISTICS
+                ================================================== -->
+
+                <div class="row g-4">
+
+
+                    <!-- Student ID -->
+
+                    <div class="col-md-4">
+
+                        <div class="card dashboard-card h-100">
+
+                            <div class="card-body p-4">
+
+                                <div class="stat-icon">
+
+                                    <i class="bi bi-person-vcard"></i>
+
+                                </div>
+
+                                <div class="stat-label">
+
+                                    Student ID
+
+                                </div>
+
+                                <p class="stat-value">
+
+                                    {{ student.student_id }}
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Room -->
+
+                    <div class="col-md-4">
+
+                        <div class="card dashboard-card h-100">
+
+                            <div class="card-body p-4">
+
+                                <div class="stat-icon">
+
+                                    <i class="bi bi-door-open"></i>
+
+                                </div>
+
+                                <div class="stat-label">
+
+                                    Room
+
+                                </div>
+
+
+                                {% if allocation %}
+
+                                    <p class="stat-value">
+
+                                        Room
+                                        {{ allocation.room.room_number }}
+
+                                    </p>
+
+                                {% else %}
+
+                                    <p class="stat-value text-danger">
+
+                                        Not Allocated
+
+                                    </p>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Monthly Fee -->
+
+                    <div class="col-md-4">
+
+                        <div class="card dashboard-card h-100">
+
+                            <div class="card-body p-4">
+
+                                <div class="stat-icon">
+
+                                    <i class="bi bi-cash-coin"></i>
+
+                                </div>
+
+                                <div class="stat-label">
+
+                                    Monthly Fee
+
+                                </div>
+
+
+                                {% if allocation %}
+
+                                    <p class="stat-value">
+
+                                        NPR
+                                        {{ allocation.room.monthly_fee }}
+
+                                    </p>
+
+                                {% else %}
+
+                                    <p class="stat-value">
+
+                                        -
+
+                                    </p>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ROOM INFORMATION
+                ================================================== -->
+
+                <div class="card dashboard-section mt-4"
+                     id="room-information">
+
+                    <div class="card-body p-4">
+
+                        <h5 class="section-title">
+
+                            <i class="bi bi-door-open me-2"></i>
+
+                            My Room Information
+
+                        </h5>
+
+                        <hr class="section-line">
+
+
+                        {% if allocation %}
+
+                            <div class="row g-4">
+
+
+                                <div class="col-md-4">
+
+                                    <div class="info-label">
+
+                                        Room Number
+
+                                    </div>
+
+                                    <p class="info-value">
+
+                                        {{ allocation.room.room_number }}
+
+                                    </p>
+
+                                </div>
+
+
+                                <div class="col-md-4">
+
+                                    <div class="info-label">
+
+                                        Room Type
+
+                                    </div>
+
+                                    <p class="info-value">
+
+                                        {{ allocation.room.room_type }}
+
+                                    </p>
+
+                                </div>
+
+
+                                <div class="col-md-4">
+
+                                    <div class="info-label">
+
+                                        Capacity
+
+                                    </div>
+
+                                    <p class="info-value">
+
+                                        {{ allocation.room.capacity }}
+
+                                    </p>
+
+                                </div>
+
+
+                                <div class="col-md-4">
+
+                                    <div class="info-label">
+
+                                        Monthly Fee
+
+                                    </div>
+
+                                    <p class="info-value">
+
+                                        NPR
+                                        {{ allocation.room.monthly_fee }}
+
+                                    </p>
+
+                                </div>
+
+
+                                <div class="col-md-4">
+
+                                    <div class="info-label">
+
+                                        Allocated Date
+
+                                    </div>
+
+                                    <p class="info-value">
+
+                                        {{ allocation.allocated_date|date:"M d, Y" }}
+
+                                    </p>
+
+                                </div>
+
+
+                                <div class="col-md-4">
+
+                                    <div class="info-label">
+
+                                        Allocation Status
+
+                                    </div>
+
+                                    <p class="info-value text-success">
+
+                                        <i class="bi bi-check-circle-fill"></i>
+
+                                        Active
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                        {% else %}
+
+                            <div class="empty-state">
+
+                                <i class="bi bi-house-x d-block"></i>
+
+                                <p class="mb-1">
+
+                                    You have not been allocated
+                                    a room yet.
+
+                                </p>
+
+                                <small>
+
+                                    Please contact the hostel
+                                    administration for room allocation.
+
+                                </small>
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PAYMENT HISTORY
+                ================================================== -->
+
+                <div class="card dashboard-section mt-4"
+                     id="payment-history">
+
+                    <div class="card-body p-4">
+
+                        <h5 class="section-title mb-0">
+
+                            <i class="bi bi-credit-card me-2"></i>
+
+                            My Payment History
+
+                        </h5>
+
+                        <hr class="section-line">
+
+
+                        {% if payments %}
+
+                            <div class="table-responsive">
+
+                                <table class="table payment-table">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>
+                                                Date
+                                            </th>
+
+                                            <th>
+                                                Month
+                                            </th>
+
+                                            <th>
+                                                Amount
+                                            </th>
+
+                                            <th>
+                                                Method
+                                            </th>
+
+                                            <th>
+                                                Status
+                                            </th>
+
+                                        </tr>
+
+                                    </thead>
+
+
+                                    <tbody>
+
+                                        {% for payment in payments %}
+
+                                            <tr>
+
+                                                <td>
+
+                                                    {{ payment.payment_date|date:"M d, Y" }}
+
+                                                </td>
+
+
+                                                <td>
+
+                                                    {{ payment.month }}
+
+                                                </td>
+
+
+                                                <td>
+
+                                                    <strong>
+
+                                                        NPR
+                                                        {{ payment.amount }}
+
+                                                    </strong>
+
+                                                </td>
+
+
+                                                <td>
+
+                                                    {{ payment.payment_method }}
+
+                                                </td>
+
+
+                                                <td>
+
+                                                    {% if payment.status == "Paid" %}
+
+                                                        <span class="status-paid">
+
+                                                            Paid
+
+                                                        </span>
+
+                                                    {% elif payment.status == "Pending" %}
+
+                                                        <span class="status-pending">
+
+                                                            Pending
+
+                                                        </span>
+
+                                                    {% else %}
+
+                                                        <span class="status-other">
+
+                                                            {{ payment.status }}
+
+                                                        </span>
+
+                                                    {% endif %}
+
+                                                </td>
+
+                                            </tr>
+
+                                        {% endfor %}
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+
+                        {% else %}
+
+                            <div class="empty-state">
+
+                                <i class="bi bi-receipt d-block"></i>
+
+                                <p class="mb-0">
+
+                                    No payment records available.
+
+                                </p>
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     LATEST NOTICES
+                ================================================== -->
+
+                <div class="card dashboard-section mt-4">
+
+                    <div class="card-body p-4">
+
+                        <div class="d-flex
+                                    justify-content-between
+                                    align-items-center">
+
+                            <h5 class="section-title mb-0">
+
+                                <i class="bi bi-megaphone me-2"></i>
+
+                                Latest Notices
+
+                            </h5>
+
+
+                            <a href="{% url 'student_notices' %}"
+                               class="btn btn-sm btn-outline-secondary">
+
+                                View All
+
+                            </a>
+
+                        </div>
+
+
+                        <hr class="section-line">
+
+
+                        {% for notice in notices %}
+
+                            <div class="notice-item">
+
+                                <div class="notice-title">
+
+                                    {{ notice.title }}
+
+                                </div>
+
+
+                                <div class="notice-content">
+
+                                    {{ notice.content }}
+
+                                </div>
+
+
+                                <div class="notice-date">
+
+                                    <i class="bi bi-clock me-1"></i>
+
+                                    {{ notice.created_at|date:"M d, Y H:i" }}
+
+                                </div>
+
+                            </div>
+
+
+                        {% empty %}
+
+                            <div class="empty-state">
+
+                                <i class="bi bi-megaphone d-block"></i>
+
+                                <p class="mb-0">
+
+                                    No notices available.
+
+                                </p>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     FOOTER
+                ================================================== -->
+
+                <div class="text-center py-4">
+
+                    <small class="text-muted">
+
+                        © {% now "Y" %}
+                        DIDI BAHINI GIRLS HOSTEL.
+                        Student Management System.
+
+                    </small>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

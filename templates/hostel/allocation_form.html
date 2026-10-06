@@ -1,0 +1,1169 @@
+{% extends "admin_base.html" %}
+
+{% block title %}
+Allocate Room | DIDI BAHINI GIRLS HOSTEL
+{% endblock %}
+
+
+{% block extra_css %}
+
+<style>
+
+    /* =====================================================
+       PAGE
+    ====================================================== */
+
+    .allocation-page {
+        padding: 5px;
+    }
+
+
+    /* =====================================================
+       HEADER
+    ====================================================== */
+
+    .allocation-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+        margin-bottom: 25px;
+        flex-wrap: wrap;
+    }
+
+    .page-title {
+        margin: 0;
+        color: #20252b;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    .page-subtitle {
+        color: #777;
+        margin: 7px 0 0;
+        font-size: 14px;
+    }
+
+
+    /* =====================================================
+       BACK BUTTON
+    ====================================================== */
+
+    .btn-back {
+        background: #ffffff;
+        border: 1px solid #dcdcdc;
+        color: #555;
+        padding: 10px 17px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        transition: 0.2s ease;
+    }
+
+    .btn-back:hover {
+        background: #f5f5f5;
+        color: #20252b;
+        border-color: #c8c8c8;
+    }
+
+
+    /* =====================================================
+       MAIN CARD
+    ====================================================== */
+
+    .allocation-card {
+        background: #ffffff;
+        border: 1px solid #e5e5e5;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 5px 22px rgba(0,0,0,0.05);
+    }
+
+
+    /* =====================================================
+       CARD HEADER
+    ====================================================== */
+
+    .allocation-card-header {
+        background: #20252b;
+        color: #ffffff;
+        padding: 23px 28px;
+    }
+
+    .allocation-card-header h4 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .allocation-card-header p {
+        margin: 6px 0 0;
+        color: #d5d5d5;
+        font-size: 13px;
+    }
+
+
+    /* =====================================================
+       FORM BODY
+    ====================================================== */
+
+    .allocation-card-body {
+        padding: 30px;
+    }
+
+
+    /* =====================================================
+       INFORMATION ALERT
+    ====================================================== */
+
+    .allocation-info {
+        background: #fff8e8;
+        border: 1px solid #ead8aa;
+        border-radius: 12px;
+        padding: 14px 16px;
+        color: #6e5126;
+        font-size: 13px;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+
+    .allocation-info i {
+        font-size: 15px;
+        margin-right: 5px;
+    }
+
+
+    /* =====================================================
+       FORM GROUP
+    ====================================================== */
+
+    .form-group {
+        margin-bottom: 23px;
+    }
+
+    .form-label {
+        display: block;
+        color: #20252b;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .form-label i {
+        color: #8f6b35;
+        width: 20px;
+    }
+
+
+    /* =====================================================
+       INPUTS
+    ====================================================== */
+
+    .form-control,
+    .form-select {
+        min-height: 47px;
+        border: 1px solid #d9d9d9;
+        border-radius: 10px;
+        padding: 10px 13px;
+        font-size: 14px;
+        color: #20252b;
+        box-shadow: none;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #8f6b35;
+        box-shadow: 0 0 0 3px rgba(143,107,53,0.10);
+    }
+
+    textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+
+    /* =====================================================
+       HELP TEXT
+    ====================================================== */
+
+    .help-text {
+        color: #888;
+        font-size: 12px;
+        margin-top: 6px;
+        line-height: 1.5;
+    }
+
+
+    /* =====================================================
+       SELECT OPTIONS
+    ====================================================== */
+
+    .student-option {
+        padding: 8px;
+    }
+
+
+    /* =====================================================
+       ROOM INFORMATION
+    ====================================================== */
+
+    .room-info {
+        margin-top: 10px;
+        padding: 13px 15px;
+        background: #f7f7f2;
+        border: 1px solid #e8e8df;
+        border-radius: 11px;
+        display: none;
+    }
+
+    .room-info-title {
+        color: #20252b;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 7px;
+    }
+
+    .room-info-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        font-size: 12px;
+        padding: 4px 0;
+    }
+
+    .room-info-label {
+        color: #777;
+    }
+
+    .room-info-value {
+        color: #20252b;
+        font-weight: 600;
+    }
+
+
+    /* =====================================================
+       EMPTY ROOM ALERT
+    ====================================================== */
+
+    .empty-room-alert {
+        background: #fff1f1;
+        border: 1px solid #efcccc;
+        border-radius: 10px;
+        color: #a33a3a;
+        padding: 12px 14px;
+        margin-top: 10px;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+
+    /* =====================================================
+       REMARKS
+    ====================================================== */
+
+    .remarks-counter {
+        text-align: right;
+        color: #999;
+        font-size: 11px;
+        margin-top: 4px;
+    }
+
+
+    /* =====================================================
+       ACTION BUTTONS
+    ====================================================== */
+
+    .form-actions {
+        border-top: 1px solid #eeeeee;
+        margin-top: 28px;
+        padding-top: 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .action-left {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-allocate {
+        background: #8f6b35;
+        border: 1px solid #8f6b35;
+        color: #ffffff;
+        padding: 11px 21px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .btn-allocate:hover {
+        background: #6e5126;
+        border-color: #6e5126;
+        color: #ffffff;
+        transform: translateY(-1px);
+    }
+
+    .btn-cancel {
+        background: #ffffff;
+        border: 1px solid #d5d5d5;
+        color: #555;
+        padding: 11px 20px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.2s ease;
+    }
+
+    .btn-cancel:hover {
+        background: #f5f5f5;
+        color: #20252b;
+    }
+
+
+    /* =====================================================
+       REQUIRED MARK
+    ====================================================== */
+
+    .required {
+        color: #dc3545;
+        margin-left: 2px;
+    }
+
+
+    /* =====================================================
+       FORM FOOTER NOTE
+    ====================================================== */
+
+    .form-footer-note {
+        color: #888;
+        font-size: 12px;
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ====================================================== */
+
+    @media (max-width: 768px) {
+
+        .page-title {
+            font-size: 24px;
+        }
+
+        .allocation-card-body {
+            padding: 21px;
+        }
+
+        .form-actions {
+            flex-direction: column-reverse;
+            align-items: stretch;
+        }
+
+        .action-left {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .btn-allocate,
+        .btn-cancel {
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+        }
+
+    }
+
+
+    @media (max-width: 576px) {
+
+        .allocation-page {
+            padding: 0;
+        }
+
+        .allocation-header {
+            margin-bottom: 18px;
+        }
+
+        .page-title {
+            font-size: 22px;
+        }
+
+        .page-subtitle {
+            line-height: 1.6;
+        }
+
+        .btn-back {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .allocation-card-header {
+            padding: 18px;
+        }
+
+        .allocation-card-body {
+            padding: 17px;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid allocation-page">
+
+
+    <!-- ==================================================
+         PAGE HEADER
+    =================================================== -->
+
+    <div class="allocation-header">
+
+        <div>
+
+            <h2 class="page-title">
+
+                <i class="bi bi-person-plus-fill me-2"></i>
+
+                Allocate Student to Room
+
+            </h2>
+
+            <p class="page-subtitle">
+
+                Assign a registered student to an available
+                hostel room.
+
+            </p>
+
+        </div>
+
+
+        <a
+            href="{% url 'allocation_list' %}"
+            class="btn-back"
+        >
+
+            <i class="bi bi-arrow-left"></i>
+
+            Back to Allocations
+
+        </a>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         MAIN CARD
+    =================================================== -->
+
+    <div class="row justify-content-center">
+
+        <div class="col-12 col-xl-8 col-lg-9">
+
+            <div class="allocation-card">
+
+
+                <!-- ==================================================
+                     CARD HEADER
+                =================================================== -->
+
+                <div class="allocation-card-header">
+
+                    <h4>
+
+                        <i class="bi bi-house-door-fill me-2"></i>
+
+                        New Room Allocation
+
+                    </h4>
+
+                    <p>
+
+                        Select a student and an available room
+                        to create a new allocation.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     CARD BODY
+                =================================================== -->
+
+                <div class="allocation-card-body">
+
+
+                    <!-- ==================================================
+                         INFORMATION
+                    =================================================== -->
+
+                    <div class="allocation-info">
+
+                        <i class="bi bi-info-circle-fill"></i>
+
+                        <strong>Important:</strong>
+
+                        Only active rooms with available bed capacity
+                        can be allocated. A student should not have
+                        more than one active room allocation.
+
+                    </div>
+
+
+
+                    <!-- ==================================================
+                         FORM
+                    =================================================== -->
+
+                    <form
+                        method="POST"
+                        id="allocationForm"
+                    >
+
+                        {% csrf_token %}
+
+
+
+                        <!-- ==================================================
+                             STUDENT
+                        =================================================== -->
+
+                        <div class="form-group">
+
+                            <label
+                                for="student"
+                                class="form-label"
+                            >
+
+                                <i class="bi bi-person-fill"></i>
+
+                                Student
+
+                                <span class="required">*</span>
+
+                            </label>
+
+
+                            <select
+                                id="student"
+                                name="student"
+                                class="form-select"
+                                required
+                            >
+
+                                <option value="">
+
+                                    Select Student
+
+                                </option>
+
+
+                                {% for student in students %}
+
+                                    <option
+                                        value="{{ student.id }}"
+                                    >
+
+                                        {{ student.student_id }}
+                                        -
+                                        {{ student.full_name }}
+
+                                    </option>
+
+                                {% empty %}
+
+                                    <option
+                                        value=""
+                                        disabled
+                                    >
+
+                                        No students available
+
+                                    </option>
+
+                                {% endfor %}
+
+                            </select>
+
+
+                            <div class="help-text">
+
+                                Select the student who will be
+                                assigned to the room.
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- ==================================================
+                             ROOM
+                        =================================================== -->
+
+                        <div class="form-group">
+
+                            <label
+                                for="room"
+                                class="form-label"
+                            >
+
+                                <i class="bi bi-door-open-fill"></i>
+
+                                Room
+
+                                <span class="required">*</span>
+
+                            </label>
+
+
+                            <select
+                                id="room"
+                                name="room"
+                                class="form-select"
+                                required
+                            >
+
+                                <option value="">
+
+                                    Select Available Room
+
+                                </option>
+
+
+                                {% for room in rooms %}
+
+                                    {% if room.is_active and not room.full_status %}
+
+                                        <option
+                                            value="{{ room.id }}"
+                                            data-room-number="{{ room.room_number }}"
+                                            data-room-type="{{ room.room_type|default:'Standard' }}"
+                                            data-floor="{{ room.floor|default:'-' }}"
+                                            data-capacity="{{ room.capacity }}"
+                                            data-occupied="{{ room.occupied_beds }}"
+                                            data-available="{{ room.available_beds }}"
+                                            data-fee="{{ room.monthly_fee }}"
+                                        >
+
+                                            Room {{ room.room_number }}
+
+                                            -
+
+                                            {{ room.room_type|default:"Standard" }}
+
+                                            -
+
+                                            {{ room.available_beds }}
+
+                                            bed{{ room.available_beds|pluralize }}
+
+                                            available
+
+                                        </option>
+
+                                    {% endif %}
+
+                                {% empty %}
+
+                                    <option
+                                        value=""
+                                        disabled
+                                    >
+
+                                        No rooms available
+
+                                    </option>
+
+                                {% endfor %}
+
+                            </select>
+
+
+                            <div class="help-text">
+
+                                Only active rooms having available
+                                capacity are displayed.
+
+                            </div>
+
+
+
+                            <!-- ROOM INFORMATION -->
+
+                            <div
+                                class="room-info"
+                                id="roomInfo"
+                            >
+
+                                <div class="room-info-title">
+
+                                    <i class="bi bi-info-circle-fill me-1"></i>
+
+                                    Selected Room Information
+
+                                </div>
+
+
+                                <div class="room-info-row">
+
+                                    <span class="room-info-label">
+
+                                        Room
+
+                                    </span>
+
+                                    <span
+                                        class="room-info-value"
+                                        id="infoRoomNumber"
+                                    >
+                                        -
+                                    </span>
+
+                                </div>
+
+
+                                <div class="room-info-row">
+
+                                    <span class="room-info-label">
+
+                                        Room Type
+
+                                    </span>
+
+                                    <span
+                                        class="room-info-value"
+                                        id="infoRoomType"
+                                    >
+                                        -
+                                    </span>
+
+                                </div>
+
+
+                                <div class="room-info-row">
+
+                                    <span class="room-info-label">
+
+                                        Floor
+
+                                    </span>
+
+                                    <span
+                                        class="room-info-value"
+                                        id="infoFloor"
+                                    >
+                                        -
+                                    </span>
+
+                                </div>
+
+
+                                <div class="room-info-row">
+
+                                    <span class="room-info-label">
+
+                                        Capacity
+
+                                    </span>
+
+                                    <span
+                                        class="room-info-value"
+                                        id="infoCapacity"
+                                    >
+                                        -
+                                    </span>
+
+                                </div>
+
+
+                                <div class="room-info-row">
+
+                                    <span class="room-info-label">
+
+                                        Occupied
+
+                                    </span>
+
+                                    <span
+                                        class="room-info-value"
+                                        id="infoOccupied"
+                                    >
+                                        -
+                                    </span>
+
+                                </div>
+
+
+                                <div class="room-info-row">
+
+                                    <span class="room-info-label">
+
+                                        Available Beds
+
+                                    </span>
+
+                                    <span
+                                        class="room-info-value"
+                                        id="infoAvailable"
+                                    >
+                                        -
+                                    </span>
+
+                                </div>
+
+
+                                <div class="room-info-row">
+
+                                    <span class="room-info-label">
+
+                                        Monthly Fee
+
+                                    </span>
+
+                                    <span
+                                        class="room-info-value"
+                                        id="infoFee"
+                                    >
+                                        -
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+
+                            {% if not rooms %}
+
+                                <div class="empty-room-alert">
+
+                                    <i class="bi bi-exclamation-triangle-fill me-1"></i>
+
+                                    There are currently no rooms
+                                    available for allocation.
+
+                                    <a
+                                        href="{% url 'room_create' %}"
+                                        class="fw-semibold"
+                                    >
+
+                                        Add a Room
+
+                                    </a>
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+
+                        <!-- ==================================================
+                             REMARKS
+                        =================================================== -->
+
+                        <div class="form-group">
+
+                            <label
+                                for="remarks"
+                                class="form-label"
+                            >
+
+                                <i class="bi bi-chat-left-text-fill"></i>
+
+                                Remarks
+
+                                <span
+                                    class="text-muted"
+                                    style="font-weight:400;"
+                                >
+                                    (Optional)
+                                </span>
+
+                            </label>
+
+
+                            <textarea
+                                id="remarks"
+                                name="remarks"
+                                class="form-control"
+                                maxlength="500"
+                                placeholder="Enter any additional information about this room allocation..."
+                            ></textarea>
+
+
+                            <div class="d-flex justify-content-between">
+
+                                <div class="help-text">
+
+                                    Example: Near study room,
+                                    special accommodation request, etc.
+
+                                </div>
+
+                                <div
+                                    class="remarks-counter"
+                                    id="remarksCounter"
+                                >
+
+                                    0 / 500
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- ==================================================
+                             ACTIONS
+                        =================================================== -->
+
+                        <div class="form-actions">
+
+
+                            <div class="form-footer-note">
+
+                                <i class="bi bi-shield-check me-1"></i>
+
+                                Allocation will be recorded in the
+                                hostel management system.
+
+                            </div>
+
+
+                            <div class="action-left">
+
+                                <a
+                                    href="{% url 'allocation_list' %}"
+                                    class="btn-cancel"
+                                >
+
+                                    <i class="bi bi-x-circle me-1"></i>
+
+                                    Cancel
+
+                                </a>
+
+
+                                <button
+                                    type="submit"
+                                    class="btn-allocate"
+                                    id="allocateButton"
+                                >
+
+                                    <i class="bi bi-check-circle-fill me-1"></i>
+
+                                    Allocate Room
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =================================================
+       ROOM INFORMATION
+    ================================================== */
+
+    const roomSelect = document.getElementById("room");
+
+    const roomInfo = document.getElementById("roomInfo");
+
+    const infoRoomNumber =
+        document.getElementById("infoRoomNumber");
+
+    const infoRoomType =
+        document.getElementById("infoRoomType");
+
+    const infoFloor =
+        document.getElementById("infoFloor");
+
+    const infoCapacity =
+        document.getElementById("infoCapacity");
+
+    const infoOccupied =
+        document.getElementById("infoOccupied");
+
+    const infoAvailable =
+        document.getElementById("infoAvailable");
+
+    const infoFee =
+        document.getElementById("infoFee");
+
+
+    function updateRoomInfo() {
+
+        const selectedOption =
+            roomSelect.options[roomSelect.selectedIndex];
+
+
+        if (
+            !selectedOption ||
+            !selectedOption.value
+        ) {
+
+            roomInfo.style.display = "none";
+
+            return;
+        }
+
+
+        infoRoomNumber.textContent =
+            selectedOption.dataset.roomNumber || "-";
+
+        infoRoomType.textContent =
+            selectedOption.dataset.roomType || "-";
+
+        infoFloor.textContent =
+            selectedOption.dataset.floor || "-";
+
+        infoCapacity.textContent =
+            selectedOption.dataset.capacity || "-";
+
+        infoOccupied.textContent =
+            selectedOption.dataset.occupied || "0";
+
+        infoAvailable.textContent =
+            selectedOption.dataset.available || "0";
+
+        infoFee.textContent =
+            "Rs. " +
+            (
+                selectedOption.dataset.fee || "0"
+            );
+
+
+        roomInfo.style.display = "block";
+    }
+
+
+    if (roomSelect) {
+
+        roomSelect.addEventListener(
+            "change",
+            updateRoomInfo
+        );
+
+    }
+
+
+
+    /* =================================================
+       REMARKS COUNTER
+    ================================================== */
+
+    const remarks =
+        document.getElementById("remarks");
+
+    const remarksCounter =
+        document.getElementById("remarksCounter");
+
+
+    if (remarks && remarksCounter) {
+
+        remarks.addEventListener(
+            "input",
+            function () {
+
+                remarksCounter.textContent =
+                    this.value.length +
+                    " / 500";
+
+            }
+        );
+
+    }
+
+
+
+    /* =================================================
+       FORM SUBMIT PROTECTION
+    ================================================== */
+
+    const form =
+        document.getElementById("allocationForm");
+
+    const button =
+        document.getElementById("allocateButton");
+
+
+    if (form && button) {
+
+        form.addEventListener(
+            "submit",
+            function () {
+
+                const student =
+                    document.getElementById("student").value;
+
+                const room =
+                    document.getElementById("room").value;
+
+
+                if (!student || !room) {
+
+                    return;
+
+                }
+
+
+                button.disabled = true;
+
+                button.innerHTML =
+                    '<span class="spinner-border spinner-border-sm me-2"></span>' +
+                    'Allocating...';
+
+            }
+        );
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

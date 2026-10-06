@@ -1,0 +1,814 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Profile | DIDI BAHINI GIRLS HOSTEL
+{% endblock %}
+
+
+{% block extra_css %}
+
+<style>
+
+    body {
+        background: #f7f7f2;
+    }
+
+    .profile-page {
+        min-height: calc(100vh - 70px);
+        background: #f7f7f2;
+    }
+
+
+    /* =========================================================
+       SIDEBAR
+    ========================================================= */
+
+    .student-sidebar {
+        min-height: calc(100vh - 70px);
+        background: #ffffff;
+        border-right: 1px solid #e8e8e8;
+        padding: 22px 12px;
+    }
+
+    .sidebar-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: #999;
+        letter-spacing: 1px;
+        padding: 0 14px;
+        margin-bottom: 14px;
+    }
+
+    .student-sidebar a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        margin-bottom: 6px;
+        border-radius: 10px;
+        color: #555;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: .2s ease;
+    }
+
+    .student-sidebar a i {
+        font-size: 18px;
+        width: 22px;
+        text-align: center;
+    }
+
+    .student-sidebar a:hover {
+        background: #f1f1d8;
+        color: #333;
+    }
+
+    .student-sidebar a.active {
+        background: #d9d75f;
+        color: #222;
+        font-weight: 600;
+    }
+
+    .logout-link {
+        margin-top: 25px;
+    }
+
+
+    /* =========================================================
+       CONTENT
+    ========================================================= */
+
+    .profile-content {
+        padding: 30px;
+    }
+
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .profile-header {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 25px;
+        border: 1px solid #eeeeee;
+        margin-bottom: 24px;
+    }
+
+    .profile-avatar {
+        width: 75px;
+        height: 75px;
+        border-radius: 20px;
+        background: #d9d75f;
+        color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+    }
+
+    .profile-header h2 {
+        font-size: 25px;
+        font-weight: 700;
+        color: #252525;
+        margin-bottom: 5px;
+    }
+
+    .profile-header p {
+        color: #777;
+        margin-bottom: 0;
+    }
+
+
+    /* =========================================================
+       FORM CARD
+    ========================================================= */
+
+    .profile-card {
+        background: #ffffff;
+        border: none;
+        border-radius: 17px;
+        box-shadow: 0 5px 20px rgba(0,0,0,.04);
+    }
+
+    .profile-card-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #252525;
+    }
+
+    .profile-card-title i {
+        color: #777;
+    }
+
+
+    /* =========================================================
+       FORM
+    ========================================================= */
+
+    .form-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 7px;
+    }
+
+    .form-control {
+        min-height: 45px;
+        border: 1px solid #dddddd;
+        border-radius: 10px;
+        font-size: 14px;
+        padding: 10px 13px;
+        color: #333;
+        background: #ffffff;
+        transition: .2s ease;
+    }
+
+    .form-control:focus {
+        border-color: #d9d75f;
+        box-shadow: 0 0 0 3px rgba(217, 215, 95, .18);
+    }
+
+    textarea.form-control {
+        min-height: 110px;
+        resize: vertical;
+    }
+
+    .readonly-field {
+        background: #f5f5f5;
+        color: #777;
+        cursor: not-allowed;
+    }
+
+    .field-help {
+        font-size: 11px;
+        color: #999;
+        margin-top: 5px;
+    }
+
+
+    /* =========================================================
+       BUTTONS
+    ========================================================= */
+
+    .save-btn {
+        background: #d9d75f;
+        color: #222;
+        border: none;
+        border-radius: 10px;
+        padding: 11px 22px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: .2s ease;
+    }
+
+    .save-btn:hover {
+        background: #c8c64d;
+        color: #222;
+    }
+
+    .cancel-btn {
+        background: #ffffff;
+        color: #555;
+        border: 1px solid #dddddd;
+        border-radius: 10px;
+        padding: 11px 22px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: .2s ease;
+    }
+
+    .cancel-btn:hover {
+        background: #f5f5f5;
+        color: #333;
+    }
+
+
+    /* =========================================================
+       MESSAGES
+    ========================================================= */
+
+    .alert {
+        border-radius: 10px;
+        font-size: 14px;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 991px) {
+
+        .student-sidebar {
+            min-height: auto;
+            border-right: none;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 15px;
+        }
+
+        .student-sidebar a {
+            display: inline-flex;
+            margin-right: 5px;
+            padding: 9px 12px;
+        }
+
+        .sidebar-title {
+            padding-left: 5px;
+        }
+
+        .logout-link {
+            margin-top: 0;
+        }
+
+        .profile-content {
+            padding: 20px;
+        }
+
+    }
+
+
+    @media (max-width: 576px) {
+
+        .profile-content {
+            padding: 15px;
+        }
+
+        .profile-header {
+            padding: 20px;
+        }
+
+        .profile-avatar {
+            width: 60px;
+            height: 60px;
+            font-size: 25px;
+        }
+
+        .profile-header h2 {
+            font-size: 21px;
+        }
+
+        .student-sidebar a {
+            width: 100%;
+        }
+
+        .save-btn,
+        .cancel-btn {
+            width: 100%;
+            text-align: center;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="profile-page">
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+
+            <!-- =================================================
+                 STUDENT SIDEBAR
+            ================================================== -->
+
+            <div class="col-lg-2 student-sidebar">
+
+                <div class="sidebar-title">
+                    STUDENT PANEL
+                </div>
+
+
+                <!-- Dashboard -->
+
+                <a href="{% url 'student_dashboard' %}">
+
+                    <i class="bi bi-speedometer2"></i>
+
+                    <span>
+                        Dashboard
+                    </span>
+
+                </a>
+
+
+                <!-- My Profile -->
+
+                <a href="{% url 'student_profile' %}"
+                   class="active">
+
+                    <i class="bi bi-person"></i>
+
+                    <span>
+                        My Profile
+                    </span>
+
+                </a>
+
+
+                <!-- My Room -->
+
+                <a href="{% url 'student_dashboard' %}#room-information">
+
+                    <i class="bi bi-door-open"></i>
+
+                    <span>
+                        My Room
+                    </span>
+
+                </a>
+
+
+                <!-- My Payments -->
+
+                <a href="{% url 'student_dashboard' %}#payment-history">
+
+                    <i class="bi bi-cash-stack"></i>
+
+                    <span>
+                        My Payments
+                    </span>
+
+                </a>
+
+
+                <!-- Notices -->
+
+                <a href="{% url 'student_notices' %}">
+
+                    <i class="bi bi-megaphone"></i>
+
+                    <span>
+                        Notices
+                    </span>
+
+                </a>
+
+
+                <!-- Logout -->
+
+                <a href="{% url 'logout' %}"
+                   class="logout-link">
+
+                    <i class="bi bi-box-arrow-left"></i>
+
+                    <span>
+                        Logout
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 MAIN CONTENT
+            ================================================== -->
+
+            <div class="col-lg-10 profile-content">
+
+
+                <!-- =================================================
+                     PAGE HEADER
+                ================================================== -->
+
+                <div class="profile-header">
+
+                    <div class="d-flex
+                                align-items-center
+                                gap-3">
+
+                        <div class="profile-avatar">
+
+                            <i class="bi bi-pencil-square"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h2>
+                                Edit Profile
+                            </h2>
+
+                            <p>
+                                Update your personal and guardian
+                                information.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     DJANGO MESSAGES
+                ================================================== -->
+
+                {% if messages %}
+
+                    {% for message in messages %}
+
+                        <div class="alert
+                                    {% if message.tags %}
+                                        alert-{{ message.tags }}
+                                    {% else %}
+                                        alert-info
+                                    {% endif %}
+                                    alert-dismissible fade show"
+                             role="alert">
+
+                            <i class="bi bi-info-circle me-2"></i>
+
+                            {{ message }}
+
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="alert">
+                            </button>
+
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+
+                <!-- =================================================
+                     PERSONAL INFORMATION FORM
+                ================================================== -->
+
+                <div class="card profile-card">
+
+                    <div class="card-body p-4">
+
+                        <div class="profile-card-title">
+
+                            <i class="bi bi-person-vcard me-2"></i>
+
+                            Personal Information
+
+                        </div>
+
+                        <hr>
+
+
+                        <form method="POST">
+
+                            {% csrf_token %}
+
+
+                            <div class="row g-4">
+
+
+                                <!-- Student ID -->
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label">
+
+                                        Student ID
+
+                                    </label>
+
+                                    <input type="text"
+                                           class="form-control readonly-field"
+                                           value="{{ student.student_id }}"
+                                           readonly>
+
+                                    <div class="field-help">
+
+                                        Student ID cannot be changed.
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Username -->
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label">
+
+                                        Username
+
+                                    </label>
+
+                                    <input type="text"
+                                           class="form-control readonly-field"
+                                           value="{{ student.user.username }}"
+                                           readonly>
+
+                                    <div class="field-help">
+
+                                        Username cannot be changed.
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Full Name -->
+
+                                <div class="col-md-6">
+
+                                    <label for="full_name"
+                                           class="form-label">
+
+                                        Full Name
+
+                                    </label>
+
+                                    <input type="text"
+                                           id="full_name"
+                                           name="full_name"
+                                           class="form-control"
+                                           value="{{ student.full_name }}"
+                                           required>
+
+                                </div>
+
+
+                                <!-- Phone -->
+
+                                <div class="col-md-6">
+
+                                    <label for="phone"
+                                           class="form-label">
+
+                                        Phone Number
+
+                                    </label>
+
+                                    <input type="tel"
+                                           id="phone"
+                                           name="phone"
+                                           class="form-control"
+                                           value="{{ student.phone }}"
+                                           required>
+
+                                </div>
+
+
+                                <!-- Email -->
+
+                                <div class="col-md-6">
+
+                                    <label for="email"
+                                           class="form-label">
+
+                                        Email Address
+
+                                    </label>
+
+                                    <input type="email"
+                                           id="email"
+                                           name="email"
+                                           class="form-control"
+                                           value="{{ student.email }}"
+                                           required>
+
+                                </div>
+
+
+                                <!-- Date of Birth -->
+
+                                <div class="col-md-6">
+
+                                    <label for="date_of_birth"
+                                           class="form-label">
+
+                                        Date of Birth
+
+                                    </label>
+
+                                    <input type="date"
+                                           id="date_of_birth"
+                                           name="date_of_birth"
+                                           class="form-control"
+                                           value="{% if student.date_of_birth %}{{ student.date_of_birth|date:'Y-m-d' }}{% endif %}">
+
+                                </div>
+
+
+                                <!-- Gender -->
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label">
+
+                                        Gender
+
+                                    </label>
+
+                                    <input type="text"
+                                           class="form-control readonly-field"
+                                           value="{{ student.gender }}"
+                                           readonly>
+
+                                    <div class="field-help">
+
+                                        Gender cannot be changed.
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Address -->
+
+                                <div class="col-12">
+
+                                    <label for="address"
+                                           class="form-label">
+
+                                        Address
+
+                                    </label>
+
+                                    <textarea id="address"
+                                              name="address"
+                                              class="form-control"
+                                              required>{{ student.address }}</textarea>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- =================================================
+                                 GUARDIAN INFORMATION
+                            ================================================== -->
+
+                            <div class="profile-card-title mt-5">
+
+                                <i class="bi bi-people me-2"></i>
+
+                                Guardian Information
+
+                            </div>
+
+                            <hr>
+
+
+                            <div class="row g-4">
+
+
+                                <!-- Guardian Name -->
+
+                                <div class="col-md-6">
+
+                                    <label for="guardian_name"
+                                           class="form-label">
+
+                                        Guardian Name
+
+                                    </label>
+
+                                    <input type="text"
+                                           id="guardian_name"
+                                           name="guardian_name"
+                                           class="form-control"
+                                           value="{{ student.guardian_name }}"
+                                           required>
+
+                                </div>
+
+
+                                <!-- Guardian Phone -->
+
+                                <div class="col-md-6">
+
+                                    <label for="guardian_phone"
+                                           class="form-label">
+
+                                        Guardian Phone
+
+                                    </label>
+
+                                    <input type="tel"
+                                           id="guardian_phone"
+                                           name="guardian_phone"
+                                           class="form-control"
+                                           value="{{ student.guardian_phone }}"
+                                           required>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- =================================================
+                                 ACTION BUTTONS
+                            ================================================== -->
+
+                            <div class="d-flex
+                                        justify-content-end
+                                        gap-2
+                                        flex-wrap
+                                        mt-5">
+
+                                <a href="{% url 'student_profile' %}"
+                                   class="cancel-btn">
+
+                                    <i class="bi bi-x-circle me-2"></i>
+
+                                    Cancel
+
+                                </a>
+
+
+                                <button type="submit"
+                                        class="save-btn">
+
+                                    <i class="bi bi-check-circle me-2"></i>
+
+                                    Save Changes
+
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     FOOTER
+                ================================================== -->
+
+                <div class="text-center py-4">
+
+                    <small class="text-muted">
+
+                        © {% now "Y" %}
+                        DIDI BAHINI GIRLS HOSTEL.
+                        Student Management System.
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

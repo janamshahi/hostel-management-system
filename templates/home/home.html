@@ -1,0 +1,2032 @@
+{% extends "base.html" %}
+
+{% block title %}
+DIDI BAHINI GIRLS HOSTEL | Home
+{% endblock %}
+
+{% block extra_css %}
+
+<style>
+
+.hostel-home {
+    background: #f7f7f2;
+    color: #20252b;
+    overflow: hidden;
+}
+
+.hostel-home * {
+    box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   HERO SECTION
+========================================================== */
+
+.hostel-hero {
+    min-height: 690px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(
+            115deg,
+            rgba(24, 28, 32, .97),
+            rgba(32, 37, 43, .90)
+        ),
+        linear-gradient(
+            135deg,
+            #8f6b35,
+            #20252b
+        );
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.hostel-hero::before {
+    content: "";
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: rgba(217, 192, 138, .07);
+    top: -250px;
+    right: -100px;
+}
+
+.hostel-hero::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: rgba(217, 192, 138, .05);
+    bottom: -230px;
+    left: -150px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 17px;
+    border-radius: 50px;
+    background: rgba(217, 192, 138, .13);
+    border: 1px solid rgba(217, 192, 138, .30);
+    color: #d9c08a;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    margin-bottom: 24px;
+}
+
+.hero-badge i {
+    font-size: 16px;
+}
+
+.hero-title {
+    font-size: 56px;
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 23px;
+}
+
+.hero-title span {
+    color: #d9c08a;
+}
+
+.hero-description {
+    max-width: 700px;
+    color: #d3d3d3;
+    font-size: 17px;
+    line-height: 1.85;
+    margin-bottom: 31px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero-btn {
+    min-height: 49px;
+    padding: 12px 24px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .25s ease;
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .20);
+}
+
+.hero-primary {
+    background: #8f6b35;
+    border-color: #8f6b35;
+    color: #ffffff;
+}
+
+.hero-primary:hover {
+    background: #755629;
+    border-color: #755629;
+    color: #ffffff;
+}
+
+.hero-outline {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, .55);
+    color: #ffffff;
+}
+
+.hero-outline:hover {
+    background: #ffffff;
+    color: #20252b;
+}
+
+
+/* ==========================================================
+   HERO HOSTEL CARD
+========================================================== */
+
+.hero-hostel-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .14);
+    backdrop-filter: blur(12px);
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .18);
+}
+
+.hero-hostel-icon {
+    width: 62px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: rgba(217, 192, 138, .14);
+    color: #d9c08a;
+    font-size: 28px;
+    margin-bottom: 19px;
+}
+
+.hero-hostel-card h3 {
+    font-size: 21px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.hero-hostel-card > p {
+    color: #c8c8c8;
+    font-size: 13px;
+    line-height: 1.75;
+    margin-bottom: 22px;
+}
+
+.hero-hostel-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .09);
+}
+
+.hero-hostel-detail:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.hero-hostel-detail i {
+    color: #d9c08a;
+    font-size: 17px;
+    margin-top: 2px;
+}
+
+.hero-hostel-detail strong {
+    display: block;
+    color: #ffffff;
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.hero-hostel-detail span {
+    color: #aaaaaa;
+    font-size: 12px;
+}
+
+
+/* ==========================================================
+   COMMON SECTION
+========================================================== */
+
+.hostel-section {
+    padding: 85px 0;
+}
+
+.section-heading {
+    max-width: 720px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.section-label {
+    display: inline-block;
+    color: #8f6b35;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.section-heading h2 {
+    color: #20252b;
+    font-size: 35px;
+    line-height: 1.25;
+    font-weight: 800;
+    margin-bottom: 13px;
+}
+
+.section-heading p {
+    color: #777777;
+    font-size: 15px;
+    line-height: 1.75;
+    margin: 0;
+}
+
+
+/* ==========================================================
+   ABOUT / WELCOME
+========================================================== */
+
+.welcome-section {
+    background: #ffffff;
+}
+
+.welcome-card {
+    background: #f7f7f2;
+    border: 1px solid #eeeeee;
+    border-radius: 23px;
+    padding: 45px;
+    box-shadow: 0 7px 28px rgba(0, 0, 0, .05);
+}
+
+.welcome-label {
+    color: #8f6b35;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.welcome-card h2 {
+    color: #20252b;
+    font-size: 34px;
+    line-height: 1.3;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+.welcome-card p {
+    color: #666666;
+    font-size: 15px;
+    line-height: 1.85;
+    margin-bottom: 14px;
+}
+
+.welcome-list {
+    list-style: none;
+    padding: 0;
+    margin: 25px 0 0;
+}
+
+.welcome-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #555555;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.welcome-list i {
+    color: #8f6b35;
+    font-size: 17px;
+    margin-top: 1px;
+}
+
+
+/* ==========================================================
+   HOSTEL INFORMATION
+========================================================== */
+
+.hostel-info-card {
+    height: 100%;
+    background: linear-gradient(145deg, #20252b, #343a40);
+    border-radius: 22px;
+    padding: 35px;
+    color: #ffffff;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, .12);
+}
+
+.hostel-info-card h3 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+.info-row {
+    display: flex;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .09);
+}
+
+.info-row:last-child {
+    border-bottom: 0;
+}
+
+.info-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    background: rgba(217, 192, 138, .12);
+    color: #d9c08a;
+    font-size: 18px;
+}
+
+.info-row strong {
+    display: block;
+    color: #ffffff;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.info-row span {
+    color: #aaaaaa;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+   FACILITIES
+========================================================== */
+
+.facilities-section {
+    background: #f7f7f2;
+}
+
+.facility-card {
+    height: 100%;
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, .05);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.facility-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, .10);
+}
+
+.facility-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background: #f0e6cf;
+    color: #8f6b35;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.facility-card h4 {
+    color: #20252b;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 9px;
+}
+
+.facility-card p {
+    color: #777777;
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+
+/* ==========================================================
+   ENVIRONMENT
+========================================================== */
+
+.environment-section {
+    background: #ffffff;
+}
+
+.environment-card {
+    height: 100%;
+    padding: 32px;
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 5px 22px rgba(0, 0, 0, .04);
+}
+
+.environment-number {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f0e6cf;
+    color: #8f6b35;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.environment-card h4 {
+    color: #20252b;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 9px;
+}
+
+.environment-card p {
+    color: #777777;
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+
+/* ==========================================================
+   HOSTEL GUIDELINES
+========================================================== */
+
+.rules-section {
+    background: #f7f7f2;
+}
+
+.rule-box {
+    height: 100%;
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .04);
+}
+
+.rule-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    margin-bottom: 18px;
+}
+
+.rule-item:last-child {
+    margin-bottom: 0;
+}
+
+.rule-item i {
+    color: #8f6b35;
+    font-size: 18px;
+    margin-top: 2px;
+}
+
+.rule-item span {
+    color: #5f5f5f;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* ==========================================================
+   STUDENT LIFE
+========================================================== */
+
+.student-life-section {
+    background: #20252b;
+    color: #ffffff;
+}
+
+.student-life-section .section-heading h2 {
+    color: #ffffff;
+}
+
+.student-life-section .section-heading p {
+    color: #bdbdbd;
+}
+
+.life-card {
+    height: 100%;
+    padding: 30px;
+    text-align: center;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .055);
+    border: 1px solid rgba(255, 255, 255, .10);
+}
+
+.life-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background: rgba(217, 192, 138, .12);
+    color: #d9c08a;
+    font-size: 25px;
+}
+
+.life-card h4 {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 9px;
+}
+
+.life-card p {
+    color: #b8b8b8;
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+
+/* ==========================================================
+   PORTALS
+========================================================== */
+
+.portal-section {
+    background: #ffffff;
+}
+
+.portal-card {
+    height: 100%;
+    padding: 35px;
+    border: 1px solid #eeeeee;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, .05);
+}
+
+.portal-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: #f0e6cf;
+    color: #8f6b35;
+    font-size: 30px;
+}
+
+.portal-card h3 {
+    color: #20252b;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.portal-card p {
+    color: #777777;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+.portal-btn {
+    background: #8f6b35;
+    border-color: #8f6b35;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 700;
+}
+
+.portal-btn:hover {
+    background: #755629;
+    border-color: #755629;
+    color: #ffffff;
+}
+
+
+/* ==========================================================
+   CALL TO ACTION
+========================================================== */
+
+.cta-section {
+    background: #f7f7f2;
+    padding: 20px 0 85px;
+}
+
+.cta-box {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #20252b, #343a40);
+    border-radius: 24px;
+    padding: 60px 30px;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, .12);
+}
+
+.cta-box::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(217, 192, 138, .06);
+    top: -160px;
+    right: -80px;
+}
+
+.cta-box h2 {
+    position: relative;
+    z-index: 2;
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 13px;
+}
+
+.cta-box p {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    margin: 0 auto 27px;
+    color: #cccccc;
+    line-height: 1.7;
+}
+
+.cta-actions {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+
+/* ==========================================================
+   CONTACT STRIP
+========================================================== */
+
+.contact-strip {
+    background: #181c20;
+    color: #ffffff;
+    padding: 30px 0;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    color: #bbbbbb;
+    font-size: 13px;
+    text-align: center;
+}
+
+.contact-item i {
+    color: #d9c08a;
+    font-size: 17px;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1199px) {
+
+    .hero-title {
+        font-size: 49px;
+    }
+
+}
+
+@media (max-width: 991px) {
+
+    .hostel-hero {
+        min-height: auto;
+        padding: 100px 0 90px;
+    }
+
+    .hero-hostel-card {
+        margin-top: 20px;
+    }
+
+    .welcome-card {
+        padding: 35px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .hostel-section {
+        padding: 65px 0;
+    }
+
+    .hostel-hero {
+        text-align: center;
+        padding: 80px 0;
+    }
+
+    .hero-content {
+        margin: 0 auto;
+    }
+
+    .hero-title {
+        font-size: 39px;
+        letter-spacing: -.5px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-hostel-card {
+        text-align: left;
+    }
+
+    .section-heading h2,
+    .welcome-card h2 {
+        font-size: 29px;
+    }
+
+    .welcome-card {
+        padding: 28px;
+    }
+
+    .cta-box {
+        padding: 45px 25px;
+    }
+
+    .cta-box h2 {
+        font-size: 28px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .hostel-hero {
+        padding: 70px 0 65px;
+    }
+
+    .hero-badge {
+        font-size: 9px;
+        padding: 8px 12px;
+    }
+
+    .hero-title {
+        font-size: 32px;
+        line-height: 1.15;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-btn {
+        width: 100%;
+    }
+
+    .hero-hostel-card {
+        padding: 24px;
+    }
+
+    .welcome-card {
+        padding: 23px 18px;
+        border-radius: 18px;
+    }
+
+    .hostel-info-card {
+        padding: 25px 20px;
+    }
+
+    .facility-card {
+        padding: 25px;
+    }
+
+    .cta-box {
+        border-radius: 18px;
+        padding: 38px 18px;
+    }
+
+    .cta-box h2 {
+        font-size: 25px;
+    }
+
+    .cta-actions {
+        flex-direction: column;
+    }
+
+    .cta-actions .hero-btn {
+        width: 100%;
+    }
+
+    .contact-item {
+        margin-bottom: 10px;
+    }
+
+    .contact-strip .row > div:last-child .contact-item {
+        margin-bottom: 0;
+    }
+
+}
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="hostel-home">
+
+<section class="hostel-hero">
+
+
+<div class="container">
+
+    <div class="row align-items-center g-5">
+
+        <div class="col-lg-8">
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+                    <i class="bi bi-buildings"></i>
+                    WELCOME TO DIDI BAHINI GIRLS HOSTEL
+                </div>
+
+                <h1 class="hero-title">
+                    A Safe and Comfortable
+                    <span>Home Away From Home</span>
+                </h1>
+
+                <p class="hero-description">
+                    DIDI BAHINI GIRLS HOSTEL provides a
+                    comfortable, secure and supportive
+                    residential environment for girls and
+                    students. Our goal is to create a peaceful
+                    place where residents can live, study,
+                    build friendships and focus on their
+                    education.
+                </p>
+
+                <div class="hero-actions">
+
+                    {% if user.is_authenticated %}
+
+                        {% if user.is_superuser %}
+
+                            <a
+                                href="{% url 'admin_dashboard' %}"
+                                class="btn hero-btn hero-primary">
+                                <i class="bi bi-speedometer2 me-1"></i>
+                                Admin Dashboard
+                            </a>
+
+                        {% else %}
+
+                            <a
+                                href="{% url 'student_dashboard' %}"
+                                class="btn hero-btn hero-primary">
+                                <i class="bi bi-person-circle me-1"></i>
+                                My Dashboard
+                            </a>
+
+                        {% endif %}
+
+                    {% else %}
+
+                        <a
+                            href="{% url 'register' %}"
+                            class="btn hero-btn hero-primary">
+                            <i class="bi bi-person-plus me-1"></i>
+                            Join Our Hostel
+                        </a>
+
+                        <a
+                            href="{% url 'login' %}"
+                            class="btn hero-btn hero-outline">
+                            <i class="bi bi-box-arrow-in-right me-1"></i>
+                            Student Login
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4">
+
+            <div class="hero-hostel-card">
+
+                <div class="hero-hostel-icon">
+                    <i class="bi bi-house-heart"></i>
+                </div>
+
+                <h3>
+                    Your Home Away From Home
+                </h3>
+
+                <p>
+                    We aim to provide a welcoming
+                    environment where students can feel
+                    safe, comfortable and supported.
+                </p>
+
+                <div class="hero-hostel-detail">
+
+                    <i class="bi bi-shield-check"></i>
+
+                    <div>
+                        <strong>
+                            Safe Environment
+                        </strong>
+
+                        <span>
+                            Secure and peaceful residential
+                            surroundings.
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="hero-hostel-detail">
+
+                    <i class="bi bi-heart"></i>
+
+                    <div>
+                        <strong>
+                            Caring Environment
+                        </strong>
+
+                        <span>
+                            A friendly and supportive hostel
+                            atmosphere.
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="hero-hostel-detail">
+
+                    <i class="bi bi-book"></i>
+
+                    <div>
+                        <strong>
+                            Student Friendly
+                        </strong>
+
+                        <span>
+                            An environment suitable for study
+                            and personal growth.
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<section class="hostel-section welcome-section">
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            About Our Hostel
+        </span>
+
+        <h2>
+            Welcome to DIDI BAHINI GIRLS HOSTEL
+        </h2>
+
+        <p>
+            A comfortable residential environment designed
+            with students' safety, comfort and education in mind.
+        </p>
+
+    </div>
+
+    <div class="welcome-card">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-7">
+
+                <div class="welcome-label">
+                    About DIDI BAHINI
+                </div>
+
+                <h2>
+                    More Than Just a Place to Stay
+                </h2>
+
+                <p>
+                    DIDI BAHINI GIRLS HOSTEL is a residential
+                    facility dedicated to providing girls and
+                    students with a safe, clean, comfortable
+                    and friendly place to stay.
+                </p>
+
+                <p>
+                    We believe that a good living environment
+                    plays an important role in a student's
+                    academic and personal development. The
+                    hostel encourages discipline, cooperation,
+                    responsibility and mutual respect among
+                    residents.
+                </p>
+
+                <p>
+                    Our aim is to provide students with a
+                    supportive home-like environment where
+                    they can concentrate on their education
+                    while enjoying a positive residential
+                    experience.
+                </p>
+
+                <ul class="welcome-list">
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Safe and peaceful residential environment
+                    </li>
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Comfortable accommodation for students
+                    </li>
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Clean and organized living environment
+                    </li>
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Student-friendly atmosphere
+                    </li>
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Focus on discipline and mutual respect
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="col-lg-5">
+
+                <div class="hostel-info-card">
+
+                    <h3>
+                        Hostel Information
+                    </h3>
+
+                    <div class="info-row">
+
+                        <div class="info-icon">
+                            <i class="bi bi-buildings"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Hostel Name
+                            </strong>
+
+                            <span>
+                                DIDI BAHINI GIRLS HOSTEL
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="info-row">
+
+                        <div class="info-icon">
+                            <i class="bi bi-gender-female"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Hostel Type
+                            </strong>
+
+                            <span>
+                                Girls / Female Student Hostel
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="info-row">
+
+                        <div class="info-icon">
+                            <i class="bi bi-house"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Accommodation
+                            </strong>
+
+                            <span>
+                                Comfortable student accommodation
+                                with organized room allocation.
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="info-row">
+
+                        <div class="info-icon">
+                            <i class="bi bi-book"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Main Purpose
+                            </strong>
+
+                            <span>
+                                Safe accommodation and a supportive
+                                environment for students.
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="info-row">
+
+                        <div class="info-icon">
+                            <i class="bi bi-heart"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Our Priority
+                            </strong>
+
+                            <span>
+                                Safety, comfort, discipline and
+                                student well-being.
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<section class="hostel-section facilities-section">
+
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            Hostel Facilities
+        </span>
+
+        <h2>
+            Comfortable Living for Students
+        </h2>
+
+        <p>
+            We focus on providing a clean, organized and
+            student-friendly residential environment.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+
+                <h4>
+                    Safe Environment
+                </h4>
+
+                <p>
+                    A secure and peaceful environment where
+                    students can live comfortably and focus
+                    on their education.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="bi bi-door-open"></i>
+                </div>
+
+                <h4>
+                    Comfortable Rooms
+                </h4>
+
+                <p>
+                    Organized accommodation with room
+                    allocation based on available rooms
+                    and capacity.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="bi bi-book"></i>
+                </div>
+
+                <h4>
+                    Study Friendly
+                </h4>
+
+                <p>
+                    A peaceful residential environment that
+                    helps students maintain focus on their
+                    academic activities.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="bi bi-stars"></i>
+                </div>
+
+                <h4>
+                    Clean Environment
+                </h4>
+
+                <p>
+                    We encourage cleanliness, organization
+                    and responsible living within the hostel.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="bi bi-people"></i>
+                </div>
+
+                <h4>
+                    Friendly Community
+                </h4>
+
+                <p>
+                    Students can develop friendships,
+                    cooperation and a positive sense of
+                    community.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="bi bi-person-heart"></i>
+                </div>
+
+                <h4>
+                    Student Support
+                </h4>
+
+                <p>
+                    A supportive environment that values
+                    students' comfort, needs and overall
+                    well-being.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<section class="hostel-section environment-section">
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            Our Environment
+        </span>
+
+        <h2>
+            A Place Where Students Feel at Home
+        </h2>
+
+        <p>
+            We promote a balanced residential environment
+            based on safety, discipline and community.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-3">
+
+            <div class="environment-card">
+
+                <div class="environment-number">
+                    01
+                </div>
+
+                <h4>
+                    Safety
+                </h4>
+
+                <p>
+                    Student safety and a peaceful living
+                    environment are important priorities.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-3">
+
+            <div class="environment-card">
+
+                <div class="environment-number">
+                    02
+                </div>
+
+                <h4>
+                    Discipline
+                </h4>
+
+                <p>
+                    Residents are encouraged to follow
+                    hostel rules and maintain discipline.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-3">
+
+            <div class="environment-card">
+
+                <div class="environment-number">
+                    03
+                </div>
+
+                <h4>
+                    Community
+                </h4>
+
+                <p>
+                    Students are encouraged to respect
+                    and support one another.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-3">
+
+            <div class="environment-card">
+
+                <div class="environment-number">
+                    04
+                </div>
+
+                <h4>
+                    Education
+                </h4>
+
+                <p>
+                    A peaceful atmosphere helps students
+                    concentrate on their studies.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<section class="hostel-section rules-section">
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            Hostel Guidelines
+        </span>
+
+        <h2>
+            Responsible Living
+        </h2>
+
+        <p>
+            Every resident is expected to contribute to a
+            safe, respectful and peaceful hostel environment.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-lg-6">
+
+            <div class="rule-box">
+
+                <div class="rule-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <span>
+                        Maintain cleanliness and hygiene
+                        in rooms and common areas.
+                    </span>
+
+                </div>
+
+                <div class="rule-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <span>
+                        Respect other residents and
+                        maintain a friendly environment.
+                    </span>
+
+                </div>
+
+                <div class="rule-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <span>
+                        Follow hostel timings and
+                        administrative instructions.
+                    </span>
+
+                </div>
+
+                <div class="rule-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <span>
+                        Take proper care of hostel
+                        rooms, furniture and facilities.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-6">
+
+            <div class="rule-box">
+
+                <div class="rule-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <span>
+                        Maintain a peaceful environment
+                        suitable for study.
+                    </span>
+
+                </div>
+
+                <div class="rule-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <span>
+                        Inform hostel administration about
+                        important issues when necessary.
+                    </span>
+
+                </div>
+
+                <div class="rule-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <span>
+                        Follow safety guidelines and
+                        responsible residential practices.
+                    </span>
+
+                </div>
+
+                <div class="rule-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <span>
+                        Maintain mutual respect and
+                        cooperation among residents.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<section class="hostel-section student-life-section">
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            Student Life
+        </span>
+
+        <h2>
+            Live, Learn and Grow Together
+        </h2>
+
+        <p>
+            A positive hostel environment can help students
+            build confidence, friendships and independence.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-3">
+
+            <div class="life-card">
+
+                <div class="life-icon">
+                    <i class="bi bi-book"></i>
+                </div>
+
+                <h4>
+                    Study
+                </h4>
+
+                <p>
+                    Maintain a peaceful environment that
+                    supports academic activities.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-3">
+
+            <div class="life-card">
+
+                <div class="life-icon">
+                    <i class="bi bi-people"></i>
+                </div>
+
+                <h4>
+                    Friendship
+                </h4>
+
+                <p>
+                    Build positive relationships and
+                    friendships with fellow residents.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-3">
+
+            <div class="life-card">
+
+                <div class="life-icon">
+                    <i class="bi bi-person-check"></i>
+                </div>
+
+                <h4>
+                    Responsibility
+                </h4>
+
+                <p>
+                    Learn independence and responsible
+                    residential living.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-3">
+
+            <div class="life-card">
+
+                <div class="life-icon">
+                    <i class="bi bi-heart"></i>
+                </div>
+
+                <h4>
+                    Well-being
+                </h4>
+
+                <p>
+                    Encourage a positive, respectful and
+                    supportive living environment.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<section class="hostel-section portal-section">
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            Hostel Portal
+        </span>
+
+        <h2>
+            Access Your Account
+        </h2>
+
+        <p>
+            Students and administrators can access their
+            respective areas from the hostel website.
+        </p>
+
+    </div>
+
+    <div class="row g-4 justify-content-center">
+
+
+        <div class="col-md-6 col-lg-5">
+
+            <div class="portal-card">
+
+                <div class="portal-icon">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+
+                <h3>
+                    Student Portal
+                </h3>
+
+                <p>
+                    Students can access their account,
+                    view personal information, check room
+                    details and read hostel notices.
+                </p>
+
+                {% if user.is_authenticated and not user.is_superuser %}
+
+                    <a
+                        href="{% url 'student_dashboard' %}"
+                        class="btn portal-btn">
+
+                        <i class="bi bi-speedometer2 me-1"></i>
+                        My Dashboard
+
+                    </a>
+
+                {% else %}
+
+                    <a
+                        href="{% url 'login' %}"
+                        class="btn portal-btn">
+
+                        <i class="bi bi-box-arrow-in-right me-1"></i>
+                        Student Login
+
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-5">
+
+            <div class="portal-card">
+
+                <div class="portal-icon">
+                    <i class="bi bi-person-gear"></i>
+                </div>
+
+                <h3>
+                    Administrator Portal
+                </h3>
+
+                <p>
+                    Hostel administrators can manage
+                    students, rooms, allocations and
+                    important hostel information.
+                </p>
+
+                {% if user.is_authenticated and user.is_superuser %}
+
+                    <a
+                        href="{% url 'admin_dashboard' %}"
+                        class="btn portal-btn">
+
+                        <i class="bi bi-speedometer2 me-1"></i>
+                        Admin Dashboard
+
+                    </a>
+
+                {% else %}
+
+                    <a
+                        href="{% url 'login' %}"
+                        class="btn portal-btn">
+
+                        <i class="bi bi-lock me-1"></i>
+                        Administrator Login
+
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<section class="cta-section">
+
+<div class="container">
+
+    <div class="cta-box">
+
+        <h2>
+            Looking for a Safe Place to Stay?
+        </h2>
+
+        <p>
+            DIDI BAHINI GIRLS HOSTEL welcomes students
+            looking for a comfortable, peaceful and
+            supportive residential environment.
+        </p>
+
+        <div class="cta-actions">
+
+            {% if user.is_authenticated %}
+
+                {% if user.is_superuser %}
+
+                    <a
+                        href="{% url 'admin_dashboard' %}"
+                        class="btn hero-btn hero-primary">
+
+                        <i class="bi bi-speedometer2 me-1"></i>
+                        Open Admin Dashboard
+
+                    </a>
+
+                {% else %}
+
+                    <a
+                        href="{% url 'student_dashboard' %}"
+                        class="btn hero-btn hero-primary">
+
+                        <i class="bi bi-person-circle me-1"></i>
+                        Open My Dashboard
+
+                    </a>
+
+                {% endif %}
+
+            {% else %}
+
+                <a
+                    href="{% url 'register' %}"
+                    class="btn hero-btn hero-primary">
+
+                    <i class="bi bi-person-plus me-1"></i>
+                    Register as Student
+
+                </a>
+
+                <a
+                    href="{% url 'login' %}"
+                    class="btn hero-btn hero-outline">
+
+                    <i class="bi bi-box-arrow-in-right me-1"></i>
+                    Login
+
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<section class="contact-strip">
+
+<div class="container">
+
+    <div class="row g-3 align-items-center">
+
+        <div class="col-md-4">
+
+            <div class="contact-item">
+
+                <i class="bi bi-buildings"></i>
+
+                DIDI BAHINI GIRLS HOSTEL
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="contact-item">
+
+                <i class="bi bi-house-heart"></i>
+
+                Safe • Comfortable • Student Friendly
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="contact-item">
+
+                <i class="bi bi-shield-check"></i>
+
+                A Home Away From Home
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+</div>
+
+{% endblock %}

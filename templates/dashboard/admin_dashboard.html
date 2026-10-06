@@ -1,0 +1,1507 @@
+{% extends "admin_base.html" %}
+
+
+{% block title %}
+
+Admin Dashboard | DIDI BAHINI GIRLS HOSTEL
+
+{% endblock %}
+
+
+
+{% block extra_css %}
+
+<style>
+
+/* =====================================================
+   ADMIN DASHBOARD
+===================================================== */
+
+.dashboard-header {
+
+    margin-bottom: 25px;
+
+}
+
+
+.dashboard-header h2 {
+
+    font-size: 28px;
+
+    font-weight: 800;
+
+    color: #20252b;
+
+    margin-bottom: 5px;
+
+}
+
+
+.dashboard-header p {
+
+    color: #777;
+
+    margin-bottom: 0;
+
+}
+
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+.stat-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 160px;
+
+    border: 0;
+
+    border-radius: 16px;
+
+    background: #fff;
+
+    padding: 22px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.06);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+.stat-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 10px 28px rgba(0,0,0,.10);
+
+}
+
+
+.stat-icon {
+
+    width: 52px;
+
+    height: 52px;
+
+    border-radius: 13px;
+
+    background: #f0e6cf;
+
+    color: #8f6b35;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 23px;
+
+    margin-bottom: 16px;
+
+}
+
+
+.stat-number {
+
+    font-size: 27px;
+
+    font-weight: 800;
+
+    color: #20252b;
+
+    margin-bottom: 2px;
+
+}
+
+
+.stat-label {
+
+    color: #777;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+}
+
+
+.stat-decoration {
+
+    position: absolute;
+
+    right: -15px;
+
+    bottom: -20px;
+
+    font-size: 90px;
+
+    color:
+        rgba(143,107,53,.07);
+
+    pointer-events: none;
+
+}
+
+
+
+/* =====================================================
+   CONTENT PANELS
+===================================================== */
+
+.dashboard-panel {
+
+    background: #fff;
+
+    border: 0;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.05);
+
+    overflow: hidden;
+
+}
+
+
+.panel-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 20px 22px;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+}
+
+
+.panel-title {
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    color: #20252b;
+
+    margin: 0;
+
+}
+
+
+.panel-title i {
+
+    color: #8f6b35;
+
+}
+
+
+.panel-body {
+
+    padding: 22px;
+
+}
+
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.dashboard-table {
+
+    margin-bottom: 0;
+
+}
+
+
+.dashboard-table thead th {
+
+    border-bottom:
+        1px solid #e5e5e5;
+
+    color: #888;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+
+    white-space: nowrap;
+
+    padding: 12px;
+
+}
+
+
+.dashboard-table tbody td {
+
+    color: #444;
+
+    font-size: 13px;
+
+    vertical-align: middle;
+
+    padding: 14px 12px;
+
+    border-bottom:
+        1px solid #f0f0f0;
+
+}
+
+
+.dashboard-table tbody tr:last-child td {
+
+    border-bottom: 0;
+
+}
+
+
+.dashboard-table tbody tr {
+
+    transition:
+        background .2s ease;
+
+}
+
+
+.dashboard-table tbody tr:hover {
+
+    background:
+        #faf9f6;
+
+}
+
+
+.student-avatar {
+
+    width: 35px;
+
+    height: 35px;
+
+    border-radius: 50%;
+
+    background: #f0e6cf;
+
+    color: #8f6b35;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-right: 8px;
+
+    font-weight: 700;
+
+}
+
+
+
+/* =====================================================
+   PAYMENT SUMMARY
+===================================================== */
+
+.payment-box {
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    background: #f7f8f9;
+
+    margin-bottom: 15px;
+
+    border:
+        1px solid #eeeeee;
+
+}
+
+
+.payment-box:last-child {
+
+    margin-bottom: 0;
+
+}
+
+
+.payment-label {
+
+    color: #777;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.payment-value {
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    margin: 0;
+
+}
+
+
+.payment-value.success {
+
+    color: #198754;
+
+}
+
+
+.payment-value.warning {
+
+    color: #dc3545;
+
+}
+
+
+
+/* =====================================================
+   QUICK ACTIONS
+===================================================== */
+
+.quick-action {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px;
+
+    border:
+        1px solid #eeeeee;
+
+    border-radius: 11px;
+
+    text-decoration: none;
+
+    color: #444;
+
+    margin-bottom: 10px;
+
+    transition:
+        .2s ease;
+
+}
+
+
+.quick-action:last-child {
+
+    margin-bottom: 0;
+
+}
+
+
+.quick-action:hover {
+
+    background: #f7f3eb;
+
+    color: #8f6b35;
+
+    border-color: #d9c08a;
+
+    transform:
+        translateX(3px);
+
+}
+
+
+.quick-action-icon {
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 9px;
+
+    background: #f0e6cf;
+
+    color: #8f6b35;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+}
+
+
+.quick-action-text {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.empty-state {
+
+    text-align: center;
+
+    padding: 35px 20px;
+
+    color: #888;
+
+}
+
+
+.empty-state i {
+
+    font-size: 38px;
+
+    color: #c8c8c8;
+
+    display: block;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+/* =====================================================
+   ADMIN STATUS
+===================================================== */
+
+.admin-status-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 13px;
+
+    color: #666;
+
+    margin-bottom: 10px;
+
+}
+
+
+.admin-status-item:last-child {
+
+    margin-bottom: 0;
+
+}
+
+
+.admin-status-item i {
+
+    color: #198754;
+
+}
+
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .dashboard-header {
+
+        margin-bottom: 20px;
+
+    }
+
+
+    .dashboard-header h2 {
+
+        font-size: 23px;
+
+    }
+
+
+    .dashboard-header p {
+
+        font-size: 14px;
+
+    }
+
+
+    .stat-card {
+
+        min-height: 145px;
+
+    }
+
+
+    .panel-header {
+
+        padding: 16px;
+
+    }
+
+
+    .panel-body {
+
+        padding: 16px;
+
+    }
+
+
+    .panel-title {
+
+        font-size: 15px;
+
+    }
+
+
+    .payment-value {
+
+        font-size: 22px;
+
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .dashboard-header h2 {
+
+        font-size: 21px;
+
+    }
+
+
+    .stat-number {
+
+        font-size: 24px;
+
+    }
+
+
+    .stat-decoration {
+
+        font-size: 70px;
+
+    }
+
+}
+
+</style>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<!-- =====================================================
+     DASHBOARD HEADER
+===================================================== -->
+
+<div class="dashboard-header">
+
+    <h2>
+
+        Admin Dashboard
+
+    </h2>
+
+
+    <p>
+
+        Welcome to the DIDI BAHINI GIRLS HOSTEL
+        Management System.
+
+    </p>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN STATISTICS
+===================================================== -->
+
+<div class="row g-4 mb-4">
+
+
+    <!-- TOTAL STUDENTS -->
+
+    <div class="col-xl-3 col-md-6">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+
+                <i class="bi bi-people"></i>
+
+            </div>
+
+
+            <div class="stat-number">
+
+                {{ total_students }}
+
+            </div>
+
+
+            <div class="stat-label">
+
+                Total Students
+
+            </div>
+
+
+            <i class="bi bi-people stat-decoration"></i>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TOTAL ROOMS -->
+
+    <div class="col-xl-3 col-md-6">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+
+                <i class="bi bi-building"></i>
+
+            </div>
+
+
+            <div class="stat-number">
+
+                {{ total_rooms }}
+
+            </div>
+
+
+            <div class="stat-label">
+
+                Total Rooms
+
+            </div>
+
+
+            <i class="bi bi-building stat-decoration"></i>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- AVAILABLE ROOMS -->
+
+    <div class="col-xl-3 col-md-6">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+
+                <i class="bi bi-door-open"></i>
+
+            </div>
+
+
+            <div class="stat-number">
+
+                {{ available_rooms }}
+
+            </div>
+
+
+            <div class="stat-label">
+
+                Available Rooms
+
+            </div>
+
+
+            <i class="bi bi-door-open stat-decoration"></i>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- OCCUPIED ROOMS -->
+
+    <div class="col-xl-3 col-md-6">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+
+                <i class="bi bi-door-closed"></i>
+
+            </div>
+
+
+            <div class="stat-number">
+
+                {{ occupied_rooms }}
+
+            </div>
+
+
+            <div class="stat-label">
+
+                Occupied Rooms
+
+            </div>
+
+
+            <i class="bi bi-door-closed stat-decoration"></i>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SECONDARY STATISTICS
+===================================================== -->
+
+<div class="row g-4 mb-4">
+
+
+    <!-- ACTIVE ALLOCATIONS -->
+
+    <div class="col-md-4">
+
+        <div class="dashboard-panel">
+
+            <div class="panel-body">
+
+                <div
+                    class="d-flex
+                           justify-content-between
+                           align-items-center"
+                >
+
+                    <div>
+
+                        <div class="payment-label">
+
+                            Active Room Allocations
+
+                        </div>
+
+
+                        <h3 class="payment-value">
+
+                            {{ total_allocations }}
+
+                        </h3>
+
+                    </div>
+
+
+                    <div class="stat-icon mb-0">
+
+                        <i class="bi bi-diagram-3"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TOTAL PAID -->
+
+    <div class="col-md-4">
+
+        <div class="dashboard-panel">
+
+            <div class="panel-body">
+
+                <div
+                    class="d-flex
+                           justify-content-between
+                           align-items-center"
+                >
+
+                    <div>
+
+                        <div class="payment-label">
+
+                            Total Fees Collected
+
+                        </div>
+
+
+                        <h3 class="payment-value success">
+
+                            NPR {{ total_paid }}
+
+                        </h3>
+
+                    </div>
+
+
+                    <div class="stat-icon mb-0">
+
+                        <i class="bi bi-cash-stack"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- PENDING PAYMENTS -->
+
+    <div class="col-md-4">
+
+        <div class="dashboard-panel">
+
+            <div class="panel-body">
+
+                <div
+                    class="d-flex
+                           justify-content-between
+                           align-items-center"
+                >
+
+                    <div>
+
+                        <div class="payment-label">
+
+                            Pending Payments
+
+                        </div>
+
+
+                        <h3 class="payment-value warning">
+
+                            {{ pending_payments }}
+
+                        </h3>
+
+                    </div>
+
+
+                    <div class="stat-icon mb-0">
+
+                        <i class="bi bi-hourglass-split"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     RECENT DATA
+===================================================== -->
+
+<div class="row g-4">
+
+
+    <!-- =================================================
+         RECENT STUDENTS
+    ================================================== -->
+
+    <div class="col-xl-8">
+
+        <div class="dashboard-panel">
+
+
+            <div class="panel-header">
+
+                <h5 class="panel-title">
+
+                    <i class="bi bi-people me-2"></i>
+
+                    Recent Students
+
+                </h5>
+
+
+                <a
+                    href="{% url 'student_list' %}"
+                    class="btn btn-sm btn-admin"
+                >
+
+                    <i class="bi bi-list"></i>
+
+                    <span class="d-none d-sm-inline">
+
+                        View All
+
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <div class="panel-body">
+
+
+                {% if recent_students %}
+
+
+                    <div class="table-responsive">
+
+                        <table
+                            class="table
+                                   dashboard-table
+                                   align-middle"
+                        >
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Student
+                                    </th>
+
+                                    <th>
+                                        Student ID
+                                    </th>
+
+                                    <th>
+                                        Phone
+                                    </th>
+
+                                    <th>
+                                        Email
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+
+                                {% for student in recent_students %}
+
+
+                                <tr>
+
+
+                                    <td>
+
+                                        <span
+                                            class="student-avatar"
+                                        >
+
+                                            {{ student.full_name|first|upper }}
+
+                                        </span>
+
+
+                                        <strong>
+
+                                            {{ student.full_name }}
+
+                                        </strong>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        {{ student.student_id }}
+
+                                    </td>
+
+
+                                    <td>
+
+                                        {{ student.phone }}
+
+                                    </td>
+
+
+                                    <td>
+
+                                        {{ student.email }}
+
+                                    </td>
+
+
+                                </tr>
+
+
+                                {% endfor %}
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                {% else %}
+
+
+                    <div class="empty-state">
+
+                        <i class="bi bi-people"></i>
+
+                        <p class="mb-0">
+
+                            No students found.
+
+                        </p>
+
+                    </div>
+
+
+                {% endif %}
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         PAYMENT SUMMARY
+    ================================================== -->
+
+    <div class="col-xl-4">
+
+        <div class="dashboard-panel">
+
+
+            <div class="panel-header">
+
+                <h5 class="panel-title">
+
+                    <i class="bi bi-credit-card me-2"></i>
+
+                    Payment Summary
+
+                </h5>
+
+            </div>
+
+
+            <div class="panel-body">
+
+
+                <div class="payment-box">
+
+                    <div class="payment-label">
+
+                        Total Paid
+
+                    </div>
+
+
+                    <h3 class="payment-value success">
+
+                        NPR {{ total_paid }}
+
+                    </h3>
+
+                </div>
+
+
+                <div class="payment-box">
+
+                    <div class="payment-label">
+
+                        Pending Payments
+
+                    </div>
+
+
+                    <h3 class="payment-value warning">
+
+                        {{ pending_payments }}
+
+                    </h3>
+
+                </div>
+
+
+                <a
+                    href="{% url 'payment_list' %}"
+                    class="btn btn-admin w-100 mt-2"
+                >
+
+                    <i class="bi bi-credit-card me-1"></i>
+
+                    Manage Payments
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     QUICK ACTIONS + ADMINISTRATION
+===================================================== -->
+
+<div class="row g-4 mt-1">
+
+
+    <!-- =================================================
+         QUICK ACTIONS
+    ================================================== -->
+
+    <div class="col-xl-8">
+
+        <div class="dashboard-panel">
+
+
+            <div class="panel-header">
+
+                <h5 class="panel-title">
+
+                    <i
+                        class="bi bi-lightning-charge me-2"
+                    ></i>
+
+                    Quick Actions
+
+                </h5>
+
+            </div>
+
+
+            <div class="panel-body">
+
+                <div class="row g-3">
+
+
+                    <!-- MANAGE STUDENTS -->
+
+                    <div class="col-md-6">
+
+                        <a
+                            href="{% url 'student_list' %}"
+                            class="quick-action"
+                        >
+
+                            <div class="quick-action-icon">
+
+                                <i class="bi bi-person-plus"></i>
+
+                            </div>
+
+
+                            <span class="quick-action-text">
+
+                                Manage Students
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- MANAGE ROOMS -->
+
+                    <div class="col-md-6">
+
+                        <a
+                            href="{% url 'room_list' %}"
+                            class="quick-action"
+                        >
+
+                            <div class="quick-action-icon">
+
+                                <i class="bi bi-door-open"></i>
+
+                            </div>
+
+
+                            <span class="quick-action-text">
+
+                                Manage Rooms
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- ROOM ALLOCATIONS -->
+
+                    <div class="col-md-6">
+
+                        <a
+                            href="{% url 'allocation_list' %}"
+                            class="quick-action"
+                        >
+
+                            <div class="quick-action-icon">
+
+                                <i
+                                    class="bi
+                                           bi-grid-3x3-gap"
+                                ></i>
+
+                            </div>
+
+
+                            <span class="quick-action-text">
+
+                                Room Allocations
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- PUBLISH NOTICE -->
+
+                    <div class="col-md-6">
+
+                        <a
+                            href="{% url 'notice_list' %}"
+                            class="quick-action"
+                        >
+
+                            <div class="quick-action-icon">
+
+                                <i class="bi bi-megaphone"></i>
+
+                            </div>
+
+
+                            <span class="quick-action-text">
+
+                                Publish Notice
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         ADMINISTRATION
+    ================================================== -->
+
+    <div class="col-xl-4">
+
+        <div class="dashboard-panel">
+
+
+            <div class="panel-header">
+
+                <h5 class="panel-title">
+
+                    <i class="bi bi-shield-check me-2"></i>
+
+                    Administration
+
+                </h5>
+
+            </div>
+
+
+            <div class="panel-body">
+
+
+                <!-- ADMIN USER -->
+
+                <div
+                    class="d-flex
+                           align-items-center
+                           gap-3
+                           mb-3"
+                >
+
+                    <div class="stat-icon mb-0">
+
+                        <i class="bi bi-person-badge"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="fw-bold">
+
+                            {{ user.username }}
+
+                        </div>
+
+
+                        <small class="text-muted">
+
+                            Hostel Administrator
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <hr>
+
+
+                <!-- SYSTEM STATUS -->
+
+                <div class="admin-status-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    Student Management
+
+                </div>
+
+
+                <div class="admin-status-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    Room Management
+
+                </div>
+
+
+                <div class="admin-status-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    Fee Management
+
+                </div>
+
+
+                <div class="admin-status-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    Hostel Notices
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<div class="text-center py-4">
+
+    <small class="text-muted">
+
+        © {% now "Y" %}
+
+        DIDI BAHINI GIRLS HOSTEL.
+
+        Admin Management System.
+
+    </small>
+
+</div>
+
+
+{% endblock %}
