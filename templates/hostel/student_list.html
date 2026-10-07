@@ -24,43 +24,66 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 ============================================================ */
 
 .student-page-header {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     gap: 20px;
-
     margin-bottom: 25px;
-
     flex-wrap: wrap;
+}
 
+.page-header-left {
+    flex: 1;
+    min-width: 250px;
 }
 
 .page-title {
-
     margin: 0;
-
     font-size: 28px;
-
     font-weight: 700;
-
     color: #20252b;
-
 }
 
 .page-subtitle {
-
     margin-top: 7px;
-
     margin-bottom: 0;
-
     color: #777;
-
     font-size: 14px;
+}
 
+
+/* ============================================================
+   HEADER ACTIONS
+============================================================ */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-add-student {
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 10px;
+    border: 1px solid #8f6b35;
+    background: #8f6b35;
+    color: #ffffff;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-add-student:hover {
+    background: #6e5126;
+    border-color: #6e5126;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(143, 107, 53, 0.18);
 }
 
 
@@ -69,70 +92,40 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 ============================================================ */
 
 .student-summary {
-
     background: #ffffff;
-
     border: 1px solid #e7e7e7;
-
     border-radius: 15px;
-
     padding: 14px 20px;
-
     display: flex;
-
     align-items: center;
-
     gap: 13px;
-
     min-width: 180px;
-
-    box-shadow:
-        0 5px 18px rgba(0, 0, 0, 0.04);
-
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
 }
 
 .summary-icon {
-
     width: 48px;
-
     height: 48px;
-
     border-radius: 12px;
-
     background: #f7f7f2;
-
     color: #8f6b35;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-size: 22px;
-
 }
 
 .summary-label {
-
     margin: 0;
-
     color: #777;
-
     font-size: 12px;
-
 }
 
 .summary-value {
-
     margin: 0;
-
     color: #20252b;
-
     font-size: 22px;
-
     font-weight: 700;
-
 }
 
 
@@ -141,90 +134,50 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 ============================================================ */
 
 .search-card {
-
     background: #ffffff;
-
     border: 1px solid #e7e7e7;
-
     border-radius: 15px;
-
     padding: 18px;
-
     margin-bottom: 20px;
-
-    box-shadow:
-        0 5px 18px rgba(0, 0, 0, 0.04);
-
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
 }
 
 .search-label {
-
     font-weight: 600;
-
     color: #20252b;
-
     margin-bottom: 8px;
-
 }
 
 .search-input {
-
     min-height: 45px;
-
     border-radius: 9px;
-
     border: 1px solid #ddd;
-
 }
 
 .search-input:focus {
-
     border-color: #8f6b35;
-
-    box-shadow:
-        0 0 0 0.2rem rgba(
-            143,
-            107,
-            53,
-            0.12
-        );
-
+    box-shadow: 0 0 0 0.2rem rgba(143, 107, 53, 0.12);
 }
 
 .btn-search {
-
     min-height: 45px;
-
     background: #8f6b35;
-
     border-color: #8f6b35;
-
     color: #ffffff;
-
     border-radius: 9px;
-
     font-weight: 600;
-
 }
 
 .btn-search:hover {
-
     background: #6e5126;
-
     border-color: #6e5126;
-
     color: #ffffff;
-
 }
 
 .btn-reset {
-
     min-height: 45px;
-
     border-radius: 9px;
-
     font-weight: 600;
-
 }
 
 
@@ -233,13 +186,9 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 ============================================================ */
 
 .result-info {
-
     margin-top: 12px;
-
     color: #777;
-
     font-size: 13px;
-
 }
 
 
@@ -248,23 +197,11 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 ============================================================ */
 
 .table-card {
-
     background: #ffffff;
-
     border: 1px solid #e7e7e7;
-
     border-radius: 16px;
-
     overflow: hidden;
-
-    box-shadow:
-        0 5px 20px rgba(
-            0,
-            0,
-            0,
-            0.04
-        );
-
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
 }
 
 
@@ -273,49 +210,31 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 ============================================================ */
 
 .student-table {
-
     margin-bottom: 0;
-
 }
 
 .student-table thead th {
-
     background: #20252b;
-
     color: #ffffff;
-
     border: none;
-
     padding: 15px 16px;
-
     font-size: 13px;
-
     font-weight: 600;
-
     white-space: nowrap;
-
 }
 
 .student-table tbody td {
-
     padding: 15px 16px;
-
     vertical-align: middle;
-
     border-color: #eeeeee;
-
 }
 
 .student-table tbody tr {
-
     transition: 0.2s ease;
-
 }
 
 .student-table tbody tr:hover {
-
     background: #fafaf7;
-
 }
 
 
@@ -324,13 +243,9 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 ============================================================ */
 
 .student-id {
-
     font-weight: 700;
-
     color: #8f6b35;
-
     white-space: nowrap;
-
 }
 
 
@@ -339,37 +254,22 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 ============================================================ */
 
 .student-avatar {
-
     width: 40px;
-
     height: 40px;
-
     min-width: 40px;
-
     border-radius: 50%;
-
     background: #8f6b35;
-
     color: #ffffff;
-
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-weight: 700;
-
     margin-right: 10px;
-
 }
 
 .student-name {
-
     font-weight: 600;
-
     color: #20252b;
-
 }
 
 
@@ -378,27 +278,21 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 ============================================================ */
 
 .student-email {
-
     color: #555;
-
     min-width: 180px;
-
 }
 
 .student-phone {
-
     color: #555;
-
     white-space: nowrap;
-
 }
 
 .student-address {
-
     max-width: 180px;
-
     color: #555;
-
+    display: inline-block;
+    white-space: normal;
+    word-break: break-word;
 }
 
 
@@ -407,19 +301,13 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 ============================================================ */
 
 .guardian-name {
-
     font-weight: 600;
-
     color: #333;
-
 }
 
 .guardian-phone {
-
     font-size: 12px;
-
     color: #777;
-
 }
 
 
@@ -428,31 +316,75 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 ============================================================ */
 
 .action-buttons {
-
     display: flex;
-
     gap: 6px;
-
     white-space: nowrap;
-
 }
 
 .btn-action {
-
     width: 36px;
-
     height: 36px;
-
     padding: 0;
-
     border-radius: 8px;
-
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
+    transition: all 0.2s ease;
+}
 
+.btn-action:hover {
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   VIEW BUTTON
+============================================================ */
+
+.btn-view {
+    color: #0d6efd;
+    border-color: #0d6efd;
+    background: #ffffff;
+}
+
+.btn-view:hover {
+    color: #ffffff;
+    background: #0d6efd;
+    border-color: #0d6efd;
+}
+
+
+/* ============================================================
+   EDIT BUTTON
+============================================================ */
+
+.btn-edit {
+    color: #8f6b35;
+    border-color: #8f6b35;
+    background: #ffffff;
+}
+
+.btn-edit:hover {
+    color: #ffffff;
+    background: #8f6b35;
+    border-color: #8f6b35;
+}
+
+
+/* ============================================================
+   DELETE BUTTON
+============================================================ */
+
+.btn-delete {
+    color: #dc3545;
+    border-color: #dc3545;
+    background: #ffffff;
+}
+
+.btn-delete:hover {
+    color: #ffffff;
+    background: #dc3545;
+    border-color: #dc3545;
 }
 
 
@@ -461,156 +393,57 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 ============================================================ */
 
 .empty-state {
-
     text-align: center;
-
     padding: 70px 20px;
-
 }
 
 .empty-icon {
-
     width: 75px;
-
     height: 75px;
-
     margin: 0 auto 18px;
-
     border-radius: 50%;
-
     background: #f7f7f2;
-
     color: #8f6b35;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-size: 34px;
-
 }
 
 .empty-title {
-
     font-weight: 700;
-
     color: #20252b;
-
 }
 
 .empty-text {
-
     color: #777;
-
-    margin-bottom: 0;
-
+    margin-bottom: 20px;
 }
 
 
 /* ============================================================
-   MODAL
+   EMPTY ADD BUTTON
 ============================================================ */
 
-.student-modal-header {
-
-    background: #20252b;
-
-    color: #ffffff;
-
-}
-
-.student-modal-header .btn-close {
-
-    filter: invert(1);
-
-}
-
-.profile-avatar-large {
-
-    width: 80px;
-
-    height: 80px;
-
-    border-radius: 50%;
-
-    background: #8f6b35;
-
-    color: #ffffff;
-
-    display: flex;
-
+.empty-add-button {
+    display: inline-flex;
     align-items: center;
-
     justify-content: center;
-
-    font-size: 30px;
-
-    font-weight: 700;
-
-    margin: 0 auto 12px;
-
-}
-
-.profile-name {
-
-    text-align: center;
-
-    font-size: 20px;
-
-    font-weight: 700;
-
-    color: #20252b;
-
-}
-
-.profile-id {
-
-    text-align: center;
-
-    color: #8f6b35;
-
+    min-height: 42px;
+    padding: 0 18px;
+    background: #8f6b35;
+    color: #ffffff;
+    border: 1px solid #8f6b35;
+    border-radius: 9px;
+    text-decoration: none;
     font-weight: 600;
-
+    transition: all 0.2s ease;
 }
 
-.detail-box {
-
-    background: #f8f8f5;
-
-    border: 1px solid #e8e8e8;
-
-    border-radius: 10px;
-
-    padding: 12px 15px;
-
-    margin-bottom: 10px;
-
-}
-
-.detail-label {
-
-    display: block;
-
-    color: #777;
-
-    font-size: 11px;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.5px;
-
-    margin-bottom: 3px;
-
-}
-
-.detail-value {
-
-    color: #20252b;
-
-    font-weight: 600;
-
+.empty-add-button:hover {
+    background: #6e5126;
+    border-color: #6e5126;
+    color: #ffffff;
 }
 
 
@@ -618,63 +451,105 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
    RESPONSIVE
 ============================================================ */
 
+@media (max-width: 1200px) {
+
+    .student-table thead th,
+    .student-table tbody td {
+        font-size: 12px;
+    }
+
+}
+
+
 @media (max-width: 992px) {
 
     .student-page {
-
         padding: 20px;
-
     }
 
-}
-
-@media (max-width: 768px) {
-
     .student-page-header {
-
         align-items: stretch;
+    }
 
+    .header-actions {
+        width: 100%;
     }
 
     .student-summary {
-
         width: 100%;
-
     }
 
-    .page-title {
-
-        font-size: 24px;
-
+    .btn-add-student {
+        flex: 1;
     }
 
 }
+
+
+@media (max-width: 768px) {
+
+    .student-page {
+        padding: 18px;
+    }
+
+    .page-title {
+        font-size: 24px;
+    }
+
+    .page-subtitle {
+        font-size: 13px;
+    }
+
+    .header-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-add-student {
+        width: 100%;
+    }
+
+}
+
 
 @media (max-width: 576px) {
 
     .student-page {
-
         padding: 15px;
-
     }
 
     .student-table thead th,
     .student-table tbody td {
-
         padding: 11px;
-
     }
 
     .student-avatar {
-
         width: 35px;
-
         height: 35px;
-
         min-width: 35px;
-
         margin-right: 7px;
+    }
 
+    .student-name {
+        font-size: 13px;
+    }
+
+    .student-summary {
+        padding: 12px 15px;
+    }
+
+    .summary-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .action-buttons {
+        gap: 4px;
+    }
+
+    .btn-action {
+        width: 34px;
+        height: 34px;
     }
 
 }
@@ -695,7 +570,7 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 
     <div class="student-page-header">
 
-        <div>
+        <div class="page-header-left">
 
             <h2 class="page-title">
 
@@ -715,29 +590,49 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
         </div>
 
 
-        <!-- TOTAL STUDENTS -->
+        <!-- ====================================================
+             HEADER ACTIONS
+        ==================================================== -->
 
-        <div class="student-summary">
+        <div class="header-actions">
 
-            <div class="summary-icon">
+            <a
+                href="{% url 'student_add' %}"
+                class="btn-add-student"
+            >
 
-                <i class="bi bi-people-fill"></i>
+                <i class="bi bi-person-plus-fill me-2"></i>
 
-            </div>
+                Add Student
 
-            <div>
+            </a>
 
-                <p class="summary-label">
 
-                    Total Students
+            <!-- TOTAL STUDENTS -->
 
-                </p>
+            <div class="student-summary">
 
-                <p class="summary-value">
+                <div class="summary-icon">
 
-                    {{ total_students }}
+                    <i class="bi bi-people-fill"></i>
 
-                </p>
+                </div>
+
+                <div>
+
+                    <p class="summary-label">
+
+                        Total Students
+
+                    </p>
+
+                    <p class="summary-value">
+
+                        {{ total_students }}
+
+                    </p>
+
+                </div>
 
             </div>
 
@@ -1020,7 +915,7 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 
 
                         <!-- ==================================
-                             ACTION
+                             ACTIONS
                         =================================== -->
 
                         <td>
@@ -1028,11 +923,13 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
                             <div class="action-buttons">
 
 
-                                <!-- VIEW -->
+                                <!-- ==================================
+                                     VIEW STUDENT
+                                =================================== -->
 
                                 <a
                                     href="{% url 'student_detail' student.id %}"
-                                    class="btn btn-outline-primary btn-action"
+                                    class="btn btn-outline-primary btn-action btn-view"
                                     title="View Student"
                                 >
 
@@ -1041,22 +938,37 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
                                 </a>
 
 
-                                <!-- DELETE -->
+                                <!-- ==================================
+                                     EDIT STUDENT
+                                =================================== -->
+
+                                <a
+                                    href="{% url 'student_edit' student.id %}"
+                                    class="btn btn-outline-warning btn-action btn-edit"
+                                    title="Edit Student"
+                                >
+
+                                    <i class="bi bi-pencil-square"></i>
+
+                                </a>
+
+
+                                <!-- ==================================
+                                     DELETE STUDENT
+                                =================================== -->
 
                                 <form
                                     method="POST"
                                     action="{% url 'student_delete' student.id %}"
                                     class="d-inline"
-                                    onsubmit="return confirm(
-                                        'Are you sure you want to delete {{ student.full_name }}? This will also delete the student login account.'
-                                    );"
+                                    onsubmit="return confirm('Are you sure you want to delete {{ student.full_name|escapejs }}? This will also delete the student login account.');"
                                 >
 
                                     {% csrf_token %}
 
                                     <button
                                         type="submit"
-                                        class="btn btn-outline-danger btn-action"
+                                        class="btn btn-outline-danger btn-action btn-delete"
                                         title="Delete Student"
                                     >
 
@@ -1094,6 +1006,7 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
 
                                 </div>
 
+
                                 <h4 class="empty-title">
 
                                     {% if search_query %}
@@ -1107,6 +1020,7 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
                                     {% endif %}
 
                                 </h4>
+
 
                                 <p class="empty-text">
 
@@ -1123,6 +1037,22 @@ Student Management | DIDI BAHINI GIRLS HOSTEL
                                     {% endif %}
 
                                 </p>
+
+
+                                {% if not search_query %}
+
+                                    <a
+                                        href="{% url 'student_add' %}"
+                                        class="empty-add-button"
+                                    >
+
+                                        <i class="bi bi-person-plus-fill me-2"></i>
+
+                                        Add First Student
+
+                                    </a>
+
+                                {% endif %}
 
                             </div>
 

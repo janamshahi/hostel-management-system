@@ -13,10 +13,19 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
 
 <style>
 
+    /* =========================================================
+       NOTICE WRAPPER
+    ========================================================= */
+
     .notice-wrapper {
         max-width: 950px;
         margin: 0 auto;
     }
+
+
+    /* =========================================================
+       PAGE HEADER
+    ========================================================= */
 
     .notice-header {
         display: flex;
@@ -38,11 +47,16 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
         margin-bottom: 0;
     }
 
+
+    /* =========================================================
+       NOTICE CARD
+    ========================================================= */
+
     .notice-card {
         background: #ffffff;
         border: 0;
         border-radius: 18px;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
         overflow: hidden;
     }
 
@@ -65,6 +79,11 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
         padding: 30px;
     }
 
+
+    /* =========================================================
+       FORM
+    ========================================================= */
+
     .form-label {
         font-weight: 700;
         color: #343a40;
@@ -78,16 +97,21 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
         border: 1px solid #dfe3e8;
     }
 
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #8f6b35;
+        box-shadow: 0 0 0 0.2rem rgba(143, 107, 53, 0.12);
+    }
+
     textarea.form-control {
         min-height: 180px;
         resize: vertical;
     }
 
-    .form-control:focus,
-    .form-select:focus {
-        border-color: #8f6b35;
-        box-shadow: 0 0 0 0.2rem rgba(143,107,53,0.12);
-    }
+
+    /* =========================================================
+       RECIPIENT BOX
+    ========================================================= */
 
     .recipient-box {
         background: #f8f6f0;
@@ -103,7 +127,11 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
         padding: 14px 16px;
         margin-bottom: 10px;
         cursor: pointer;
-        transition: 0.2s ease;
+        transition: all 0.2s ease;
+    }
+
+    .recipient-option:last-child {
+        margin-bottom: 0;
     }
 
     .recipient-option:hover {
@@ -118,6 +146,11 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
     .recipient-option strong {
         color: #20252b;
     }
+
+
+    /* =========================================================
+       STUDENT SELECTION
+    ========================================================= */
 
     .student-selection {
         display: none;
@@ -138,12 +171,31 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
         margin-top: 7px;
     }
 
+
+    /* =========================================================
+       ACTIVE STATUS
+    ========================================================= */
+
     .active-box {
         background: #f7f8f9;
         border-radius: 12px;
         padding: 15px 18px;
         border: 1px solid #e5e7e9;
     }
+
+    .active-box .form-check-input {
+        cursor: pointer;
+    }
+
+    .active-box .form-check-input:checked {
+        background-color: #8f6b35;
+        border-color: #8f6b35;
+    }
+
+
+    /* =========================================================
+       PREVIEW
+    ========================================================= */
 
     .preview-box {
         background: #fafafa;
@@ -166,13 +218,20 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
         font-weight: 800;
         color: #20252b;
         margin-top: 8px;
+        overflow-wrap: anywhere;
     }
 
     .preview-content {
         color: #555;
         white-space: pre-line;
         margin-top: 10px;
+        overflow-wrap: anywhere;
     }
+
+
+    /* =========================================================
+       ACTIONS
+    ========================================================= */
 
     .form-actions {
         display: flex;
@@ -201,12 +260,38 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
         color: #ffffff;
     }
 
+    .btn-primary-custom:disabled {
+        background: #8f6b35;
+        border-color: #8f6b35;
+        opacity: 0.75;
+    }
+
+
+    /* =========================================================
+       COUNTERS
+    ========================================================= */
+
     .counter {
         text-align: right;
         font-size: 12px;
         color: #888;
         margin-top: 5px;
     }
+
+
+    /* =========================================================
+       VALIDATION
+    ========================================================= */
+
+    .form-control.is-invalid,
+    .form-select.is-invalid {
+        border-color: #dc3545;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
 
     @media (max-width: 768px) {
 
@@ -218,12 +303,51 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
             padding: 20px;
         }
 
+        .notice-title h2 {
+            font-size: 24px;
+        }
+
         .form-actions {
             flex-direction: column;
         }
 
-        .form-actions .btn {
+        .form-actions .btn,
+        .form-actions a {
             width: 100%;
+            text-align: center;
+        }
+
+    }
+
+
+    @media (max-width: 576px) {
+
+        .notice-wrapper {
+            width: 100%;
+        }
+
+        .notice-title h2 {
+            font-size: 21px;
+        }
+
+        .notice-title p {
+            font-size: 13px;
+        }
+
+        .notice-card-body {
+            padding: 16px;
+        }
+
+        .notice-card-header {
+            padding: 18px;
+        }
+
+        .notice-card-header h4 {
+            font-size: 17px;
+        }
+
+        .preview-title {
+            font-size: 19px;
         }
 
     }
@@ -239,9 +363,10 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
 
     <div class="notice-wrapper">
 
-        <!-- ================================================= -->
-        <!-- PAGE HEADER -->
-        <!-- ================================================= -->
+
+        <!-- =================================================
+             PAGE HEADER
+        ================================================== -->
 
         <div class="notice-header">
 
@@ -280,9 +405,9 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
         </div>
 
 
-        <!-- ================================================= -->
-        <!-- NOTICE CARD -->
-        <!-- ================================================= -->
+        <!-- =================================================
+             NOTICE CARD
+        ================================================== -->
 
         <div class="notice-card">
 
@@ -308,14 +433,15 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                 <form
                     method="POST"
                     id="noticeForm"
+                    novalidate
                 >
 
                     {% csrf_token %}
 
 
-                    <!-- ===================================== -->
-                    <!-- TITLE -->
-                    <!-- ===================================== -->
+                    <!-- =================================================
+                         TITLE
+                    ================================================== -->
 
                     <div class="mb-4">
 
@@ -325,9 +451,11 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                         >
 
                             Notice Title
+
                             <span class="text-danger">*</span>
 
                         </label>
+
 
                         <input
                             type="text"
@@ -337,8 +465,10 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                             maxlength="200"
                             value="{% if notice %}{{ notice.title }}{% endif %}"
                             placeholder="Enter notice title..."
+                            autocomplete="off"
                             required
                         >
+
 
                         <div
                             class="counter"
@@ -350,9 +480,9 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                     </div>
 
 
-                    <!-- ===================================== -->
-                    <!-- CONTENT -->
-                    <!-- ===================================== -->
+                    <!-- =================================================
+                         CONTENT
+                    ================================================== -->
 
                     <div class="mb-4">
 
@@ -362,9 +492,11 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                         >
 
                             Notice Content
+
                             <span class="text-danger">*</span>
 
                         </label>
+
 
                         <textarea
                             name="content"
@@ -374,6 +506,7 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                             placeholder="Write your hostel notice here..."
                             required
                         >{% if notice %}{{ notice.content }}{% endif %}</textarea>
+
 
                         <div
                             class="counter"
@@ -385,15 +518,16 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                     </div>
 
 
-                    <!-- ===================================== -->
-                    <!-- RECIPIENT -->
-                    <!-- ===================================== -->
+                    <!-- =================================================
+                         RECIPIENT
+                    ================================================== -->
 
                     <div class="mb-4">
 
                         <label class="form-label">
 
                             Send Notice To
+
                             <span class="text-danger">*</span>
 
                         </label>
@@ -401,10 +535,14 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
 
                         <div class="recipient-box">
 
-                            <!-- ALL STUDENTS -->
+
+                            <!-- =========================================
+                                 ALL STUDENTS
+                            ========================================== -->
 
                             <label
                                 class="recipient-option d-block"
+                                for="recipientAll"
                             >
 
                                 <input
@@ -417,6 +555,7 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                                     {% endif %}
                                 >
 
+
                                 <strong>
 
                                     <i class="bi bi-people-fill me-1"></i>
@@ -424,6 +563,7 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                                     All Students
 
                                 </strong>
+
 
                                 <div class="small text-muted ms-4">
 
@@ -435,10 +575,13 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                             </label>
 
 
-                            <!-- SELECTED STUDENTS -->
+                            <!-- =========================================
+                                 SELECTED STUDENTS
+                            ========================================== -->
 
                             <label
                                 class="recipient-option d-block"
+                                for="recipientSelected"
                             >
 
                                 <input
@@ -451,6 +594,7 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                                     {% endif %}
                                 >
 
+
                                 <strong>
 
                                     <i class="bi bi-person-check-fill me-1"></i>
@@ -458,6 +602,7 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                                     Select Student(s)
 
                                 </strong>
+
 
                                 <div class="small text-muted ms-4">
 
@@ -468,9 +613,9 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                             </label>
 
 
-                            <!-- ================================= -->
-                            <!-- STUDENT DROPDOWN -->
-                            <!-- ================================= -->
+                            <!-- =========================================
+                                 STUDENT SELECTION
+                            ========================================== -->
 
                             <div
                                 id="studentSelection"
@@ -504,7 +649,6 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                                         >
 
                                             {{ student.full_name }}
-
                                             — {{ student.student_id }}
 
                                             {% if student.phone %}
@@ -515,7 +659,10 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
 
                                     {% empty %}
 
-                                        <option disabled>
+                                        <option
+                                            value=""
+                                            disabled
+                                        >
 
                                             No students registered.
 
@@ -543,9 +690,9 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                     </div>
 
 
-                    <!-- ===================================== -->
-                    <!-- ACTIVE STATUS -->
-                    <!-- ===================================== -->
+                    <!-- =================================================
+                         ACTIVE STATUS
+                    ================================================== -->
 
                     <div class="mb-4">
 
@@ -564,6 +711,7 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                                     {% endif %}
                                 >
 
+
                                 <label
                                     class="form-check-label fw-bold"
                                     for="isActive"
@@ -574,6 +722,7 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                                 </label>
 
                             </div>
+
 
                             <div class="small text-muted mt-1">
 
@@ -586,9 +735,9 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                     </div>
 
 
-                    <!-- ===================================== -->
-                    <!-- PREVIEW -->
-                    <!-- ===================================== -->
+                    <!-- =================================================
+                         LIVE PREVIEW
+                    ================================================== -->
 
                     <div class="preview-box">
 
@@ -598,12 +747,14 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
 
                         </div>
 
+
                         <div
                             class="preview-title"
                             id="previewTitle"
                         >
                             Notice Title
                         </div>
+
 
                         <div
                             class="preview-content"
@@ -615,11 +766,14 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
                     </div>
 
 
-                    <!-- ===================================== -->
-                    <!-- ACTIONS -->
-                    <!-- ===================================== -->
+                    <!-- =================================================
+                         ACTION BUTTONS
+                    ================================================== -->
 
                     <div class="form-actions">
+
+
+                        <!-- Cancel -->
 
                         <a
                             href="{% url 'notice_list' %}"
@@ -632,6 +786,8 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
 
                         </a>
 
+
+                        <!-- Submit -->
 
                         <button
                             type="submit"
@@ -662,11 +818,20 @@ Create Notice | DIDI BAHINI GIRLS HOSTEL
 </div>
 
 
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
 <script>
 
 document.addEventListener(
     "DOMContentLoaded",
     function () {
+
+
+        /* =====================================================
+           ELEMENTS
+        ===================================================== */
 
         const recipientAll =
             document.getElementById(
@@ -718,14 +883,25 @@ document.addEventListener(
                 "previewContent"
             );
 
+        const noticeForm =
+            document.getElementById(
+                "noticeForm"
+            );
 
-        // ================================================
-        // SHOW / HIDE STUDENT SELECT
-        // ================================================
+        const submitButton =
+            document.getElementById(
+                "submitButton"
+            );
+
+
+        /* =====================================================
+           SHOW / HIDE STUDENT SELECTION
+        ===================================================== */
 
         function updateRecipientDisplay() {
 
             if (
+                recipientSelected &&
                 recipientSelected.checked
             ) {
 
@@ -748,38 +924,51 @@ document.addEventListener(
         }
 
 
-        recipientAll.addEventListener(
-            "change",
-            updateRecipientDisplay
-        );
+        if (recipientAll) {
+
+            recipientAll.addEventListener(
+                "change",
+                updateRecipientDisplay
+            );
+
+        }
 
 
-        recipientSelected.addEventListener(
-            "change",
-            updateRecipientDisplay
-        );
+        if (recipientSelected) {
+
+            recipientSelected.addEventListener(
+                "change",
+                updateRecipientDisplay
+            );
+
+        }
 
 
-        // Initial state
+        /* Initial recipient state */
+
         updateRecipientDisplay();
 
 
-        // ================================================
-        // TITLE COUNTER
-        // ================================================
+        /* =====================================================
+           TITLE COUNTER AND PREVIEW
+        ===================================================== */
 
         function updateTitle() {
 
             const value =
                 title.value;
 
+
             titleCounter.textContent =
                 value.length + " / 200";
 
-            if (value.trim()) {
+
+            if (
+                value.trim()
+            ) {
 
                 previewTitle.textContent =
-                    value;
+                    value.trim();
 
             } else {
 
@@ -797,22 +986,26 @@ document.addEventListener(
         );
 
 
-        // ================================================
-        // CONTENT COUNTER
-        // ================================================
+        /* =====================================================
+           CONTENT COUNTER AND PREVIEW
+        ===================================================== */
 
         function updateContent() {
 
             const value =
                 content.value;
 
+
             contentCounter.textContent =
                 value.length + " / 5000";
 
-            if (value.trim()) {
+
+            if (
+                value.trim()
+            ) {
 
                 previewContent.textContent =
-                    value;
+                    value.trim();
 
             } else {
 
@@ -830,60 +1023,113 @@ document.addEventListener(
         );
 
 
-        // Initial preview
+        /* Initial preview */
+
         updateTitle();
         updateContent();
 
 
-        // ================================================
-        // FORM SUBMIT
-        // ================================================
+        /* =====================================================
+           FORM SUBMISSION
+        ===================================================== */
 
-        document
-            .getElementById("noticeForm")
-            .addEventListener(
-                "submit",
-                function () {
-
-                    const button =
-                        document.getElementById(
-                            "submitButton"
-                        );
-
-                    if (
-                        recipientSelected.checked &&
-                        students.selectedOptions.length === 0
-                    ) {
-
-                        alert(
-                            "Please select at least one student."
-                        );
-
-                        event.preventDefault();
-
-                        return;
-
-                    }
+        noticeForm.addEventListener(
+            "submit",
+            function (event) {
 
 
-                    button.disabled = true;
+                /* ---------------------------------------------
+                   Validate title
+                --------------------------------------------- */
 
-                    {% if notice %}
+                if (
+                    !title.value.trim()
+                ) {
 
-                        button.innerHTML =
-                            '<i class="bi bi-arrow-repeat me-1"></i> Updating...';
+                    event.preventDefault();
 
-                    {% else %}
+                    title.focus();
 
-                        button.innerHTML =
-                            '<i class="bi bi-arrow-repeat me-1"></i> Publishing...';
+                    alert(
+                        "Please enter a notice title."
+                    );
 
-                    {% endif %}
+                    return;
 
                 }
-            );
+
+
+                /* ---------------------------------------------
+                   Validate content
+                --------------------------------------------- */
+
+                if (
+                    !content.value.trim()
+                ) {
+
+                    event.preventDefault();
+
+                    content.focus();
+
+                    alert(
+                        "Please enter the notice content."
+                    );
+
+                    return;
+
+                }
+
+
+                /* ---------------------------------------------
+                   Validate selected students
+                --------------------------------------------- */
+
+                if (
+                    recipientSelected.checked &&
+                    students.selectedOptions.length === 0
+                ) {
+
+                    event.preventDefault();
+
+                    students.focus();
+
+                    alert(
+                        "Please select at least one student."
+                    );
+
+                    return;
+
+                }
+
+
+                /* ---------------------------------------------
+                   Disable button to prevent double submission
+                --------------------------------------------- */
+
+                submitButton.disabled = true;
+
+
+                /* ---------------------------------------------
+                   Change button text
+                --------------------------------------------- */
+
+                {% if notice %}
+
+                    submitButton.innerHTML =
+                        '<i class="bi bi-arrow-repeat me-1"></i> Updating...';
+
+                {% else %}
+
+                    submitButton.innerHTML =
+                        '<i class="bi bi-arrow-repeat me-1"></i> Publishing...';
+
+                {% endif %}
+
+            }
+        );
 
     }
+
 );
 
 </script>

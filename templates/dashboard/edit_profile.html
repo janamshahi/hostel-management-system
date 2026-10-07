@@ -9,6 +9,10 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
 <style>
 
+    /* =========================================================
+       PAGE
+    ========================================================= */
+
     body {
         background: #f7f7f2;
     }
@@ -20,7 +24,7 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
 
     /* =========================================================
-       SIDEBAR
+       STUDENT SIDEBAR
     ========================================================= */
 
     .student-sidebar {
@@ -50,7 +54,7 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;
-        transition: .2s ease;
+        transition: all .2s ease;
     }
 
     .student-sidebar a i {
@@ -62,6 +66,7 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
     .student-sidebar a:hover {
         background: #f1f1d8;
         color: #333;
+        transform: translateX(2px);
     }
 
     .student-sidebar a.active {
@@ -76,7 +81,7 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
 
     /* =========================================================
-       CONTENT
+       MAIN CONTENT
     ========================================================= */
 
     .profile-content {
@@ -85,7 +90,7 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
 
     /* =========================================================
-       HEADER
+       PAGE HEADER
     ========================================================= */
 
     .profile-header {
@@ -99,6 +104,7 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
     .profile-avatar {
         width: 75px;
         height: 75px;
+        min-width: 75px;
         border-radius: 20px;
         background: #d9d75f;
         color: #333;
@@ -118,6 +124,7 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
     .profile-header p {
         color: #777;
         margin-bottom: 0;
+        font-size: 14px;
     }
 
 
@@ -129,7 +136,7 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
         background: #ffffff;
         border: none;
         border-radius: 17px;
-        box-shadow: 0 5px 20px rgba(0,0,0,.04);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, .04);
     }
 
     .profile-card-title {
@@ -162,7 +169,7 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
         padding: 10px 13px;
         color: #333;
         background: #ffffff;
-        transition: .2s ease;
+        transition: all .2s ease;
     }
 
     .form-control:focus {
@@ -176,8 +183,8 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
     }
 
     .readonly-field {
-        background: #f5f5f5;
-        color: #777;
+        background: #f5f5f5 !important;
+        color: #777 !important;
         cursor: not-allowed;
     }
 
@@ -185,6 +192,22 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
         font-size: 11px;
         color: #999;
         margin-top: 5px;
+    }
+
+    .required {
+        color: #dc3545;
+        margin-left: 2px;
+    }
+
+
+    /* =========================================================
+       SECTION DIVIDER
+    ========================================================= */
+
+    .section-divider {
+        height: 1px;
+        background: #eeeeee;
+        margin: 12px 0 24px;
     }
 
 
@@ -200,12 +223,13 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
         padding: 11px 22px;
         font-size: 14px;
         font-weight: 600;
-        transition: .2s ease;
+        transition: all .2s ease;
     }
 
     .save-btn:hover {
         background: #c8c64d;
         color: #222;
+        transform: translateY(-1px);
     }
 
     .cancel-btn {
@@ -217,12 +241,13 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
         font-size: 14px;
         font-weight: 600;
         text-decoration: none;
-        transition: .2s ease;
+        transition: all .2s ease;
     }
 
     .cancel-btn:hover {
         background: #f5f5f5;
         color: #333;
+        border-color: #cccccc;
     }
 
 
@@ -233,6 +258,28 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
     .alert {
         border-radius: 10px;
         font-size: 14px;
+        border: none;
+    }
+
+
+    /* =========================================================
+       INFORMATION BOX
+    ========================================================= */
+
+    .profile-info-box {
+        background: #f9f9ee;
+        border: 1px solid #ecebc9;
+        border-radius: 12px;
+        padding: 13px 15px;
+        color: #666;
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .profile-info-box i {
+        color: #9c9a38;
+        font-size: 16px;
+        vertical-align: middle;
     }
 
 
@@ -266,7 +313,6 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
         .profile-content {
             padding: 20px;
         }
-
     }
 
 
@@ -282,12 +328,18 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
         .profile-avatar {
             width: 60px;
+            min-width: 60px;
             height: 60px;
             font-size: 25px;
+            border-radius: 16px;
         }
 
         .profile-header h2 {
             font-size: 21px;
+        }
+
+        .profile-header p {
+            font-size: 13px;
         }
 
         .student-sidebar a {
@@ -298,6 +350,10 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
         .cancel-btn {
             width: 100%;
             text-align: center;
+        }
+
+        .profile-card .card-body {
+            padding: 20px !important;
         }
 
     }
@@ -465,16 +521,35 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
                                     {% else %}
                                         alert-info
                                     {% endif %}
-                                    alert-dismissible fade show"
+                                    alert-dismissible
+                                    fade
+                                    show"
                              role="alert">
 
-                            <i class="bi bi-info-circle me-2"></i>
+                            {% if message.tags == 'success' %}
+
+                                <i class="bi bi-check-circle-fill me-2"></i>
+
+                            {% elif message.tags == 'error' %}
+
+                                <i class="bi bi-exclamation-circle-fill me-2"></i>
+
+                            {% elif message.tags == 'warning' %}
+
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+                            {% else %}
+
+                                <i class="bi bi-info-circle-fill me-2"></i>
+
+                            {% endif %}
 
                             {{ message }}
 
                             <button type="button"
                                     class="btn-close"
-                                    data-bs-dismiss="alert">
+                                    data-bs-dismiss="alert"
+                                    aria-label="Close">
                             </button>
 
                         </div>
@@ -485,12 +560,17 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
 
                 <!-- =================================================
-                     PERSONAL INFORMATION FORM
+                     PROFILE INFORMATION CARD
                 ================================================== -->
 
                 <div class="card profile-card">
 
                     <div class="card-body p-4">
+
+
+                        <!-- =================================================
+                             PERSONAL INFORMATION
+                        ================================================== -->
 
                         <div class="profile-card-title">
 
@@ -500,10 +580,11 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
                         </div>
 
-                        <hr>
+                        <div class="section-divider"></div>
 
 
-                        <form method="POST">
+                        <form method="POST"
+                              autocomplete="off">
 
                             {% csrf_token %}
 
@@ -511,22 +592,28 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
                             <div class="row g-4">
 
 
-                                <!-- Student ID -->
+                                <!-- =================================================
+                                     STUDENT ID
+                                ================================================== -->
 
                                 <div class="col-md-6">
 
-                                    <label class="form-label">
+                                    <label for="student_id"
+                                           class="form-label">
 
                                         Student ID
 
                                     </label>
 
                                     <input type="text"
+                                           id="student_id"
                                            class="form-control readonly-field"
                                            value="{{ student.student_id }}"
                                            readonly>
 
                                     <div class="field-help">
+
+                                        <i class="bi bi-lock-fill me-1"></i>
 
                                         Student ID cannot be changed.
 
@@ -535,22 +622,28 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
                                 </div>
 
 
-                                <!-- Username -->
+                                <!-- =================================================
+                                     USERNAME
+                                ================================================== -->
 
                                 <div class="col-md-6">
 
-                                    <label class="form-label">
+                                    <label for="username"
+                                           class="form-label">
 
                                         Username
 
                                     </label>
 
                                     <input type="text"
+                                           id="username"
                                            class="form-control readonly-field"
                                            value="{{ student.user.username }}"
                                            readonly>
 
                                     <div class="field-help">
+
+                                        <i class="bi bi-lock-fill me-1"></i>
 
                                         Username cannot be changed.
 
@@ -559,7 +652,9 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
                                 </div>
 
 
-                                <!-- Full Name -->
+                                <!-- =================================================
+                                     FULL NAME
+                                ================================================== -->
 
                                 <div class="col-md-6">
 
@@ -568,6 +663,8 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
                                         Full Name
 
+                                        <span class="required">*</span>
+
                                     </label>
 
                                     <input type="text"
@@ -575,12 +672,15 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
                                            name="full_name"
                                            class="form-control"
                                            value="{{ student.full_name }}"
+                                           maxlength="150"
                                            required>
 
                                 </div>
 
 
-                                <!-- Phone -->
+                                <!-- =================================================
+                                     PHONE
+                                ================================================== -->
 
                                 <div class="col-md-6">
 
@@ -589,6 +689,8 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
                                         Phone Number
 
+                                        <span class="required">*</span>
+
                                     </label>
 
                                     <input type="tel"
@@ -596,12 +698,15 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
                                            name="phone"
                                            class="form-control"
                                            value="{{ student.phone }}"
+                                           maxlength="20"
                                            required>
 
                                 </div>
 
 
-                                <!-- Email -->
+                                <!-- =================================================
+                                     EMAIL
+                                ================================================== -->
 
                                 <div class="col-md-6">
 
@@ -610,6 +715,8 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
                                         Email Address
 
+                                        <span class="required">*</span>
+
                                     </label>
 
                                     <input type="email"
@@ -617,12 +724,15 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
                                            name="email"
                                            class="form-control"
                                            value="{{ student.email }}"
+                                           maxlength="254"
                                            required>
 
                                 </div>
 
 
-                                <!-- Date of Birth -->
+                                <!-- =================================================
+                                     DATE OF BIRTH
+                                ================================================== -->
 
                                 <div class="col-md-6">
 
@@ -642,31 +752,39 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
                                 </div>
 
 
-                                <!-- Gender -->
+                                <!-- =================================================
+                                     GENDER
+                                ================================================== -->
 
                                 <div class="col-md-6">
 
-                                    <label class="form-label">
+                                    <label for="gender"
+                                           class="form-label">
 
                                         Gender
 
                                     </label>
 
                                     <input type="text"
+                                           id="gender"
                                            class="form-control readonly-field"
                                            value="{{ student.gender }}"
                                            readonly>
 
                                     <div class="field-help">
 
-                                        Gender cannot be changed.
+                                        <i class="bi bi-lock-fill me-1"></i>
+
+                                        Gender is fixed as Female for this hostel.
 
                                     </div>
 
                                 </div>
 
 
-                                <!-- Address -->
+                                <!-- =================================================
+                                     ADDRESS
+                                ================================================== -->
 
                                 <div class="col-12">
 
@@ -675,11 +793,14 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
                                         Address
 
+                                        <span class="required">*</span>
+
                                     </label>
 
                                     <textarea id="address"
                                               name="address"
                                               class="form-control"
+                                              maxlength="500"
                                               required>{{ student.address }}</textarea>
 
                                 </div>
@@ -699,13 +820,15 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
                             </div>
 
-                            <hr>
+                            <div class="section-divider"></div>
 
 
                             <div class="row g-4">
 
 
-                                <!-- Guardian Name -->
+                                <!-- =================================================
+                                     GUARDIAN NAME
+                                ================================================== -->
 
                                 <div class="col-md-6">
 
@@ -714,6 +837,8 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
                                         Guardian Name
 
+                                        <span class="required">*</span>
+
                                     </label>
 
                                     <input type="text"
@@ -721,12 +846,15 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
                                            name="guardian_name"
                                            class="form-control"
                                            value="{{ student.guardian_name }}"
+                                           maxlength="150"
                                            required>
 
                                 </div>
 
 
-                                <!-- Guardian Phone -->
+                                <!-- =================================================
+                                     GUARDIAN PHONE
+                                ================================================== -->
 
                                 <div class="col-md-6">
 
@@ -735,6 +863,8 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
                                         Guardian Phone
 
+                                        <span class="required">*</span>
+
                                     </label>
 
                                     <input type="tel"
@@ -742,9 +872,26 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
                                            name="guardian_phone"
                                            class="form-control"
                                            value="{{ student.guardian_phone }}"
+                                           maxlength="20"
                                            required>
 
                                 </div>
+
+                            </div>
+
+
+                            <!-- =================================================
+                                 INFORMATION MESSAGE
+                            ================================================== -->
+
+                            <div class="profile-info-box mt-4">
+
+                                <i class="bi bi-info-circle-fill me-2"></i>
+
+                                You can update your personal contact details,
+                                address, date of birth, and guardian information.
+                                Student ID, username, and gender are controlled
+                                by the hostel administration.
 
                             </div>
 
@@ -759,6 +906,9 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
                                         flex-wrap
                                         mt-5">
 
+
+                                <!-- Cancel -->
+
                                 <a href="{% url 'student_profile' %}"
                                    class="cancel-btn">
 
@@ -768,6 +918,8 @@ Edit Profile | DIDI BAHINI GIRLS HOSTEL
 
                                 </a>
 
+
+                                <!-- Save -->
 
                                 <button type="submit"
                                         class="save-btn">

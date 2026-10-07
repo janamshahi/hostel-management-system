@@ -1,193 +1,492 @@
 {% extends 'base.html' %}
 
+
 {% block title %}
 Register | DIDI BAHINI GIRLS HOSTEL
 {% endblock %}
+
 
 {% block content %}
 
 <style>
 
-    .register-wrapper {
-        min-height: calc(100vh - 80px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 45px 15px;
-        background:
-            linear-gradient(
-                135deg,
-                #f7f7f2 0%,
-                #ffffff 50%,
-                #f1f2df 100%
-            );
-    }
+/* ==========================================================
+   REGISTER PAGE
+========================================================== */
 
-    .register-card {
-        width: 100%;
-        max-width: 950px;
-        background: #ffffff;
-        border-radius: 22px;
-        overflow: hidden;
-        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.10);
-        border: 1px solid #eeeeee;
-    }
+.register-wrapper {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 45px 15px;
 
-    .register-header {
-        background: linear-gradient(
+    background:
+        linear-gradient(
+            135deg,
+            #f7f7f2 0%,
+            #ffffff 50%,
+            #f1f2df 100%
+        );
+}
+
+
+/* ==========================================================
+   REGISTER CARD
+========================================================== */
+
+.register-card {
+    width: 100%;
+    max-width: 950px;
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.10);
+
+    border: 1px solid #eeeeee;
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.register-header {
+    background:
+        linear-gradient(
             135deg,
             #d9d75f,
             #b8b63b
         );
-        padding: 32px 35px;
-        text-align: center;
-        color: #222;
+
+    padding: 32px 35px;
+
+    text-align: center;
+
+    color: #222;
+}
+
+
+.register-header .icon {
+    width: 70px;
+    height: 70px;
+
+    background:
+        rgba(255, 255, 255, 0.75);
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 15px;
+
+    font-size: 30px;
+
+    color: #55540f;
+}
+
+
+.register-header h2 {
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+
+.register-header p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+
+/* ==========================================================
+   BODY
+========================================================== */
+
+.register-body {
+    padding: 35px;
+}
+
+
+/* ==========================================================
+   SECTION TITLE
+========================================================== */
+
+.section-title {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 22px;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.section-title i {
+    color: #b8b63b;
+    font-size: 20px;
+}
+
+
+.section-title h5 {
+    margin: 0;
+
+    font-weight: 700;
+
+    color: #333;
+}
+
+
+/* ==========================================================
+   FORM LABEL
+========================================================== */
+
+.form-label {
+    font-weight: 600;
+
+    color: #444;
+
+    margin-bottom: 7px;
+}
+
+
+.required {
+    color: #dc3545;
+}
+
+
+/* ==========================================================
+   FORM CONTROL
+========================================================== */
+
+.form-control {
+    min-height: 48px;
+
+    border-radius: 10px;
+
+    border: 1px solid #dddddd;
+
+    padding: 10px 14px;
+
+    transition: 0.2s ease;
+}
+
+
+.form-control:focus {
+    border-color: #b8b63b;
+
+    box-shadow:
+        0 0 0 0.2rem
+        rgba(184, 182, 59, 0.15);
+}
+
+
+.form-control::placeholder {
+    color: #999;
+}
+
+
+textarea.form-control {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+
+/* ==========================================================
+   INPUT GROUP
+========================================================== */
+
+.input-group-text {
+    background: #f7f7f2;
+
+    border-color: #dddddd;
+
+    color: #777;
+
+    min-width: 45px;
+
+    justify-content: center;
+}
+
+
+/* ==========================================================
+   AUTOMATIC STUDENT ID
+========================================================== */
+
+.student-id-input {
+    background: #f7f7f2 !important;
+
+    color: #55540f !important;
+
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+
+    cursor: not-allowed;
+}
+
+
+.student-id-input:focus {
+    background: #f7f7f2 !important;
+
+    border-color: #b8b63b;
+
+    box-shadow:
+        0 0 0 0.2rem
+        rgba(184, 182, 59, 0.15);
+}
+
+
+.student-id-status {
+    background: #f0f8e8;
+
+    border-color: #dddddd;
+
+    color: #4d8b2c;
+
+    min-width: 48px;
+}
+
+
+.student-id-available {
+    margin-top: 7px;
+
+    color: #4d8b2c;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.student-id-available i {
+    margin-right: 4px;
+}
+
+
+.student-id-help {
+    margin-top: 4px;
+
+    color: #888;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+   INFO BOX
+========================================================== */
+
+.info-box {
+    background: #f7f7f2;
+
+    border-left: 4px solid #b8b63b;
+
+    padding: 13px 15px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    color: #666;
+
+    margin-bottom: 25px;
+
+    line-height: 1.6;
+}
+
+
+/* ==========================================================
+   REGISTER BUTTON
+========================================================== */
+
+.register-btn {
+    width: 100%;
+
+    min-height: 50px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #b8b63b;
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    font-size: 16px;
+
+    transition: 0.25s ease;
+
+    cursor: pointer;
+}
+
+
+.register-btn:hover {
+    background: #99972d;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 7px 18px
+        rgba(184, 182, 59, 0.20);
+}
+
+
+.register-btn:active {
+    transform: translateY(0);
+}
+
+
+/* ==========================================================
+   LOGIN LINK
+========================================================== */
+
+.login-link {
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: #666;
+
+    font-size: 14px;
+}
+
+
+.login-link a {
+    color: #8f8d24;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+
+/* ==========================================================
+   ALERT
+========================================================== */
+
+.alert {
+    border-radius: 10px;
+
+    font-size: 13px;
+
+    margin-bottom: 12px;
+}
+
+
+/* ==========================================================
+   FORM VALIDATION
+========================================================== */
+
+.form-control.is-valid {
+    border-color: #198754;
+}
+
+
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .register-wrapper {
+        padding: 25px 12px;
     }
+
+
+    .register-header {
+        padding: 28px 20px;
+    }
+
 
     .register-header .icon {
-        width: 70px;
-        height: 70px;
-        background: rgba(255, 255, 255, 0.75);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 15px;
-        font-size: 30px;
-        color: #55540f;
+        width: 60px;
+        height: 60px;
+
+        font-size: 25px;
     }
+
 
     .register-header h2 {
-        font-weight: 700;
-        margin-bottom: 6px;
+        font-size: 23px;
     }
 
-    .register-header p {
-        margin: 0;
-        font-size: 14px;
-        opacity: 0.85;
-    }
 
     .register-body {
-        padding: 35px;
+        padding: 25px 20px;
     }
 
-    .section-title {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 22px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #eeeeee;
+
+    .register-card {
+        border-radius: 16px;
     }
 
-    .section-title i {
-        color: #b8b63b;
-        font-size: 20px;
+}
+
+
+@media (max-width: 576px) {
+
+    .register-wrapper {
+        padding: 15px 10px;
     }
+
+
+    .register-body {
+        padding: 22px 16px;
+    }
+
+
+    .register-header {
+        padding: 25px 15px;
+    }
+
+
+    .register-header h2 {
+        font-size: 21px;
+    }
+
+
+    .register-header p {
+        font-size: 12px;
+    }
+
 
     .section-title h5 {
-        margin: 0;
-        font-weight: 700;
-        color: #333;
+        font-size: 16px;
     }
 
-    .form-label {
-        font-weight: 600;
-        color: #444;
-        margin-bottom: 7px;
-    }
 
     .form-control {
-        min-height: 48px;
-        border-radius: 10px;
-        border: 1px solid #dddddd;
-        padding: 10px 14px;
-        transition: 0.2s ease;
+        min-height: 46px;
     }
 
-    .form-control:focus {
-        border-color: #b8b63b;
-        box-shadow: 0 0 0 0.2rem rgba(184, 182, 59, 0.15);
-    }
-
-    textarea.form-control {
-        min-height: 100px;
-        resize: vertical;
-    }
-
-    .input-group-text {
-        background: #f7f7f2;
-        border-color: #dddddd;
-        color: #777;
-    }
-
-    .required {
-        color: #dc3545;
-    }
-
-    .register-btn {
-        width: 100%;
-        min-height: 50px;
-        border: none;
-        border-radius: 11px;
-        background: #b8b63b;
-        color: #ffffff;
-        font-weight: 700;
-        font-size: 16px;
-        transition: 0.25s ease;
-    }
-
-    .register-btn:hover {
-        background: #99972d;
-        transform: translateY(-1px);
-    }
-
-    .login-link {
-        text-align: center;
-        margin-top: 20px;
-        color: #666;
-        font-size: 14px;
-    }
-
-    .login-link a {
-        color: #8f8d24;
-        font-weight: 700;
-        text-decoration: none;
-    }
-
-    .login-link a:hover {
-        text-decoration: underline;
-    }
-
-    .info-box {
-        background: #f7f7f2;
-        border-left: 4px solid #b8b63b;
-        padding: 13px 15px;
-        border-radius: 7px;
-        font-size: 13px;
-        color: #666;
-        margin-bottom: 25px;
-    }
-
-    @media (max-width: 768px) {
-
-        .register-wrapper {
-            padding: 25px 12px;
-        }
-
-        .register-header {
-            padding: 28px 20px;
-        }
-
-        .register-body {
-            padding: 25px 20px;
-        }
-
-        .register-card {
-            border-radius: 16px;
-        }
-    }
+}
 
 </style>
 
@@ -196,14 +495,24 @@ Register | DIDI BAHINI GIRLS HOSTEL
 
     <div class="register-card">
 
-        <!-- HEADER -->
+
+        <!-- ==================================================
+             HEADER
+        =================================================== -->
+
         <div class="register-header">
 
             <div class="icon">
+
                 <i class="bi bi-person-plus-fill"></i>
+
             </div>
 
-            <h2>Create Student Account</h2>
+
+            <h2>
+                Create Student Account
+            </h2>
+
 
             <p>
                 Register for DIDI BAHINI GIRLS HOSTEL
@@ -212,36 +521,75 @@ Register | DIDI BAHINI GIRLS HOSTEL
         </div>
 
 
-        <!-- BODY -->
+
+        <!-- ==================================================
+             BODY
+        =================================================== -->
+
         <div class="register-body">
 
+
+            <!-- ==================================================
+                 DJANGO MESSAGES
+            =================================================== -->
+
             {% if messages %}
+
                 {% for message in messages %}
 
-                    <div class="alert
+                    <div
+                        class="alert
                         {% if message.tags == 'error' %}
                             alert-danger
                         {% elif message.tags == 'success' %}
                             alert-success
+                        {% elif message.tags == 'warning' %}
+                            alert-warning
                         {% else %}
                             alert-info
                         {% endif %}
-                        alert-dismissible fade show"
-                        role="alert">
+                        alert-dismissible
+                        fade
+                        show"
+                        role="alert"
+                    >
+
+                        <i
+                            class="
+                            {% if message.tags == 'error' %}
+                                bi bi-exclamation-circle-fill
+                            {% elif message.tags == 'success' %}
+                                bi bi-check-circle-fill
+                            {% elif message.tags == 'warning' %}
+                                bi bi-exclamation-triangle-fill
+                            {% else %}
+                                bi bi-info-circle-fill
+                            {% endif %}
+                            me-2
+                            "
+                        ></i>
 
                         {{ message }}
+
 
                         <button
                             type="button"
                             class="btn-close"
-                            data-bs-dismiss="alert">
-                        </button>
+                            data-bs-dismiss="alert"
+                            aria-label="Close"
+                        ></button>
 
                     </div>
 
                 {% endfor %}
+
             {% endif %}
 
+
+
+            <!-- ==================================================
+                 INFORMATION BOX
+            =================================================== -->
 
             <div class="info-box">
 
@@ -253,216 +601,418 @@ Register | DIDI BAHINI GIRLS HOSTEL
             </div>
 
 
-            <form method="POST">
+
+            <!-- ==================================================
+                 REGISTRATION FORM
+            =================================================== -->
+
+            <form
+                method="POST"
+                id="registrationForm"
+                autocomplete="off"
+            >
 
                 {% csrf_token %}
 
 
-                <!-- ACCOUNT INFORMATION -->
+
+                <!-- ==================================================
+                     ACCOUNT INFORMATION
+                =================================================== -->
 
                 <div class="section-title">
 
                     <i class="bi bi-person-lock"></i>
 
-                    <h5>Account Information</h5>
+                    <h5>
+                        Account Information
+                    </h5>
 
                 </div>
 
 
                 <div class="row g-4 mb-4">
 
+
+                    <!-- USERNAME -->
+
                     <div class="col-md-6">
 
-                        <label class="form-label">
+                        <label
+                            for="username"
+                            class="form-label"
+                        >
+
                             Username
-                            <span class="required">*</span>
+
+                            <span class="required">
+                                *
+                            </span>
+
                         </label>
+
 
                         <input
                             type="text"
                             name="username"
+                            id="username"
                             class="form-control"
                             placeholder="Enter username"
                             required
-                            autocomplete="username">
+                            autocomplete="username"
+                            maxlength="150"
+                        >
 
                     </div>
 
 
+
+                    <!-- PASSWORD -->
+
                     <div class="col-md-6">
 
-                        <label class="form-label">
+                        <label
+                            for="password"
+                            class="form-label"
+                        >
+
                             Password
-                            <span class="required">*</span>
+
+                            <span class="required">
+                                *
+                            </span>
+
                         </label>
+
 
                         <input
                             type="password"
                             name="password"
+                            id="password"
                             class="form-control"
                             placeholder="Create password"
                             required
-                            autocomplete="new-password">
+                            autocomplete="new-password"
+                        >
 
                     </div>
 
                 </div>
 
 
-                <!-- PERSONAL INFORMATION -->
+
+                <!-- ==================================================
+                     PERSONAL INFORMATION
+                =================================================== -->
 
                 <div class="section-title">
 
                     <i class="bi bi-person-vcard"></i>
 
-                    <h5>Personal Information</h5>
+                    <h5>
+                        Personal Information
+                    </h5>
 
                 </div>
 
 
                 <div class="row g-4 mb-4">
 
+
+                    <!-- FULL NAME -->
+
                     <div class="col-md-6">
 
-                        <label class="form-label">
+                        <label
+                            for="full_name"
+                            class="form-label"
+                        >
+
                             Full Name
-                            <span class="required">*</span>
+
+                            <span class="required">
+                                *
+                            </span>
+
                         </label>
+
 
                         <input
                             type="text"
                             name="full_name"
+                            id="full_name"
                             class="form-control"
                             placeholder="Enter full name"
-                            required>
+                            required
+                            maxlength="150"
+                        >
 
                     </div>
 
 
+
+                    <!-- ==================================================
+                         AUTOMATIC STUDENT ID
+                    =================================================== -->
+
                     <div class="col-md-6">
 
-                        <label class="form-label">
+                        <label
+                            for="studentId"
+                            class="form-label"
+                        >
+
                             Student ID
-                            <span class="required">*</span>
+
+                            <span class="required">
+                                *
+                            </span>
+
                         </label>
 
-                        <input
-                            type="text"
-                            name="student_id"
-                            class="form-control"
-                            placeholder="Enter student ID"
-                            required>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+
+                                <i class="bi bi-person-badge-fill"></i>
+
+                            </span>
+
+
+                            <input
+                                type="text"
+                                name="student_id"
+                                id="studentId"
+                                class="form-control student-id-input"
+                                value="{{ generated_student_id }}"
+                                readonly
+                                required
+                            >
+
+
+                            <span
+                                class="input-group-text student-id-status"
+                                title="Student ID available"
+                            >
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="student-id-available">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Student ID available
+
+                        </div>
+
+
+                        <div class="student-id-help">
+
+                            Your Student ID is automatically assigned
+                            by the hostel system.
+
+                        </div>
 
                     </div>
 
 
+
+                    <!-- EMAIL -->
+
                     <div class="col-md-6">
 
-                        <label class="form-label">
+                        <label
+                            for="email"
+                            class="form-label"
+                        >
+
                             Email Address
-                            <span class="required">*</span>
+
+                            <span class="required">
+                                *
+                            </span>
+
                         </label>
+
 
                         <input
                             type="email"
                             name="email"
+                            id="email"
                             class="form-control"
                             placeholder="example@gmail.com"
                             required
-                            autocomplete="email">
+                            autocomplete="email"
+                        >
 
                     </div>
 
 
+
+                    <!-- PHONE -->
+
                     <div class="col-md-6">
 
-                        <label class="form-label">
+                        <label
+                            for="phone"
+                            class="form-label"
+                        >
+
                             Phone Number
-                            <span class="required">*</span>
+
+                            <span class="required">
+                                *
+                            </span>
+
                         </label>
+
 
                         <input
                             type="tel"
                             name="phone"
+                            id="phone"
                             class="form-control"
                             placeholder="98XXXXXXXX"
-                            required>
+                            required
+                            maxlength="20"
+                            autocomplete="tel"
+                        >
 
                     </div>
 
 
+
+                    <!-- ADDRESS -->
+
                     <div class="col-12">
 
-                        <label class="form-label">
+                        <label
+                            for="address"
+                            class="form-label"
+                        >
+
                             Address
-                            <span class="required">*</span>
+
+                            <span class="required">
+                                *
+                            </span>
+
                         </label>
+
 
                         <textarea
                             name="address"
+                            id="address"
                             class="form-control"
                             placeholder="Enter your permanent address"
-                            required></textarea>
+                            required
+                        ></textarea>
 
                     </div>
 
                 </div>
 
 
-                <!-- GUARDIAN INFORMATION -->
+
+                <!-- ==================================================
+                     GUARDIAN INFORMATION
+                =================================================== -->
 
                 <div class="section-title">
 
                     <i class="bi bi-people-fill"></i>
 
-                    <h5>Guardian Information</h5>
+                    <h5>
+                        Guardian Information
+                    </h5>
 
                 </div>
 
 
                 <div class="row g-4 mb-4">
 
+
+                    <!-- GUARDIAN NAME -->
+
                     <div class="col-md-6">
 
-                        <label class="form-label">
+                        <label
+                            for="guardian_name"
+                            class="form-label"
+                        >
+
                             Guardian Name
-                            <span class="required">*</span>
+
+                            <span class="required">
+                                *
+                            </span>
+
                         </label>
+
 
                         <input
                             type="text"
                             name="guardian_name"
+                            id="guardian_name"
                             class="form-control"
                             placeholder="Enter guardian name"
-                            required>
+                            required
+                            maxlength="150"
+                        >
 
                     </div>
 
 
+
+                    <!-- GUARDIAN PHONE -->
+
                     <div class="col-md-6">
 
-                        <label class="form-label">
+                        <label
+                            for="guardian_phone"
+                            class="form-label"
+                        >
+
                             Guardian Phone
-                            <span class="required">*</span>
+
+                            <span class="required">
+                                *
+                            </span>
+
                         </label>
+
 
                         <input
                             type="tel"
                             name="guardian_phone"
+                            id="guardian_phone"
                             class="form-control"
                             placeholder="98XXXXXXXX"
-                            required>
+                            required
+                            maxlength="20"
+                        >
 
                     </div>
 
                 </div>
 
 
-                <!-- SUBMIT -->
+
+                <!-- ==================================================
+                     SUBMIT BUTTON
+                =================================================== -->
 
                 <button
                     type="submit"
-                    class="register-btn">
+                    class="register-btn"
+                    id="registerButton"
+                >
 
                     <i class="bi bi-person-check-fill me-2"></i>
 
@@ -471,15 +1021,23 @@ Register | DIDI BAHINI GIRLS HOSTEL
                 </button>
 
 
+
+                <!-- ==================================================
+                     LOGIN LINK
+                =================================================== -->
+
                 <div class="login-link">
 
                     Already have an account?
 
                     <a href="{% url 'login' %}">
+
                         Login here
+
                     </a>
 
                 </div>
+
 
             </form>
 
@@ -488,5 +1046,85 @@ Register | DIDI BAHINI GIRLS HOSTEL
     </div>
 
 </div>
+
+
+
+<!-- ==========================================================
+     JAVASCRIPT
+========================================================== -->
+
+<script>
+
+document.addEventListener(
+    'DOMContentLoaded',
+    function () {
+
+        const form =
+            document.getElementById(
+                'registrationForm'
+            );
+
+
+        const studentId =
+            document.getElementById(
+                'studentId'
+            );
+
+
+        const registerButton =
+            document.getElementById(
+                'registerButton'
+            );
+
+
+        /* =====================================================
+           CHECK AUTOMATIC STUDENT ID
+        ===================================================== */
+
+        if (studentId) {
+
+            if (
+                studentId.value &&
+                studentId.value.trim() !== ''
+            ) {
+
+                studentId.classList.add(
+                    'is-valid'
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           FORM SUBMISSION
+        ===================================================== */
+
+        if (form) {
+
+            form.addEventListener(
+                'submit',
+                function () {
+
+                    if (registerButton) {
+
+                        registerButton.disabled = true;
+
+                        registerButton.innerHTML =
+                            '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Creating Account...';
+
+                    }
+
+                }
+            );
+
+        }
+
+    }
+);
+
+</script>
+
 
 {% endblock %}
